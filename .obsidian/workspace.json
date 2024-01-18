@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "b6a80300154b8ea5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Skills Development.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Ideation.md",
+                "file": "Skills Development.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Ideation.md",
+                "file": "Skills Development.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Ideation.md"
+                "file": "Skills Development.md"
               }
             }
           }
@@ -146,8 +159,29 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "55d616f89e8328c3",
+  "active": "b6a80300154b8ea5",
   "lastOpenFiles": [
-    "Ideation.md"
+    "anim/anim.blend@",
+    "anim/armColor.png",
+    "anim/armAO.png",
+    "anim/armRoughness.png",
+    "anim/armnormal.png",
+    "anim/fpsarms.fbx",
+    "anim/first-person-arms.zip",
+    "anim/first-person-arms.zip.crdownload",
+    "anim/anim.blend1",
+    "anim/MKC1-Carbine.blend",
+    "anim/mkc1-mk1.zip",
+    "anim/mkc1-mk1.zip.crdownload",
+    "anim/anim.blend",
+    "anim/FPSArms_BaseColor.png",
+    "anim/FPSArms_Roughness.png",
+    "anim/FPSArms_Normal.png",
+    "anim/Arms.fbx",
+    "anim/furniture_2_Roughness.png",
+    "anim/furniture_2_Normal.png",
+    "anim/furniture_2_Metalness.png",
+    "Ideation.md",
+    "Skills Development.md"
   ]
 }
