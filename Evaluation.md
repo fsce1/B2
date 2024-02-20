@@ -1,0 +1,6 @@
+- What has gone well
+- What has not gone well?
+- Compare your initial designs to your final product.
+- If you had more time, what would you do?
+- What would you improve if you did it again?
+- Overall opinion of how the project has gone?

@@ -1,0 +1,5 @@
+# Analysis of Brief
+The brief has asked me to create a videogame, digital animation or a physical game based on the prompt: "The Impact of A.I." As well as this, I must write a production log that includes in-depth breakdowns of idea generation, design, the development process, and the bug fixing process. There will be 2 presentations, one pitching the game idea and the second at the end of production.
+The target audience is 16-25 year olds. This age range typically likes more violent and serious games, such as first/third person shooters and games with in-depth mechanics such as RPGs and competitive games.
+The deadline for the project is the 26th of April, meaning I have just over 2 months to complete the assignment.
+I must explore existing work that is similar to the prompt in order to inform my ideas and plan a better outcome. I then need to be creative and ideate on my design idea to refine it and create a better end result. Another important part of this project is management. I need to create a plan that includes timing for each part of the assignment, so that I can stay on track and making the right amount of progress.
