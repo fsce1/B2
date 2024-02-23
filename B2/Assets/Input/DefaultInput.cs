@@ -53,6 +53,24 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lean"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""27245f66-1a5f-4c54-a8b9-bd168e14108f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Walk"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""a6e0e152-66ac-4ff2-a464-de34da7a0c42"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +150,50 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""97255955-ab67-4a0e-b116-24abc3a11602"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lean"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""53d31317-b966-4ec7-a208-fc012ef18a34"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lean"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""47478599-3b67-494f-baa8-b101c23501fb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lean"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b08c347c-e9b0-48e6-bc6e-5743e94db704"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +205,8 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
         m_Character_View = m_Character.FindAction("View", throwIfNotFound: true);
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
+        m_Character_Lean = m_Character.FindAction("Lean", throwIfNotFound: true);
+        m_Character_Walk = m_Character.FindAction("Walk", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +271,8 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Movement;
     private readonly InputAction m_Character_View;
     private readonly InputAction m_Character_Jump;
+    private readonly InputAction m_Character_Lean;
+    private readonly InputAction m_Character_Walk;
     public struct CharacterActions
     {
         private @DefaultInput m_Wrapper;
@@ -214,6 +280,8 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Character_Movement;
         public InputAction @View => m_Wrapper.m_Character_View;
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
+        public InputAction @Lean => m_Wrapper.m_Character_Lean;
+        public InputAction @Walk => m_Wrapper.m_Character_Walk;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +300,12 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Lean.started += instance.OnLean;
+            @Lean.performed += instance.OnLean;
+            @Lean.canceled += instance.OnLean;
+            @Walk.started += instance.OnWalk;
+            @Walk.performed += instance.OnWalk;
+            @Walk.canceled += instance.OnWalk;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -245,6 +319,12 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Lean.started -= instance.OnLean;
+            @Lean.performed -= instance.OnLean;
+            @Lean.canceled -= instance.OnLean;
+            @Walk.started -= instance.OnWalk;
+            @Walk.performed -= instance.OnWalk;
+            @Walk.canceled -= instance.OnWalk;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -267,5 +347,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnView(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnLean(InputAction.CallbackContext context);
+        void OnWalk(InputAction.CallbackContext context);
     }
 }
