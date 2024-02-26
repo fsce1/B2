@@ -13,6 +13,7 @@ public class MovementController : MonoBehaviour
     public Vector2 inputMovement;
     public Vector2 inputView;
     public float inputLean;
+    public float inputJump;
 
     [Header("References")]
     public Transform camHolder;
@@ -28,9 +29,9 @@ public class MovementController : MonoBehaviour
     [Header("Movement")]
     public bool isWalking;
     public Vector3 velocity;
-    public float friction;
+    public float decel;
     public float accel;
-    public float maxSpeed = 0.7f;
+    float maxSpeed;
     public float runSpeed;
     public float walkSpeed;
 
@@ -39,8 +40,12 @@ public class MovementController : MonoBehaviour
     public float leanAngle;
     public float leanSpeed;
 
-    //[Header("Jump")]
-    //public bool onGround;
+    [Header("Jump")]
+    public bool grounded;
+    public float gravity = 20f;
+    public float jumpForce = 6.5f;
+    public float bhopSpeedMult = 0.4f;
+    public float airAccel;
     //public Vector3 airVelocity;
     //public float jumpHeight;
     //public bool isJumping;
@@ -54,44 +59,56 @@ public class MovementController : MonoBehaviour
         defaultInput.Character.Movement.performed += e => inputMovement = e.ReadValue<Vector2>();
         defaultInput.Character.View.performed += e => inputView = e.ReadValue<Vector2>();
         //defaultInput.Character.Jump.performed += e => DoJump();
-        defaultInput.Character.Lean.performed += e => inputLean = e.ReadValue<float>();
+        defaultInput.Character.Jump.performed += e => inputJump = e.ReadValue<float>();
+        defaultInput.Character.Jump.canceled += e => inputJump = e.ReadValue<float>();
 
+        defaultInput.Character.Lean.performed += e => inputLean = e.ReadValue<float>();
         defaultInput.Enable();
     }
     private void Update()
     {
         DoGroundCheck();
-        CalculateGroundMovement();
+
         CalculateView();
         CalculateLean();
+        if (inputJump >= 0.5f && grounded) DoJump();
 
-        if (defaultInput.Character.Walk.ReadValue<float>() > 0.5f)
-        {
-            isWalking = true;
-        }
+        if (defaultInput.Character.Walk.ReadValue<float>() > 0.5f) isWalking = true;
         else isWalking = false;
 
-        if (isWalking)
-        {
-            maxSpeed = walkSpeed;
-        }
+        if (isWalking) maxSpeed = walkSpeed;
         else maxSpeed = runSpeed;
+
+        if (!grounded)
+        {
+            CalculateAirMovement();
+            velocity.y -= gravity * Time.deltaTime;
+        }
+        else CalculateGroundMovement();
+
+        characterController.Move(velocity);
     }
     void DoGroundCheck()
     {
-        RaycastHit hit;
         Vector3 rayOrigin = new(transform.position.x, transform.position.y + 1, transform.position.z);
         Debug.DrawRay(rayOrigin, Vector3.down, Color.yellow);
-        if (Physics.Raycast(rayOrigin, Vector3.down, out hit, 1.05f))
+
+
+        if (velocity.y > 0)
         {
-            //airVelocity = Vector3.zero;
+            grounded = false;
+            return;
+        }
+        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 1.1f))
+        {
             if (hit.transform.CompareTag("Ground"))
             {
-                //onGround = true;
-                //isJumping = false;
+                velocity.y = 0;
+                grounded = true;
             }
+            else grounded = false;
         }
-        //else onGround = false;
+        else grounded = false;
     }
     private void CalculateView()
     {
@@ -110,30 +127,46 @@ public class MovementController : MonoBehaviour
         //Vector3 wishDir = inputMovement * transform.forward;
         Vector3 wishDir = Vector3.Normalize(inputMovement.y * transform.forward + inputMovement.x * transform.right);
 
-        float wishSpeed = wishDir.magnitude * maxSpeed / 100; // will be variable later depending on crouch/sprint status
+        float wishSpeed = wishDir.magnitude * maxSpeed / 100;
 
+        //Calculate how much speed to add this frame
         float currentSpeed = Vector3.Dot(velocity, wishDir);
         float addSpeed = wishSpeed - currentSpeed;
-        //addSpeed = Mathf.Max(Mathf.Min(addSpeed, accel * Time.deltaTime), 0);
         float accelSpeed = Mathf.Min(accel * Time.deltaTime * wishSpeed, addSpeed);
-        //float accelSpeed = Mathf.Min(accel * Time.deltaTime * wishSpeed, addSpeed);
-        Debug.Log(accelSpeed);
-        velocity += accelSpeed * wishDir;
+        //Add speed in wish direction 
+        velocity.x += accelSpeed * wishDir.x;
+        velocity.z += accelSpeed * wishDir.z;
 
         float speed = velocity.magnitude;
-        float drop = speed * friction * Time.deltaTime;
-
-
+        float drop = speed * decel * Time.deltaTime;
         float newSpeed = Mathf.Max(speed - drop, 0);
         if (speed > 0) newSpeed /= speed;
-        velocity *= newSpeed;
-        velocity.y = 0;
-        characterController.Move(velocity);
+        velocity.x *= newSpeed;
+        velocity.z *= newSpeed;
+
+        //characterController.Move(velocity);
+
         //rb.velocity += velocity;
 
         Debug.DrawRay(transform.position, wishDir, Color.green);
         Debug.DrawRay(transform.position, transform.forward, Color.red);
         Debug.DrawRay(transform.position, velocity * 100, Color.blue);
+    }
+    void CalculateAirMovement()
+    {
+        Vector3 wishDir = Vector3.Normalize(inputMovement.y * transform.forward + inputMovement.x * transform.right);
+        float wishSpeed = Mathf.Min(wishDir.magnitude * maxSpeed / 100, 0.4f);
+
+        var currentspeed = Vector3.Dot(velocity, wishDir);
+        var addspeed = wishSpeed - currentspeed;
+        var accelspeed = airAccel * wishSpeed * Time.deltaTime;
+        accelspeed = Mathf.Min(accelspeed, addspeed);
+
+        if (addspeed > 0)
+        {
+            velocity.x += (accelspeed * wishDir.x)*bhopSpeedMult;
+            velocity.z += (accelspeed * wishDir.z)*bhopSpeedMult;
+        }
     }
     private void CalculateLean()
     {
@@ -174,12 +207,10 @@ public class MovementController : MonoBehaviour
     //    airVelocity.y -= 9.8f / 50;
     //    //characterController.Move(airVelocity * Time.deltaTime);
     //}
-    //void DoJump()
-    //{
-    //    if (!onGround) return;
-    //    jumpStartY = transform.position.y;
-    //    isJumping = true;
-    //}
+    void DoJump()
+    {
+        velocity.y += jumpForce;
+    }
     //void CalculateJump()
     //{
     //    jumpVelocity /= 2;
