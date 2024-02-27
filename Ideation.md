@@ -1,3 +1,4 @@
+Before I began creating the game, I came up with multiple ideas and concepts
 ## Idea 1: Tactical Shooter
 - 2-Player co-op
 - Simple AI Teammate you can order to open doors, throw flashes, etc.

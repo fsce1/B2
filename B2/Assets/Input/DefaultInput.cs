@@ -71,6 +71,15 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zero"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""2e73cc6e-7b41-47dc-a2b1-f059be989c20"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -194,6 +203,39 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""ac9f4e39-0c69-4acd-b740-b962d1615017"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zero"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ff3cf2a5-50b4-4dd1-88b1-114413799f3f"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zero"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""36f0e11f-80ae-49e1-838c-6a6243c67542"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zero"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -207,6 +249,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Lean = m_Character.FindAction("Lean", throwIfNotFound: true);
         m_Character_Walk = m_Character.FindAction("Walk", throwIfNotFound: true);
+        m_Character_Zero = m_Character.FindAction("Zero", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +316,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_Lean;
     private readonly InputAction m_Character_Walk;
+    private readonly InputAction m_Character_Zero;
     public struct CharacterActions
     {
         private @DefaultInput m_Wrapper;
@@ -282,6 +326,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
         public InputAction @Lean => m_Wrapper.m_Character_Lean;
         public InputAction @Walk => m_Wrapper.m_Character_Walk;
+        public InputAction @Zero => m_Wrapper.m_Character_Zero;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -306,6 +351,9 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @Walk.started += instance.OnWalk;
             @Walk.performed += instance.OnWalk;
             @Walk.canceled += instance.OnWalk;
+            @Zero.started += instance.OnZero;
+            @Zero.performed += instance.OnZero;
+            @Zero.canceled += instance.OnZero;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -325,6 +373,9 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @Walk.started -= instance.OnWalk;
             @Walk.performed -= instance.OnWalk;
             @Walk.canceled -= instance.OnWalk;
+            @Zero.started -= instance.OnZero;
+            @Zero.performed -= instance.OnZero;
+            @Zero.canceled -= instance.OnZero;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -349,5 +400,6 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLean(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
+        void OnZero(InputAction.CallbackContext context);
     }
 }

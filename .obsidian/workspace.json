@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "1224b708b9133e9c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "B2.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Analysis of Brief.md",
+                "file": "B2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Analysis of Brief.md",
+                "file": "B2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Analysis of Brief.md"
+                "file": "B2.md"
               }
             }
           }
@@ -146,38 +159,38 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "664d6264407cffa0",
+  "active": "1224b708b9133e9c",
   "lastOpenFiles": [
-    "B2/Assets/txfcky4c.kkn~",
-    "B2/Temp/UnityTempFile-75aca22d3777874468153c73627e1581",
-    "B2/Library/Search/propertyDatabase.db_6b3099771a6c4b8a9b17a5397daa1814_temp",
-    "B2/Temp/UnityTempFile-3b02f51652e275945bd5609822ed5e2a",
-    "B2/Temp/ADB-Refreshdcc090f57ff45e843bdb069717beb903",
-    "B2/Temp/UnityTempFile-3dc7a321077c46f4b92d3cd9f1f6acd6",
-    "B2/Library/Artifacts/ee/eeb00599c7d9b71ff0e6bc3393383a71",
+    "B2/Temp/UnityTempFile-4eaf2b811e44a8d46b0abdbea623dc14",
+    "B2/Temp/UnityTempFile-59b1d44db3bb2df43aa78cc265d562be",
+    "B2/Temp/ADB-Refresh650a995f708fbf844a58cab1749e8b40",
+    "B2/Assets/vf5fqpli.e5h~",
+    "B2/Assets/gq2p3fuc.vnl~",
+    "B2/Temp/UnityTempFile-6ca3a6d53e2ae8b4da700f70d7435d20",
     "B2/Library/Bee/TundraBuildState.state",
-    "B2/Assets/od1dypzj.yx4~",
-    "B2/Assets/0ecyrgbd.mvr~",
-    "B2/Assets/zstkdfir.mp2~",
+    "B2/Assets/qldoj4hv.tmm~",
+    "B2/Library/Search/propertyDatabase.db_3085f9a4343b41fd9c9ed7135d7505c2_temp",
+    "B2/Temp/UnityTempFile-cad491607933daa4b9ed4a35865a4624",
+    "B2/Assets/a4q3yjow.kyx~",
+    "Research.md",
+    "Project Management.md",
+    "Ideation.md",
+    "B2.md",
+    "Evaluation.md",
+    "Analysis of Brief.md",
+    "Skills Development.md",
+    "Devlog.md",
     "B2/Assets/Mats/japanese_stone_wall_rough_4k.jpg",
     "B2/Assets/Mats/japanese_stone_wall_nor_gl_4k.jpg",
     "B2/Assets/Mats/japanese_stone_wall_disp_4k.jpg",
     "B2/Assets/Mats/Grass001_4K_Roughness.jpg",
     "B2/Assets/Mats/Grass001_4K_NormalGL.jpg",
     "B2/Assets/Mats/Grass001_4K_Color.jpg",
-    "B2.md",
     "B2/Assets/MAts/Grass001_4K_Roughness.jpg",
     "B2/Assets/MAts/Grass001_4K_NormalGL.jpg",
     "B2/Assets/MAts/Grass001_4K_Color.jpg",
     "B2/Assets/MAts/japanese_stone_wall_nor_gl_4k.jpg",
-    "Research.md",
-    "Ideation.md",
     "Testing.md",
-    "Skills Development.md",
-    "Project Management.md",
-    "GDD.md",
-    "Evaluation.md",
-    "Devlog.md",
-    "Analysis of Brief.md"
+    "GDD.md"
   ]
 }
