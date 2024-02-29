@@ -193,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92531495}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.199, y: -0.147, z: 0.191}
+  m_LocalPosition: {x: 0.153, y: -0.145, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -216,14 +216,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrelPoint: {fileID: 1389806332}
   movementController: {fileID: 4925922652348505290}
-  inputZero: 0
   curZero: 0
   curZeroIndex: 0
   zeroes: 
   weaponRotation: {x: 0, y: 0, z: 0}
   weaponRotationVelocity: {x: 0, y: 0, z: 0}
   swayAmount: 1
-  swayResetAmount: 50
+  swaySmoothing: 0.1
+  swayResetSmoothing: 0.1
 --- !u!1 &98209819
 GameObject:
   m_ObjectHideFlags: 0
@@ -42023,7 +42023,7 @@ MonoBehaviour:
   gravity: 0.1
   jumpForce: 0.0325
   bhopSpeedMult: 1
-  airAccel: 1.2
+  airAccel: 6
   curWeapon: {fileID: 0}
 --- !u!1 &7094344835354286782
 GameObject:

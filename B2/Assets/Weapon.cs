@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     DefaultInput defaultInput;
     public MovementController movementController;
     [Header("Zeroing")]
-    public float inputZero;
+    //public float inputZero;
     public int curZero = 0;
     public int curZeroIndex = 0;
     public List<int> zeroes = new();
@@ -16,13 +16,17 @@ public class Weapon : MonoBehaviour
     [Header("Sway")]
     public Vector3 weaponRotation;
     public Vector3 weaponRotationVelocity;
+    Vector3 newWeaponRotationVelocity;
+    Vector3 newWeaponRotation;
 
     public float swayAmount;
-    public float swayResetAmount;
+    public float swaySmoothing;
+    public float swayResetSmoothing;
     void Start()
     {
         defaultInput = new DefaultInput();
-        defaultInput.Character.Zero.performed += e => inputZero = e.ReadValue<float>();
+        //defaultInput.Character.Zero.performed += e => inputZero = e.ReadValue<float>();
+        defaultInput.Character.Zero.performed += e => ChangeZero(e.ReadValue<float>());
         defaultInput.Enable();
 
         zeroes.Add(10);
@@ -35,25 +39,33 @@ public class Weapon : MonoBehaviour
         zeroes.Add(250);
     }
 
-    
+    void ChangeZero(float inputZero)
+    {
+        curZeroIndex += (int)inputZero / 120;
+        curZeroIndex = Mathf.Clamp(curZeroIndex, 0, zeroes.Count - 1);
+        curZero = zeroes[curZeroIndex];
+
+    }
     void Update()
     {
         Camera cam = Camera.main;
 
-        curZeroIndex += (int)inputZero / 120;
-        curZeroIndex = Mathf.Clamp(curZeroIndex, 0, zeroes.Count - 1);
-        curZero = zeroes[curZeroIndex];
 
         Vector2 screenCenter = new(Screen.width / 2, Screen.height / 2);
         Vector3 centerTgt = cam.ScreenToWorldPoint(screenCenter);
         centerTgt += curZero * cam.transform.forward;
 
-        transform.LookAt(centerTgt);
+        //transform.LookAt(centerTgt);
         Quaternion restPos = transform.localRotation;
 
         weaponRotation.x += -movementController.inputView.y * swayAmount * Time.deltaTime;
         weaponRotation.y += movementController.inputView.x * swayAmount * Time.deltaTime;
 
+
+        weaponRotation = Vector3.SmoothDamp(weaponRotation, Vector3.zero, ref weaponRotationVelocity, swaySmoothing);
+        newWeaponRotation = Vector3.SmoothDamp(newWeaponRotation, weaponRotation, ref newWeaponRotationVelocity, swayResetSmoothing);
+        newWeaponRotation.z = newWeaponRotation.y * 2;
+        transform.localRotation = Quaternion.Euler(newWeaponRotation);
         //weaponRotation = Vector3.SmoothDamp(weaponRotation, restPos, ref weaponRotationVelocity, swayResetAmount);
         //newWeaponRotation = Vector3.SmoothDamp(newWeaponRotation, weaponRotation, ref newWeaponRotationVelocity, swayResetAmount);
 

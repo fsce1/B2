@@ -4,35 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "e768bf1d988611fa",
+        "id": "e949e310746eb935",
         "type": "tabs",
         "children": [
           {
-            "id": "664d6264407cffa0",
+            "id": "40b7347cbe804f81",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Analysis of Brief.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "1224b708b9133e9c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "B2.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "B2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "B2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "B2.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -159,8 +138,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1224b708b9133e9c",
+  "active": "40b7347cbe804f81",
   "lastOpenFiles": [
+    "Analysis of Brief.md",
+    "B2.md",
+    "Ideation.md",
+    "GDD.md",
+    "Testing.md",
+    "Skills Development.md",
+    "Project Management.md",
+    "Research.md",
+    "Pasted image 20240229100026.png",
+    "Pasted image 20240229095605.png",
+    "Pasted image 20240229095309.png",
+    "Pasted image 20240229094850.png",
     "B2/Temp/UnityTempFile-4eaf2b811e44a8d46b0abdbea623dc14",
     "B2/Temp/UnityTempFile-59b1d44db3bb2df43aa78cc265d562be",
     "B2/Temp/ADB-Refresh650a995f708fbf844a58cab1749e8b40",
@@ -171,26 +162,13 @@
     "B2/Assets/qldoj4hv.tmm~",
     "B2/Library/Search/propertyDatabase.db_3085f9a4343b41fd9c9ed7135d7505c2_temp",
     "B2/Temp/UnityTempFile-cad491607933daa4b9ed4a35865a4624",
-    "B2/Assets/a4q3yjow.kyx~",
-    "Research.md",
-    "Project Management.md",
-    "Ideation.md",
-    "B2.md",
     "Evaluation.md",
-    "Analysis of Brief.md",
-    "Skills Development.md",
     "Devlog.md",
     "B2/Assets/Mats/japanese_stone_wall_rough_4k.jpg",
     "B2/Assets/Mats/japanese_stone_wall_nor_gl_4k.jpg",
     "B2/Assets/Mats/japanese_stone_wall_disp_4k.jpg",
     "B2/Assets/Mats/Grass001_4K_Roughness.jpg",
     "B2/Assets/Mats/Grass001_4K_NormalGL.jpg",
-    "B2/Assets/Mats/Grass001_4K_Color.jpg",
-    "B2/Assets/MAts/Grass001_4K_Roughness.jpg",
-    "B2/Assets/MAts/Grass001_4K_NormalGL.jpg",
-    "B2/Assets/MAts/Grass001_4K_Color.jpg",
-    "B2/Assets/MAts/japanese_stone_wall_nor_gl_4k.jpg",
-    "Testing.md",
-    "GDD.md"
+    "B2/Assets/Mats/Grass001_4K_Color.jpg"
   ]
 }
