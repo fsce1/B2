@@ -20,11 +20,11 @@ public class MovementController : MonoBehaviour
     public CharacterController characterController;
     public Rigidbody rb;
 
-    [Header("SettingsTemp")]
-    public float sensitivity = 1;
-
     [Header("Camera")]
     public Vector2 cameraAngles;
+    public float sensitivity = 1;
+    public float FOV;
+    public float AimFOV;
 
     [Header("Movement")]
     public bool isWalking;
@@ -61,11 +61,10 @@ public class MovementController : MonoBehaviour
         defaultInput = new DefaultInput();
         defaultInput.Character.Movement.performed += e => inputMovement = e.ReadValue<Vector2>();
         defaultInput.Character.View.performed += e => inputView = e.ReadValue<Vector2>();
-        //defaultInput.Character.Jump.performed += e => DoJump();
         defaultInput.Character.Jump.performed += e => inputJump = e.ReadValue<float>();
         defaultInput.Character.Jump.canceled += e => inputJump = e.ReadValue<float>();
-
         defaultInput.Character.Lean.performed += e => inputLean = e.ReadValue<float>();
+
         defaultInput.Enable();
     }
     private void Update()
@@ -127,7 +126,6 @@ public class MovementController : MonoBehaviour
     }
     private void CalculateGroundMovement()
     {
-        //Vector3 wishDir = inputMovement * transform.forward;
         Vector3 wishDir = Vector3.Normalize(inputMovement.y * transform.forward + inputMovement.x * transform.right);
 
         float wishSpeed = wishDir.magnitude * maxSpeed / 100;
@@ -147,9 +145,6 @@ public class MovementController : MonoBehaviour
         velocity.x *= newSpeed;
         velocity.z *= newSpeed;
 
-        //characterController.Move(velocity);
-
-        //rb.velocity += velocity;
 
         Debug.DrawRay(transform.position, wishDir, Color.green);
         Debug.DrawRay(transform.position, transform.forward, Color.red);
@@ -186,16 +181,12 @@ public class MovementController : MonoBehaviour
                 tgt = Quaternion.Euler(0, 0, leanAngle);
                 break;
         }
-        //Vector3 tgt = new(0, 0, 90);
-        //tgt.z = -inputLean * leanAngle + 90;
+
         if (leanHolder.localRotation != tgt)
         {
             leanHolder.localRotation = Quaternion.RotateTowards(leanHolder.localRotation, tgt, Time.deltaTime * leanSpeed);
         }
-        //if (Vector3Int.RoundToInt(leanHolder.localEulerAngles) != tgt)
-        //{
-        //    leanHolder.localEulerAngles += Move(leanHolder.localEulerAngles, tgt, leanSpeed);
-        //}
+
     }
     private Vector3 Move(Vector3 start, Vector3 tgt, float secs)
     {
@@ -205,23 +196,11 @@ public class MovementController : MonoBehaviour
         Debug.Log(move);
         return move;
     }
-    //void CalculateGravity()
-    //{
-    //    airVelocity.y -= 9.8f / 50;
-    //    //characterController.Move(airVelocity * Time.deltaTime);
-    //}
+
     void DoJump()
     {
         velocity.y += jumpForce;
     }
-    //void CalculateJump()
-    //{
-    //    jumpVelocity /= 2;
-    //    if(transform.position.y - jumpStartY >= jumpHeight - jumpStartY){
-    //        isJumping = false;
-    //        return;
-    //    }
 
-    //    //characterController.Move(jumpVelocity * Time.deltaTime *Vector3.up);
-    //}
+
 }

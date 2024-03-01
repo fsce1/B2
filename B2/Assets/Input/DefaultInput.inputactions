@@ -49,15 +49,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Zero",
-                    "type": "PassThrough",
-                    "id": "2e73cc6e-7b41-47dc-a2b1-f059be989c20",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -181,10 +172,47 @@
                     "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Weapon",
+            "id": "bd7f874d-4207-4537-a4f3-d20276627537",
+            "actions": [
+                {
+                    "name": "AimPressed",
+                    "type": "Button",
+                    "id": "124af0ac-4681-4218-95d4-f443c0884f00",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Zero",
+                    "type": "PassThrough",
+                    "id": "1278afe2-4b38-4baf-85f6-b27b4f899d22",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ad8b465a-ff61-4b6e-a7fe-a620c3019592",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimPressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "1D Axis",
-                    "id": "ac9f4e39-0c69-4acd-b740-b962d1615017",
+                    "id": "c7d4566d-4027-4d8f-b841-fa8773f8c2b5",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -195,7 +223,7 @@
                 },
                 {
                     "name": "positive",
-                    "id": "ff3cf2a5-50b4-4dd1-88b1-114413799f3f",
+                    "id": "22d5462a-fef0-4de2-b4e3-671b784bcb6d",
                     "path": "<Mouse>/scroll/up",
                     "interactions": "",
                     "processors": "",
@@ -206,7 +234,7 @@
                 },
                 {
                     "name": "negative",
-                    "id": "36f0e11f-80ae-49e1-838c-6a6243c67542",
+                    "id": "4ef7b400-3cf5-4a09-94c8-f975d2332504",
                     "path": "<Mouse>/scroll/down",
                     "interactions": "",
                     "processors": "",

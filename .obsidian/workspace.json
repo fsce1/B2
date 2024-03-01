@@ -11,8 +11,12 @@
             "id": "40b7347cbe804f81",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Ideation.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Ideation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Ideation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Ideation.md"
+              }
             }
           }
         ]
@@ -140,28 +148,29 @@
   },
   "active": "40b7347cbe804f81",
   "lastOpenFiles": [
-    "Analysis of Brief.md",
+    "B2/Assets/dyiygjey.xtl~",
+    "B2/Temp/UnityTempFile-fdc6b636a0ee771439bdd1739385eabb",
+    "B2/Temp/ADB-Refresh4661067eb8f110f42a5e36e60666494a",
+    "B2/Temp/UnityTempFile-28856620eb04c924a833811ebca56359",
+    "B2/Temp/ADB-Refreshf6e33ac2694f6b146821176949606a79",
+    "B2/Logs/shadercompiler-AssetImportWorker0.log",
+    "B2/Temp/FSTimeGet-d6e04f5837965ca47a738d9ad5558ed7",
+    "B2/Temp/FSTimeGet-b32283254c3a4b44bb2fdc8748691164",
+    "B2/Logs/AssetImportWorker1.log",
+    "B2/Logs/AssetImportWorker0.log",
+    "B2/Temp/ADB-Refresh73d90ea24a18d8c4993e0c4c60b0e0ac",
+    "Research.md",
+    "Skills Development.md",
+    "Testing.md",
     "B2.md",
+    "Analysis of Brief.md",
     "Ideation.md",
     "GDD.md",
-    "Testing.md",
-    "Skills Development.md",
     "Project Management.md",
-    "Research.md",
     "Pasted image 20240229100026.png",
     "Pasted image 20240229095605.png",
     "Pasted image 20240229095309.png",
     "Pasted image 20240229094850.png",
-    "B2/Temp/UnityTempFile-4eaf2b811e44a8d46b0abdbea623dc14",
-    "B2/Temp/UnityTempFile-59b1d44db3bb2df43aa78cc265d562be",
-    "B2/Temp/ADB-Refresh650a995f708fbf844a58cab1749e8b40",
-    "B2/Assets/vf5fqpli.e5h~",
-    "B2/Assets/gq2p3fuc.vnl~",
-    "B2/Temp/UnityTempFile-6ca3a6d53e2ae8b4da700f70d7435d20",
-    "B2/Library/Bee/TundraBuildState.state",
-    "B2/Assets/qldoj4hv.tmm~",
-    "B2/Library/Search/propertyDatabase.db_3085f9a4343b41fd9c9ed7135d7505c2_temp",
-    "B2/Temp/UnityTempFile-cad491607933daa4b9ed4a35865a4624",
     "Evaluation.md",
     "Devlog.md",
     "B2/Assets/Mats/japanese_stone_wall_rough_4k.jpg",
