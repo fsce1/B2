@@ -69,9 +69,13 @@ public class MovementController : MonoBehaviour
     }
     private void Update()
     {
+        CalculateView();
+
+    }
+    private void FixedUpdate()
+    {
         DoGroundCheck();
 
-        CalculateView();
         CalculateLean();
         if (inputJump >= 0.5f && grounded) DoJump();
 

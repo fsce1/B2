@@ -7,7 +7,6 @@ public class Weapon : MonoBehaviour
     DefaultInput defaultInput;
     public MovementController movementController;
 
-
     [Header("Zeroing")]
     public int curZero = 0;
     public int curZeroIndex = 0;
@@ -15,14 +14,16 @@ public class Weapon : MonoBehaviour
 
     [Header("Points")]
     public Transform barrelPoint;
-    public Transform sightPoint;
-    public Vector3 gunPushTgt;
 
     [Header("Aim")]
     public bool isAiming;
-    public Vector3 restPos;
+    Vector3 restRot;
+    Vector3 restPos;
     public Vector3 aimPos;
     public float aimSmoothing;
+    public float rotScaling = 0.25f;
+    public float leanScaling = 0.1f;
+    public float moveScaling = 0.25f;
 
     Vector3 weaponAimPos;
     Vector3 weaponAimPosVelocity;
@@ -35,6 +36,7 @@ public class Weapon : MonoBehaviour
 
     public float swayAmount;
     public float swaySmoothing;
+    public float swayResetSmoothing;
     //public float swayResetSmoothing;
 
     Vector3 weaponRotation;
@@ -72,9 +74,10 @@ public class Weapon : MonoBehaviour
     {
         restPos = transform.localPosition;
         defaultInput = new DefaultInput();
-        defaultInput.Weapon.AimPressed.performed += e => AimPressed();
+        defaultInput.Weapon.AimPressed.performed += e => isAiming = !isAiming;
         defaultInput.Weapon.Zero.performed += e => ChangeZero(e.ReadValue<float>());
         defaultInput.Enable();
+
         zeroes = new()
         {
             10,
@@ -86,6 +89,7 @@ public class Weapon : MonoBehaviour
             200,
             250
         };
+        ChangeZero(0);
     }
 
     void ChangeZero(float inputZero)
@@ -94,57 +98,51 @@ public class Weapon : MonoBehaviour
         curZeroIndex = Mathf.Clamp(curZeroIndex, 0, zeroes.Count - 1);
         curZero = zeroes[curZeroIndex];
 
-    }
-    void Update()
-    {
         Camera cam = Camera.main;
-
         Vector2 screenCenter = new(Screen.width / 2, Screen.height / 2);
         Vector3 centerTgt = cam.ScreenToWorldPoint(screenCenter);
         centerTgt += curZero * cam.transform.forward;
 
+        transform.LookAt(centerTgt);
+        restRot = transform.localEulerAngles;
+    }
+    void FixedUpdate()
+    {
         wpnPos = restPos;
+        wpnRot = restRot;
         CalculateAim();
         CalculateWeaponPos();
         CalculateWeaponRot();
-
-        //transform.localPosition = restPos;
         transform.SetLocalPositionAndRotation(wpnPos, Quaternion.Euler(wpnRot));
     }
-    //private void FixedUpdate()
-    //{
-    //    if (Physics.Raycast(barrelPoint.position, transform.forward, out RaycastHit hit, 1f))
-    //    {
-    //        if (hit.distance <= 0.01f) gunPushTgt.z -= 0.01f;
-    //    }
-    //    else if (gunPushTgt.z <= restPos.z)
-    //    {
-    //        gunPushTgt.z += 0.01f;
-    //    }
-
-    //    fixedWpnPos = gunPushTgt;
-
-    //}
     void CalculateWeaponRot()
     {
-        float aimingDecrease;
-        if (isAiming) aimingDecrease = 0.25f;
-        else aimingDecrease = 1f;
+        float aimRotScaler = 1;
+        if (isAiming) aimRotScaler = rotScaling;
+        
         weaponRotation.x += movementController.inputView.y * swayAmount * Time.deltaTime;
         weaponRotation.y += -movementController.inputView.x * swayAmount * Time.deltaTime;
         weaponRotation = Vector3.SmoothDamp(weaponRotation, Vector3.zero, ref weaponRotationVelocity, swaySmoothing);
-        newWeaponRotation = Vector3.SmoothDamp(newWeaponRotation, weaponRotation, ref newWeaponRotationVelocity, swaySmoothing);
+        newWeaponRotation = Vector3.SmoothDamp(newWeaponRotation, weaponRotation, ref newWeaponRotationVelocity, swayResetSmoothing);
         newWeaponRotation.z = newWeaponRotation.y;
 
         movementRotation.z = -movementSwayAmount * movementController.inputMovement.x;
         movementRotation = Vector3.SmoothDamp(movementRotation, Vector3.zero, ref movementRotationVelocity, movementSwaySmoothing);
 
         newMovementRotation = Vector3.SmoothDamp(newMovementRotation, movementRotation, ref newMovementRotationVelocity, movementSwaySmoothing);
-        wpnRot = (newWeaponRotation + newMovementRotation) * aimingDecrease;
+        wpnRot += (newWeaponRotation + newMovementRotation) * aimRotScaler;
 
     }
     void CalculateWeaponPos()
     {
+        float aimLeanScaler = 1;
+        float aimMoveScaler = 1;
+        if (isAiming)
+        {
+            aimLeanScaler = leanScaling;
+            aimMoveScaler = moveScaling;
+        }
+
         leanMove.x = leanMoveAmount * movementController.inputLean;
         leanMove = Vector3.SmoothDamp(leanMove, Vector3.zero, ref leanMoveVelocity, leanMoveSmoothing);
         newLeanMove = Vector3.SmoothDamp(newLeanMove, leanMove, ref newLeanMoveVelocity, leanMoveSmoothing);
@@ -155,13 +153,8 @@ public class Weapon : MonoBehaviour
         newMovementMove = Vector3.SmoothDamp(newMovementMove, movementMove, ref newMovementMoveVelocity, movementMoveSmoothing);
 
        
-        if (!isAiming) wpnPos += newLeanMove + newMovementMove;
+        wpnPos += (newLeanMove * aimLeanScaler) + (newMovementMove * aimMoveScaler);
 
-    }
-    void AimPressed()
-    {
-        isAiming = !isAiming;
-        
     }
     void CalculateAim()
     {
@@ -171,7 +164,6 @@ public class Weapon : MonoBehaviour
         {
             tgtFOV = movementController.AimFOV;
             targetPosition = aimPos - restPos;
-            
         }
         weaponAimPos = Vector3.SmoothDamp(weaponAimPos, targetPosition, ref weaponAimPosVelocity, aimSmoothing);
         Camera.main.fieldOfView = Mathf.SmoothDamp(Camera.main.fieldOfView, tgtFOV, ref FOVVelocity, aimSmoothing);
@@ -179,6 +171,9 @@ public class Weapon : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawRay(barrelPoint.position, transform.forward * 100);
+        if(Physics.Raycast(barrelPoint.position, transform.forward, out RaycastHit hit, Mathf.Infinity)){
+
+            Gizmos.DrawLine(barrelPoint.position, hit.point);
+        }
     }
 }
