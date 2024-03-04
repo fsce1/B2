@@ -12,7 +12,6 @@ public class SwayController : MonoBehaviour
     [Header("Aim")]
     public bool isAiming;
 
-
     public Vector3 restRot;
     public Vector3 restPos;
     public Vector3 aimPos;

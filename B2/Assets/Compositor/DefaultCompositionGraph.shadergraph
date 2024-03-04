@@ -128,10 +128,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -448.0,
-            "y": 231.0,
-            "width": 183.0,
-            "height": 251.0
+            "x": -406.4000244140625,
+            "y": 200.0,
+            "width": 184.80001831054688,
+            "height": 250.8000030517578
         }
     },
     "m_Slots": [
@@ -481,8 +481,7 @@
         }
     ],
     "m_CustomEditorGUI": "",
-    "m_SupportVFX": false,
-    "m_SupportComputeForVertexSetup": false
+    "m_SupportVFX": false
 }
 
 {
