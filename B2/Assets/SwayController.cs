@@ -2,24 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class SwayController : MonoBehaviour
 {
     DefaultInput defaultInput;
     public MovementController movementController;
+    public Firearm firearm;
 
-    [Header("Zeroing")]
-    public int curZero = 0;
-    public int curZeroIndex = 0;
-    public List<int> zeroes;
-
-    [Header("Points")]
-    public Transform barrelPoint;
 
     [Header("Aim")]
     public bool isAiming;
-    Vector3 restRot;
-    Vector3 restPos;
+
+
+    public Vector3 restRot;
+    public Vector3 restPos;
     public Vector3 aimPos;
+
     public float aimSmoothing;
     public float rotScaling = 0.25f;
     public float leanScaling = 0.1f;
@@ -70,9 +67,14 @@ public class Weapon : MonoBehaviour
     Vector3 movementMoveVelocity;
     Vector3 newMovementMove;
     Vector3 newMovementMoveVelocity;
+
+    [Header("Zeroing")]
+    public int curZero = 0;
+    public int curZeroIndex = 0;
+    public List<int> zeroes;
+
     void Start()
     {
-        restPos = transform.localPosition;
         defaultInput = new DefaultInput();
         defaultInput.Weapon.AimPressed.performed += e => isAiming = !isAiming;
         defaultInput.Weapon.Zero.performed += e => ChangeZero(e.ReadValue<float>());
@@ -90,8 +92,8 @@ public class Weapon : MonoBehaviour
             250
         };
         ChangeZero(0);
-    }
 
+    }
     void ChangeZero(float inputZero)
     {
         curZeroIndex += (int)inputZero / 120;
@@ -106,20 +108,21 @@ public class Weapon : MonoBehaviour
         transform.LookAt(centerTgt);
         restRot = transform.localEulerAngles;
     }
+
     void FixedUpdate()
     {
         wpnPos = restPos;
         wpnRot = restRot;
-        CalculateAim();
         CalculateWeaponPos();
         CalculateWeaponRot();
+        CalculateAim();
         transform.SetLocalPositionAndRotation(wpnPos, Quaternion.Euler(wpnRot));
     }
     void CalculateWeaponRot()
     {
         float aimRotScaler = 1;
         if (isAiming) aimRotScaler = rotScaling;
-        
+
         weaponRotation.x += movementController.inputView.y * swayAmount * Time.deltaTime;
         weaponRotation.y += -movementController.inputView.x * swayAmount * Time.deltaTime;
         weaponRotation = Vector3.SmoothDamp(weaponRotation, Vector3.zero, ref weaponRotationVelocity, swaySmoothing);
@@ -147,12 +150,12 @@ public class Weapon : MonoBehaviour
         leanMove = Vector3.SmoothDamp(leanMove, Vector3.zero, ref leanMoveVelocity, leanMoveSmoothing);
         newLeanMove = Vector3.SmoothDamp(newLeanMove, leanMove, ref newLeanMoveVelocity, leanMoveSmoothing);
 
-        movementMove.x = movementMoveAmount * movementController.inputMovement.x;
-        movementMove.z = movementMoveAmount * movementController.inputMovement.y;
+        movementMove.x = movementMoveAmount * movementController.velocity.x;
+        movementMove.z = movementMoveAmount * movementController.velocity.z;
         movementMove = Vector3.SmoothDamp(movementMove, Vector3.zero, ref movementMoveVelocity, movementMoveSmoothing);
         newMovementMove = Vector3.SmoothDamp(newMovementMove, movementMove, ref newMovementMoveVelocity, movementMoveSmoothing);
 
-       
+
         wpnPos += (newLeanMove * aimLeanScaler) + (newMovementMove * aimMoveScaler);
 
     }
@@ -171,9 +174,10 @@ public class Weapon : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        if(Physics.Raycast(barrelPoint.position, transform.forward, out RaycastHit hit, Mathf.Infinity)){
+        if (Physics.Raycast(firearm.barrelPoint.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+        {
 
-            Gizmos.DrawLine(barrelPoint.position, hit.point);
+            Gizmos.DrawLine(firearm.barrelPoint.position, hit.point);
         }
     }
 }

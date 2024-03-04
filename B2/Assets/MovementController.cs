@@ -47,8 +47,6 @@ public class MovementController : MonoBehaviour
     public float bhopSpeedMult = 0.4f;
     public float airAccel;
 
-    [Header("Weapon")]
-    public Weapon curWeapon;
     //public Vector3 airVelocity;
     //public float jumpHeight;
     //public bool isJumping;
