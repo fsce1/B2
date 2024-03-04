@@ -218,6 +218,33 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SingleFirePressed"",
+                    ""type"": ""Button"",
+                    ""id"": ""aabf6c67-258c-40f9-92e1-3c90867e6c3c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FullAutoHeld"",
+                    ""type"": ""Button"",
+                    ""id"": ""53e6d963-9337-4c04-aa00-dce2ebcc7c65"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CycleFireMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf3a56a3-b005-4fab-ba71-80f2d16c570c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -264,6 +291,39 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""action"": ""Zero"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2cd18034-8c9c-47fc-93a6-1890628decd4"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SingleFirePressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de976aba-67b0-4ce0-ae85-397de3063428"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FullAutoHeld"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f05b6ee-0fc4-454a-a145-476a409620e1"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleFireMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -281,6 +341,9 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         m_Weapon = asset.FindActionMap("Weapon", throwIfNotFound: true);
         m_Weapon_AimPressed = m_Weapon.FindAction("AimPressed", throwIfNotFound: true);
         m_Weapon_Zero = m_Weapon.FindAction("Zero", throwIfNotFound: true);
+        m_Weapon_SingleFirePressed = m_Weapon.FindAction("SingleFirePressed", throwIfNotFound: true);
+        m_Weapon_FullAutoHeld = m_Weapon.FindAction("FullAutoHeld", throwIfNotFound: true);
+        m_Weapon_CycleFireMode = m_Weapon.FindAction("CycleFireMode", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -422,12 +485,18 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
     private List<IWeaponActions> m_WeaponActionsCallbackInterfaces = new List<IWeaponActions>();
     private readonly InputAction m_Weapon_AimPressed;
     private readonly InputAction m_Weapon_Zero;
+    private readonly InputAction m_Weapon_SingleFirePressed;
+    private readonly InputAction m_Weapon_FullAutoHeld;
+    private readonly InputAction m_Weapon_CycleFireMode;
     public struct WeaponActions
     {
         private @DefaultInput m_Wrapper;
         public WeaponActions(@DefaultInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @AimPressed => m_Wrapper.m_Weapon_AimPressed;
         public InputAction @Zero => m_Wrapper.m_Weapon_Zero;
+        public InputAction @SingleFirePressed => m_Wrapper.m_Weapon_SingleFirePressed;
+        public InputAction @FullAutoHeld => m_Wrapper.m_Weapon_FullAutoHeld;
+        public InputAction @CycleFireMode => m_Wrapper.m_Weapon_CycleFireMode;
         public InputActionMap Get() { return m_Wrapper.m_Weapon; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -443,6 +512,15 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @Zero.started += instance.OnZero;
             @Zero.performed += instance.OnZero;
             @Zero.canceled += instance.OnZero;
+            @SingleFirePressed.started += instance.OnSingleFirePressed;
+            @SingleFirePressed.performed += instance.OnSingleFirePressed;
+            @SingleFirePressed.canceled += instance.OnSingleFirePressed;
+            @FullAutoHeld.started += instance.OnFullAutoHeld;
+            @FullAutoHeld.performed += instance.OnFullAutoHeld;
+            @FullAutoHeld.canceled += instance.OnFullAutoHeld;
+            @CycleFireMode.started += instance.OnCycleFireMode;
+            @CycleFireMode.performed += instance.OnCycleFireMode;
+            @CycleFireMode.canceled += instance.OnCycleFireMode;
         }
 
         private void UnregisterCallbacks(IWeaponActions instance)
@@ -453,6 +531,15 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @Zero.started -= instance.OnZero;
             @Zero.performed -= instance.OnZero;
             @Zero.canceled -= instance.OnZero;
+            @SingleFirePressed.started -= instance.OnSingleFirePressed;
+            @SingleFirePressed.performed -= instance.OnSingleFirePressed;
+            @SingleFirePressed.canceled -= instance.OnSingleFirePressed;
+            @FullAutoHeld.started -= instance.OnFullAutoHeld;
+            @FullAutoHeld.performed -= instance.OnFullAutoHeld;
+            @FullAutoHeld.canceled -= instance.OnFullAutoHeld;
+            @CycleFireMode.started -= instance.OnCycleFireMode;
+            @CycleFireMode.performed -= instance.OnCycleFireMode;
+            @CycleFireMode.canceled -= instance.OnCycleFireMode;
         }
 
         public void RemoveCallbacks(IWeaponActions instance)
@@ -482,5 +569,8 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
     {
         void OnAimPressed(InputAction.CallbackContext context);
         void OnZero(InputAction.CallbackContext context);
+        void OnSingleFirePressed(InputAction.CallbackContext context);
+        void OnFullAutoHeld(InputAction.CallbackContext context);
+        void OnCycleFireMode(InputAction.CallbackContext context);
     }
 }
