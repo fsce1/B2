@@ -11,16 +11,28 @@ public class FirearmInfo : ScriptableObject
     public float roundsPerMinute;
     public int magazineSize;
     public float bulletDamage;
+    public Vector3 restPos;
+    public Vector3 aimPos;
 
     [Header("Recoil")]
-    public Vector2 verticalPerShot;
-    public Vector2 horizontalPerShot;
-    public float verticalRecovery;
-    public float verticalSnappiness;
+    public float sustainedRecoilAdd;
 
+    public bool sustainedAffectsVertical;
+    public Vector2 verticalPerShot;
+    public bool sustainedAffectsHorizontal;
+    public Vector2 horizontalPerShot;
+    public float rotRecovery;
+    public float rotSnappiness;
+
+    public bool sustainedAffectsLateral;
     public Vector2 lateralPerShot;
     public float lateralRecovery;
     public float lateralSnappiness;
+
+    public bool sustainedAffectsCam;
+    public Vector2 camPerShot;
+    public float camRecovery;
+    public float camSnappiness;
 
     public List<FireMode> fireModes = new()
     {

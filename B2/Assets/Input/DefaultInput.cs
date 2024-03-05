@@ -245,6 +245,15 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d935863-a7bf-49f4-8151-5b0968eefee9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -324,6 +333,17 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""action"": ""CycleFireMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b155f255-bdb2-4d71-b15b-6c617f438553"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -344,6 +364,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         m_Weapon_SingleFirePressed = m_Weapon.FindAction("SingleFirePressed", throwIfNotFound: true);
         m_Weapon_FullAutoHeld = m_Weapon.FindAction("FullAutoHeld", throwIfNotFound: true);
         m_Weapon_CycleFireMode = m_Weapon.FindAction("CycleFireMode", throwIfNotFound: true);
+        m_Weapon_Reload = m_Weapon.FindAction("Reload", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -488,6 +509,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Weapon_SingleFirePressed;
     private readonly InputAction m_Weapon_FullAutoHeld;
     private readonly InputAction m_Weapon_CycleFireMode;
+    private readonly InputAction m_Weapon_Reload;
     public struct WeaponActions
     {
         private @DefaultInput m_Wrapper;
@@ -497,6 +519,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         public InputAction @SingleFirePressed => m_Wrapper.m_Weapon_SingleFirePressed;
         public InputAction @FullAutoHeld => m_Wrapper.m_Weapon_FullAutoHeld;
         public InputAction @CycleFireMode => m_Wrapper.m_Weapon_CycleFireMode;
+        public InputAction @Reload => m_Wrapper.m_Weapon_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Weapon; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -521,6 +544,9 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @CycleFireMode.started += instance.OnCycleFireMode;
             @CycleFireMode.performed += instance.OnCycleFireMode;
             @CycleFireMode.canceled += instance.OnCycleFireMode;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
         }
 
         private void UnregisterCallbacks(IWeaponActions instance)
@@ -540,6 +566,9 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @CycleFireMode.started -= instance.OnCycleFireMode;
             @CycleFireMode.performed -= instance.OnCycleFireMode;
             @CycleFireMode.canceled -= instance.OnCycleFireMode;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
         }
 
         public void RemoveCallbacks(IWeaponActions instance)
@@ -572,5 +601,6 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         void OnSingleFirePressed(InputAction.CallbackContext context);
         void OnFullAutoHeld(InputAction.CallbackContext context);
         void OnCycleFireMode(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
 }

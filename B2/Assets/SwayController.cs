@@ -149,8 +149,8 @@ public class SwayController : MonoBehaviour
         leanMove = Vector3.SmoothDamp(leanMove, Vector3.zero, ref leanMoveVelocity, leanMoveSmoothing);
         newLeanMove = Vector3.SmoothDamp(newLeanMove, leanMove, ref newLeanMoveVelocity, leanMoveSmoothing);
 
-        movementMove.x = movementMoveAmount * movementController.velocity.x;
-        movementMove.z = movementMoveAmount * movementController.velocity.z;
+        movementMove.x = movementMoveAmount * movementController.velocity.z;
+        movementMove.z = movementMoveAmount * movementController.velocity.x;
         movementMove = Vector3.SmoothDamp(movementMove, Vector3.zero, ref movementMoveVelocity, movementMoveSmoothing);
         newMovementMove = Vector3.SmoothDamp(newMovementMove, movementMove, ref newMovementMoveVelocity, movementMoveSmoothing);
 
