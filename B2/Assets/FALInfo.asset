@@ -16,11 +16,11 @@ MonoBehaviour:
   roundsPerMinute: 600
   magazineSize: 30
   bulletDamage: 0
-  verticalPerShot: {x: 2, y: 3}
-  horizontalPerShot: {x: -1, y: 1}
-  verticalRecovery: 2.5
-  verticalSnappiness: 20
-  lateralPerShot: {x: 0.005, y: 0.01}
+  verticalPerShot: {x: 5, y: 10}
+  horizontalPerShot: {x: -2.5, y: 5}
+  verticalRecovery: 10
+  verticalSnappiness: 10
+  lateralPerShot: {x: 0.025, y: 0.05}
   lateralRecovery: 5
-  lateralSnappiness: 50
+  lateralSnappiness: 15
   fireModes: 0000000001000000
