@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1707a1083064fd743a65c03f7e4e0cbb, type: 3}
+  m_Name: AK74Info
+  m_EditorClassIdentifier: 
+  firearmName: AK-74
+  roundsPerMinute: 900
+  magazineSize: 30
+  bulletDamage: 3
+  restPos: {x: 0.123, y: -0.265, z: 0.152}
+  aimPos: {x: -0.047, y: -0.2, z: 0.152}
+  sustainedRecoilAdd: 0.01
+  sustainedAffectsVertical: 0
+  verticalPerShot: {x: 1, y: 2}
+  sustainedAffectsHorizontal: 0
+  horizontalPerShot: {x: 0, y: 0.5}
+  rotRecovery: 5
+  rotSnappiness: 15
+  sustainedAffectsLateral: 0
+  lateralPerShot: {x: 0.0025, y: 0.005}
+  lateralRecovery: 5
+  lateralSnappiness: 15
+  sustainedAffectsCam: 0
+  camPerShot: {x: 0.5, y: 1}
+  camRecovery: 5
+  camSnappiness: 10
+  fireModes: 0000000001000000

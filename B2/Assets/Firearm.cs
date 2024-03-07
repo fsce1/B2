@@ -14,6 +14,8 @@ public enum FireMode
 
 public class Firearm : MonoBehaviour
 {
+
+    public GameObject roundPrefab;
     DefaultInput defaultInput;
     public FirearmInfo info;
     public Transform camHolder;
@@ -39,6 +41,7 @@ public class Firearm : MonoBehaviour
     public int roundsInMag;
     public bool canShoot;
     public float sustainedRecoilAdd;
+
 
     [Header("Points")]
     public Transform barrelPoint;
@@ -90,6 +93,9 @@ public class Firearm : MonoBehaviour
 
     void Shoot()
     {
+        //GameObject roundObj = Instantiate(roundPrefab, barrelPoint);
+        //roundObj.GetComponent<Round>().firearmFiredFrom = this;
+
         AddRecoil();
         canShoot = false;
         roundsInMag -= 1;
@@ -97,7 +103,7 @@ public class Firearm : MonoBehaviour
 
         muzzleFlash.transform.localEulerAngles = new(0, 0, UnityEngine.Random.Range(0, 360));
         muzzleFlash.SetActive(true);
-        Invoke(nameof(ResetMuzzleFlash), Time.deltaTime * 2 );
+        Invoke(nameof(ResetMuzzleFlash), Time.deltaTime *2.5f);
 
         if (roundsInMag >= 0)
         {
@@ -145,11 +151,10 @@ public class Firearm : MonoBehaviour
         isReloading = true;
         canShoot = false;
 
-        Invoke(nameof(EndReload), animator.GetCurrentAnimatorClipInfo(0).Length);
+        Invoke(nameof(EndReload), animator.GetCurrentAnimatorClipInfo(0).Length * 2);
     }
     void EndReload()
     {
-
         animator.Play("Base Layer.Idle");
         isReloading = false;
         canShoot = true;

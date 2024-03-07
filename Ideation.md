@@ -1,12 +1,18 @@
 I knew that I wanted to create a first-person shooter, as it is a great way to experiment with hostile AI and a lot of my favourite games are FPS's. However, FPS is a very broad genre and has many different styles and speeds of gameplay. For example, Escape from Tarkov is a very slow, tactical and realistic shooter with accurate bullet and armour physics, meaning one shot is enough to kill in many circumstances. In comparison, a game like Titanfall 2 is very movement-based and fast-paced, with a long time-to-kill (TTK). Titanfall 2 has advanced movement mechanics such as double-jumping, sliding, wall-running and bunny-hopping which pushes the skill ceiling very high.
 ## Idea 1: Tactical Shooter
 My Initial Idea was to create a Tactical Shooter in the style of Escape from Tarkov and Counter-Strike 2. These games have a very high skill ceiling and play quite slowly, as they have slow movement speed and increased inaccuracy when walking. This allows for a very tactical game with a lot of high-importance decision making and many ways to approach a given situation. In order to fit the brief, I would implement enemy AI and potentially a friendly AI that you can direct to open doors, throw flashbangs, as well as covering your rear for any flankers. I would need to code a custom AI to follow your commands, as well as staying out of your way and not blocking any doorways/passages.
+As this game would be single-player, I think a good game loop could be inspired by the Armed Assault (ArmA) series. These games have multiple "scenarios," which you can complete in any order you wish. An example of a scenario may be travelling to a town that is enemy occupied, attacking the town, destroying radio equipment or vehicles etc, and then exfiltrating the area. I think this is a good game loop to bring back, as it is very open and allows the player to approach the current situation in many different ways.
+I am inspired by Eastern European shooters such as Tarkov and S.T.A.L.K.E.R. for the visual style, as they are both quite realistic and grounded.
 ## Idea 2: Movement Shooter
 Another idea I had was a very fast, movement-based shooter with grappling hooks. I was inspired by the game Titanfall 2, as well as the Mirror's Edge games to create a shooter with a lot of map traversal and verticality, as well as being able to hit people without needing to aim down sights, or stay still to maintain accuracy. It could also score you based on time as well as bullets used, allowing sections to be replayed in hopes of "speedrunning" the areas. This would increase the replayability of the game and might attract speedrunners. Large maps with semi-non-linear pathways could make it more interesting to find new paths through the map for a faster time.
+The visual style for this game would likely be futuristic/sci-fi, as advanced movement mechanics in a realistic or historical setting may be jarring or out of place.
+The Narrative could be AI related, perhaps a powerful AI that sends robots out to kill you.
 ## Idea 3: Realistic Sniper Game
+
+Another game idea I had was a 
 - Realistic Zeroing and Bullet physics
 - Bipod stabilisation
 - Bolt action rifles
 - Simpler AI, will try to locate you and fire back as well as running to cover if they spot you.
 
-I decided that I would choose the first idea, a tactical shooter. I chose this because I have more experience in similar games
+I decided that I would choose the first idea, a tactical shooter. I chose this because I have more experience in similar games and they are some of my favourites to play. I created a moodboard to help pin down the visual style and setting of my game. I want to have a modern, Eastern European setting, with a large military presence and lots of army checkpoints.

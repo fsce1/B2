@@ -18,8 +18,9 @@ public class SwayController : MonoBehaviour
 
     public float aimSmoothing;
     public float rotScaling = 0.25f;
-    public float leanScaling = 0.1f;
-    public float moveScaling = 0.25f;
+    public float leanScaler = 0.1f;
+    public float moveScaler = 0.25f;
+    public float breathScaler = 0.25f;
 
     Vector3 weaponAimPos;
     Vector3 weaponAimPosVelocity;
@@ -67,13 +68,28 @@ public class SwayController : MonoBehaviour
     Vector3 newMovementMove;
     Vector3 newMovementMoveVelocity;
 
+    [Header("Breathing")]
+    public bool breathingIn;
+    public float breathTime;
+    public Vector3 breathInTgt;
+    public Vector3 breathOutTgt;
+    public float breathSmoothing;
+
+    Vector3 breathMove;
+    Vector3 breathMoveVelocity;
+    Vector3 newBreathMove;
+    Vector3 newBreathMoveVelocity;
+
     [Header("Zeroing")]
     public int curZero = 0;
     public int curZeroIndex = 0;
     public List<int> zeroes;
 
+    void Switch() => breathingIn = !breathingIn;
     void Start()
     {
+        InvokeRepeating("Switch", 0, breathTime);
+
         defaultInput = new DefaultInput();
         defaultInput.Weapon.AimPressed.performed += e => isAiming = !isAiming;
         defaultInput.Weapon.Zero.performed += e => ChangeZero(e.ReadValue<float>());
@@ -141,8 +157,8 @@ public class SwayController : MonoBehaviour
         float aimMoveScaler = 1;
         if (isAiming)
         {
-            aimLeanScaler = leanScaling;
-            aimMoveScaler = moveScaling;
+            aimLeanScaler = leanScaler;
+            aimMoveScaler = moveScaler;
         }
 
         leanMove.x = leanMoveAmount * movementController.inputLean;
@@ -154,8 +170,14 @@ public class SwayController : MonoBehaviour
         movementMove = Vector3.SmoothDamp(movementMove, Vector3.zero, ref movementMoveVelocity, movementMoveSmoothing);
         newMovementMove = Vector3.SmoothDamp(newMovementMove, movementMove, ref newMovementMoveVelocity, movementMoveSmoothing);
 
+        Vector3 breathTgt;
+        if (breathingIn) breathTgt = breathInTgt;
+        else breathTgt = breathOutTgt;
 
-        wpnPos += (newLeanMove * aimLeanScaler) + (newMovementMove * aimMoveScaler);
+        breathMove = Vector3.SmoothDamp(breathMove, breathTgt, ref breathMoveVelocity, breathSmoothing);
+        newBreathMove = Vector3.SmoothDamp(newBreathMove, breathMove, ref newBreathMoveVelocity, breathSmoothing);
+
+        wpnPos += (newLeanMove * aimLeanScaler) + (newMovementMove * aimMoveScaler) + (newBreathMove * breathScaler);
 
     }
     void CalculateAim()
