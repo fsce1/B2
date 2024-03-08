@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "e949e310746eb935",
+        "id": "564131bcbf33e22f",
         "type": "tabs",
         "children": [
           {
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 299.5
   },
   "right": {
     "id": "4f8705506bf7e4ae",
@@ -148,17 +148,27 @@
   },
   "active": "40b7347cbe804f81",
   "lastOpenFiles": [
-    "B2/Library/Search/propertyAliases.db_4c2b7768cd0f408dbd49882d357df564_temp",
-    "B2/Temp/UnityTempFile-79a6a50a44a2f3344a8e6fe241d057d6",
-    "B2/Temp/UnityTempFile-ca0d25d68c502674c96f44ac28e173e1",
-    "B2/Library/Search/propertyDatabase.db_ccd3ab6b482b4ea98f7fb893c92cf0a1_temp",
-    "B2/Temp/UnityTempFile-7f5e617310a8fea478e276412bbaab1c",
-    "B2/Temp/ADB-Refresh6ad912f09fa68654f8fbd90fe13ace09",
-    "B2/Temp/UnityTempFile-1767cae486dcea9489b126077983da64",
-    "B2/Library/Search/propertyAliases.db_01b42cebf07e4126a46fdabcdddc955c_temp",
-    "B2/Library/Search/propertyAliases.db_14b302718e9c40d3a13c86d6cb62028b_temp",
-    "B2/Temp/UnityTempFile-4b537ae0245a8d746a30228c6e74e841",
-    "B2/Temp/UnityTempFile-b0f0f70fa493f1546ad583768a4cf3e5",
+    "pptBD95.tmp",
+    "pptA096.tmp",
+    "ppt3C13.tmp",
+    "ppt71BE.tmp",
+    "pptBBF9.tmp",
+    "ppt8C3B.tmp",
+    "ppt2E09.tmp",
+    "ppt1544.tmp",
+    "ppt3C18.tmp",
+    "ppt1912.tmp",
+    "ppt2AB.tmp",
+    "Evaluation.md",
+    "Devlog.md",
+    "B2.md",
+    "Analysis of Brief.md",
+    "SilentStrikeMoodboard.png",
+    "Untitled Kanban.md",
+    "Untitled.md",
+    "Untitled Kanban 1.md",
+    "B1 Kanban.md",
+    "Ideation.md",
     "B2/Assets/Firearms/Romeo4kBlender_Normal.png",
     "B2/Assets/Firearms/Romeo4kBlender_BaseColor.png",
     "B2/Assets/Firearms/M4A1/Romeo4kBlender_Normal.png",
@@ -168,16 +178,10 @@
     "B2/Assets/Firearms/M4A1/m4a4_default_normal_png_d39c4b9a.png",
     "B2/Assets/Firearms/M4A1/soldierhand_n.png",
     "B2/Assets/Firearms/M4A1/soldierhand_d.png",
-    "B2/Assets/Firearms/M4A1/pl2000_main3_n.png",
     "Skills Development.md",
-    "Ideation.md",
     "Project Management.md",
-    "Devlog.md",
-    "B2.md",
     "GDD.md",
     "Research.md",
-    "Testing.md",
-    "Analysis of Brief.md",
-    "Evaluation.md"
+    "Testing.md"
   ]
 }
