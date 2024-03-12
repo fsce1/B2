@@ -17,7 +17,9 @@ public class SwayController : MonoBehaviour
     public Vector3 aimPos;
 
     public float aimSmoothing;
-    public float rotScaling = 0.25f;
+    [Header("Aim Sway Scaling")]
+    public float movementRotScaler = 0.1f;
+    public float swayRotScaler = 0.5f;
     public float leanScaler = 0.01f;
     public float moveScaler = 0.25f;
     public float breathScaler = 0.25f;
@@ -142,6 +144,11 @@ public class SwayController : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        if(movementController.inputMovement == Vector2.zero)
+        {
+            curWalkLifetime = 0;
+        }
         wpnPos = restPos;
         wpnRot = restRot;
         CalculateWeaponPos();
@@ -163,8 +170,13 @@ public class SwayController : MonoBehaviour
     }
     void CalculateWeaponRot()
     {
-        float aimRotScaler = 1;
-        if (isAiming) aimRotScaler = rotScaling;
+        float _movementScaler = 1;
+        float _swayScaler = 1;
+        if (isAiming)
+        {
+            _movementScaler = movementRotScaler;
+            _swayScaler = swayRotScaler;
+        }
 
         weaponRotation.x += movementController.inputView.y * swayAmount * Time.deltaTime;
         weaponRotation.y += -movementController.inputView.x * swayAmount * Time.deltaTime;
@@ -176,19 +188,19 @@ public class SwayController : MonoBehaviour
         movementRotation = Vector3.SmoothDamp(movementRotation, Vector3.zero, ref movementRotationVelocity, movementSwaySmoothing);
 
         newMovementRotation = Vector3.SmoothDamp(newMovementRotation, movementRotation, ref newMovementRotationVelocity, movementSwaySmoothing);
-        wpnRot += (newWeaponRotation + newMovementRotation) * aimRotScaler;
+        wpnRot += newWeaponRotation * _swayScaler + newMovementRotation * _movementScaler;
 
     }
     void CalculateWeaponPos()
     {
-        float aimLeanScaler = 1;
-        float aimMoveScaler = 1;
-        float aimBreathScaler = 1;
+        float _leanScaler = 1;
+        float _moveScaler = 1;
+        float _breathScaler = 1;
         if (isAiming)
         {
-            aimLeanScaler = leanScaler;
-            aimMoveScaler = moveScaler;
-            aimBreathScaler = breathScaler;
+            _leanScaler = leanScaler;
+            _moveScaler = moveScaler;
+            _breathScaler = breathScaler;
         }
 
         leanMove.x = leanMoveAmount * movementController.inputLean;
@@ -207,7 +219,7 @@ public class SwayController : MonoBehaviour
         breathMove = Vector3.SmoothDamp(breathMove, breathTgt, ref breathMoveVelocity, breathSmoothing);
         newBreathMove = Vector3.SmoothDamp(newBreathMove, breathMove, ref newBreathMoveVelocity, breathSmoothing);
 
-        wpnPos += (newLeanMove * aimLeanScaler) + (newMovementMove * aimMoveScaler) + (newBreathMove * aimBreathScaler);
+        wpnPos += (newLeanMove * _leanScaler) + (newMovementMove * _moveScaler) + (newBreathMove * _breathScaler);
 
     }
     void CalculateAim()
@@ -226,8 +238,8 @@ public class SwayController : MonoBehaviour
     void CalculateWalk()
     {
         //float lifetime = Mathf.Lerp(0, walkLifetime, curWalkLifetime);
-        float aimWalkScaler = 1;
-        if (isAiming) aimWalkScaler = walkScaler;
+        float _walkScaler = 1;
+        if (isAiming) _walkScaler = walkScaler;
 
         Vector3 target = Vector3.zero;
         if (movementController.velocity.magnitude > 0.01f && curWalkLifetime < walkLifetime / 2)
@@ -241,7 +253,7 @@ public class SwayController : MonoBehaviour
         walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
         newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);
 
-        wpnPos += newWalkMove * aimWalkScaler;
+        wpnPos += newWalkMove * _walkScaler;
     }
 
 }
