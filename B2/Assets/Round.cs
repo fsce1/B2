@@ -7,36 +7,36 @@ public class Round : MonoBehaviour
     public string roundName;
     public Firearm firearmFiredFrom;
     public float muzzleVelocity;
-    public float massInGrains;
     public Color tracerColor;
 
-    public float distToWeapon;
+    public Vector3 startPoint;
+    public float maxDist = 1000;
     public Vector3 velocity;
     public Vector3 lastPosition;
-    public float ballisticCoefficient;
     public LineRenderer lineRenderer;
     public AnimationCurve dropCurve;
 
     private void Start()
     {
         velocity = muzzleVelocity * transform.forward;
-        transform.localEulerAngles = firearmFiredFrom.transform.localEulerAngles;
+        startPoint = transform.position;
+        //transform.localEulerAngles = firearmFiredFrom.transform.localEulerAngles;
     }
     void Update()
     {
+        float lifetime = Mathf.InverseLerp(0,maxDist,(transform.position - startPoint).magnitude);
+        Debug.Log(lifetime);
+        //float dropAmount = dropCurve.
+
+
         lastPosition = transform.position;
-
-        //ballisticCoefficient = (massInGrains/7000) / (dragCoefficient * crossSectionalArea);
-
-        velocity *= ballisticCoefficient;
-        velocity *= 0.3048f;
         transform.position += velocity;
 
         Vector3[] linePositions = { lastPosition,transform.position };
         lineRenderer.SetPositions(linePositions);
-        lineRenderer.startColor = tracerColor;
-        lineRenderer.endColor = tracerColor;
-        lineRenderer.startWidth = 10;
-        lineRenderer.endWidth = 5;
+        //lineRenderer.startColor = tracerColor;
+        //lineRenderer.endColor = tracerColor;
+        //lineRenderer.startWidth = 10;
+        //lineRenderer.endWidth = 5;
     }
 }

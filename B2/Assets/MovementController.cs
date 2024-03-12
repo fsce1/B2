@@ -31,7 +31,7 @@ public class MovementController : MonoBehaviour
     public Vector3 velocity;
     public float decel;
     public float accel;
-    float maxSpeed;
+    public float maxSpeed;
     public float runSpeed;
     public float walkSpeed;
 

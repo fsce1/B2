@@ -18,9 +18,10 @@ public class SwayController : MonoBehaviour
 
     public float aimSmoothing;
     public float rotScaling = 0.25f;
-    public float leanScaler = 0.1f;
+    public float leanScaler = 0.01f;
     public float moveScaler = 0.25f;
     public float breathScaler = 0.25f;
+    public float walkScaler = 0.1f;
 
     Vector3 weaponAimPos;
     Vector3 weaponAimPosVelocity;
@@ -80,15 +81,30 @@ public class SwayController : MonoBehaviour
     Vector3 newBreathMove;
     Vector3 newBreathMoveVelocity;
 
+    [Header("Walking")]
+    public int curWalkLifetime;
+    public int walkLifetime;
+    public bool rightFoot;
+    public float stepDownAmount;
+    public float stepSideAmount;
+    public float walkMoveSmoothing;
+
+    Vector3 walkMove;
+    Vector3 walkMoveVelocity;
+    Vector3 newWalkMove;
+    Vector3 newWalkMoveVelocity;
+
     [Header("Zeroing")]
     public int curZero = 0;
     public int curZeroIndex = 0;
     public List<int> zeroes;
 
-    void Switch() => breathingIn = !breathingIn;
+    void SwitchBreath() => breathingIn = !breathingIn;
+    //void SwitchWalk() => rightFoot = !rightFoot;
     void Start()
     {
-        InvokeRepeating("Switch", 0, breathTime);
+        InvokeRepeating("SwitchBreath", 0, breathTime);
+        //InvokeRepeating("SwitchWalk", 0, stepTime);
 
         defaultInput = new DefaultInput();
         defaultInput.Weapon.AimPressed.performed += e => isAiming = !isAiming;
@@ -131,7 +147,19 @@ public class SwayController : MonoBehaviour
         CalculateWeaponPos();
         CalculateWeaponRot();
         CalculateAim();
+        CalculateWalk();
         transform.SetLocalPositionAndRotation(wpnPos, Quaternion.Euler(wpnRot));
+
+
+        if (curWalkLifetime < walkLifetime)
+        {
+            curWalkLifetime += 1;
+        }
+        else
+        {
+            curWalkLifetime = 0;
+            rightFoot = !rightFoot;
+        }
     }
     void CalculateWeaponRot()
     {
@@ -155,10 +183,12 @@ public class SwayController : MonoBehaviour
     {
         float aimLeanScaler = 1;
         float aimMoveScaler = 1;
+        float aimBreathScaler = 1;
         if (isAiming)
         {
             aimLeanScaler = leanScaler;
             aimMoveScaler = moveScaler;
+            aimBreathScaler = breathScaler;
         }
 
         leanMove.x = leanMoveAmount * movementController.inputLean;
@@ -177,7 +207,7 @@ public class SwayController : MonoBehaviour
         breathMove = Vector3.SmoothDamp(breathMove, breathTgt, ref breathMoveVelocity, breathSmoothing);
         newBreathMove = Vector3.SmoothDamp(newBreathMove, breathMove, ref newBreathMoveVelocity, breathSmoothing);
 
-        wpnPos += (newLeanMove * aimLeanScaler) + (newMovementMove * aimMoveScaler) + (newBreathMove * breathScaler);
+        wpnPos += (newLeanMove * aimLeanScaler) + (newMovementMove * aimMoveScaler) + (newBreathMove * aimBreathScaler);
 
     }
     void CalculateAim()
@@ -193,12 +223,25 @@ public class SwayController : MonoBehaviour
         Camera.main.fieldOfView = Mathf.SmoothDamp(Camera.main.fieldOfView, tgtFOV, ref FOVVelocity, aimSmoothing);
         wpnPos += weaponAimPos;
     }
-    private void OnDrawGizmos()
+    void CalculateWalk()
     {
-        if (Physics.Raycast(firearm.barrelPoint.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
-        {
+        //float lifetime = Mathf.Lerp(0, walkLifetime, curWalkLifetime);
+        float aimWalkScaler = 1;
+        if (isAiming) aimWalkScaler = walkScaler;
 
-            Gizmos.DrawLine(firearm.barrelPoint.position, hit.point);
+        Vector3 target = Vector3.zero;
+        if (movementController.velocity.magnitude > 0.01f && curWalkLifetime < walkLifetime / 2)
+        {
+            target.y -= stepDownAmount * movementController.velocity.magnitude;
+            if (rightFoot) target.x += stepSideAmount * movementController.velocity.magnitude;
+            else target.x -= stepSideAmount * movementController.velocity.magnitude;
+
         }
+
+        walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
+        newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);
+
+        wpnPos += newWalkMove * aimWalkScaler;
     }
+
 }
