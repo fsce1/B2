@@ -19,14 +19,14 @@ MonoBehaviour:
   restPos: {x: 0.1178, y: -0.2, z: 0.152}
   aimPos: {x: 0.0082, y: -0.1705, z: 0.054}
   sustainedRecoilAdd: 0.02
-  sustainedAffectsVertical: 0
+  sustainedAffectsVertical: 1
   verticalPerShot: {x: 2, y: 3}
   sustainedAffectsHorizontal: 1
   horizontalPerShot: {x: -1, y: 1}
   rotRecovery: 7.5
   rotSnappiness: 25
   sustainedAffectsLateral: 0
-  lateralPerShot: {x: 0.001, y: 0.025}
+  lateralPerShot: {x: 0.0005, y: 0.001}
   lateralRecovery: 10
   lateralSnappiness: 25
   sustainedAffectsCam: 0

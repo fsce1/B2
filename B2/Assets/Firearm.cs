@@ -20,6 +20,7 @@ public class Firearm : MonoBehaviour
     public FirearmInfo info;
     public Transform camHolder;
     public Animator animator;
+    public MovementController movementController;
 
     public Vector3 recoilRot;
     public Vector3 tgtRecoilRot;
@@ -49,7 +50,14 @@ public class Firearm : MonoBehaviour
     [Header("Particles")]
     public GameObject muzzleFlash;
 
+    private void OnDrawGizmos()
+    {
+        if (Physics.Raycast(barrelPoint.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+        {
 
+            Gizmos.DrawLine(barrelPoint.position, hit.point);
+        }
+    }
     private void Start()
     {
         defaultInput = new DefaultInput();
@@ -59,7 +67,7 @@ public class Firearm : MonoBehaviour
         defaultInput.Weapon.Reload.performed += e => BeginReload();
         defaultInput.Enable();
 
-        animator.Play("Base Layer.Idle");
+        //
     }
     private void FixedUpdate()
     {
@@ -77,6 +85,13 @@ public class Firearm : MonoBehaviour
             sustainedRecoilAdd = 1;
         }
 
+        //if (!isReloading && movementController.velocity.magnitude > 0.01f )
+        //{
+        //    animator.Play("Base Layer.Walk");
+        //    animator.speed = 1+ Mathf.InverseLerp(0, movementController.maxSpeed, movementController.velocity.magnitude);
+        //}
+        //else animator.Play("Base Layer.Idle");
+
     }
 
     void CycleFireMode()
@@ -93,15 +108,16 @@ public class Firearm : MonoBehaviour
 
     void Shoot()
     {
-        //GameObject roundObj = Instantiate(roundPrefab, barrelPoint);
-        //roundObj.GetComponent<Round>().firearmFiredFrom = this;
+        GameObject roundObj = Instantiate(roundPrefab, barrelPoint.position, transform.rotation);
+        //roundObj.transform.localEulerAngles = transform.forward;
+        roundObj.GetComponent<Round>().firearmFiredFrom = this;
 
         AddRecoil();
         canShoot = false;
         roundsInMag -= 1;
         sustainedRecoilAdd += info.sustainedRecoilAdd;
 
-        muzzleFlash.transform.localEulerAngles = new(0, 0, UnityEngine.Random.Range(0, 360));
+        muzzleFlash.transform.localEulerAngles = new(muzzleFlash.transform.localEulerAngles.x, muzzleFlash.transform.localEulerAngles.y, UnityEngine.Random.Range(0, 360));
         muzzleFlash.SetActive(true);
         Invoke(nameof(ResetMuzzleFlash), Time.deltaTime *2.5f);
 
@@ -151,7 +167,7 @@ public class Firearm : MonoBehaviour
         isReloading = true;
         canShoot = false;
 
-        Invoke(nameof(EndReload), animator.GetCurrentAnimatorClipInfo(0).Length * 2);
+        Invoke(nameof(EndReload), animator.GetCurrentAnimatorClipInfo(1).Length);
     }
     void EndReload()
     {
