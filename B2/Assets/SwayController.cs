@@ -7,6 +7,7 @@ public class SwayController : MonoBehaviour
     DefaultInput defaultInput;
     public MovementController movementController;
     public Firearm firearm;
+    public Transform cameraHolder;
 
 
     [Header("Aim")]
@@ -89,7 +90,14 @@ public class SwayController : MonoBehaviour
     public bool rightFoot;
     public float stepDownAmount;
     public float stepSideAmount;
+    public float camWalkMoveAmount;
     public float walkMoveSmoothing;
+
+    Vector3 camWalkMove;
+    Vector3 camWalkMoveVelocity;
+    Vector3 newCamWalkMove;
+    Vector3 newCamWalkMoveVelocity;
+
 
     Vector3 walkMove;
     Vector3 walkMoveVelocity;
@@ -125,6 +133,10 @@ public class SwayController : MonoBehaviour
             250
         };
         ChangeZero(0);
+
+
+        restPos = firearm.info.restPos;
+        aimPos = firearm.info.aimPos;
 
     }
     void ChangeZero(float inputZero)
@@ -237,22 +249,34 @@ public class SwayController : MonoBehaviour
     }
     void CalculateWalk()
     {
-        //float lifetime = Mathf.Lerp(0, walkLifetime, curWalkLifetime);
+
         float _walkScaler = 1;
         if (isAiming) _walkScaler = walkScaler;
 
         Vector3 target = Vector3.zero;
-        if (movementController.velocity.magnitude > 0.01f && curWalkLifetime < walkLifetime / 2)
-        {
-            target.y -= stepDownAmount * movementController.velocity.magnitude;
-            if (rightFoot) target.x += stepSideAmount * movementController.velocity.magnitude;
-            else target.x -= stepSideAmount * movementController.velocity.magnitude;
+        //Vector3 camTarget = new(movementController.transform.position.x, 2.75f, movementController.transform.position.z);
 
+        //camTarget.y += camWalkMoveAmount;
+        if (movementController.velocity.magnitude > 0.01f)
+        {
+            if (curWalkLifetime < walkLifetime / 2)
+            {
+                target.y -= stepDownAmount * movementController.velocity.magnitude;
+                if (rightFoot) target.x += stepSideAmount * movementController.velocity.magnitude;
+                else target.x -= stepSideAmount * movementController.velocity.magnitude;
+
+                //camTarget.y -= camWalkMoveAmount;
+            }
+            //else camTarget.y += camWalkMoveAmount;
         }
+
+
+        //camWalkMove = Vector3.SmoothDamp(camWalkMove, camTarget, ref camWalkMoveVelocity, walkMoveSmoothing);
+        //newCamWalkMove = Vector3.SmoothDamp(newCamWalkMove, camWalkMove, ref newCamWalkMoveVelocity, walkMoveSmoothing);
+        //cameraHolder.position = newCamWalkMove;
 
         walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
         newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);
-
         wpnPos += newWalkMove * _walkScaler;
     }
 

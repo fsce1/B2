@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6992067972337017737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -47,13 +47,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundName: 7.62x51 M80
   firearmFiredFrom: {fileID: 0}
-  muzzleVelocity: 20
-  tracerColor: {r: 1, g: 0, b: 0, a: 1}
-  startPoint: {x: 0, y: 0, z: 0}
-  maxDist: 1000
-  velocity: {x: 0, y: 0, z: 0}
-  lastPosition: {x: 0, y: 0, z: 0}
+  muzzleVelocity: 2
   lineRenderer: {fileID: -302853788797367117}
+  tracerMat: {fileID: 2100000, guid: 04830b2a2440dea4f8c670ef56050ff1, type: 2}
+  tracerColor: {r: 0, g: 1, b: 0, a: 1}
+  startPoint: {x: 0, y: 0, z: 0}
+  curPoint: {x: 0, y: 0, z: 0}
+  distFromOrigin: 0
+  maxDist: 1000
+  despawnDist: 2000
+  velocity: {x: 0, y: 0, z: 0}
+  positions: []
   dropCurve:
     serializedVersion: 2
     m_Curve:
@@ -188,6 +192,6 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1

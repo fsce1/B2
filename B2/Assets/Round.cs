@@ -4,39 +4,61 @@ using UnityEngine;
 
 public class Round : MonoBehaviour
 {
+
+    [Header("Generic")]
     public string roundName;
     public Firearm firearmFiredFrom;
     public float muzzleVelocity;
-    public Color tracerColor;
-
-    public Vector3 startPoint;
-    public float maxDist = 1000;
-    public Vector3 velocity;
-    public Vector3 lastPosition;
+    [Header("Tracer")]
     public LineRenderer lineRenderer;
+    public Material tracerMat;
+    public Color tracerColor;
+    [Header("Travel")]
+    public Vector3 startPoint;
+    public Vector3 curPoint;
+    //public Vector3 lastPoint;
+    public float distFromOrigin;
+    public float maxDist = 1000;
+    public float despawnDist;
+    public Vector3 velocity;
+    public List<Vector3> positions = new();
+
     public AnimationCurve dropCurve;
 
     private void Start()
     {
         velocity = muzzleVelocity * transform.forward;
         startPoint = transform.position;
-        //transform.localEulerAngles = firearmFiredFrom.transform.localEulerAngles;
+        curPoint = transform.position; 
+        positions.Add(startPoint);
     }
     void Update()
     {
-        float lifetime = Mathf.InverseLerp(0,maxDist,(transform.position - startPoint).magnitude);
-        Debug.Log(lifetime);
-        //float dropAmount = dropCurve.
+        distFromOrigin = (transform.position - startPoint).magnitude;
+        float dropAmount = dropCurve.Evaluate(distFromOrigin/100);
+
+        curPoint += velocity;
+        curPoint.y += dropAmount;
 
 
-        lastPosition = transform.position;
-        transform.position += velocity;
+        //lastPoint = transform.position;
+        Material newMat = new(tracerMat);
+        newMat.color = tracerColor;
+        newMat.SetColor("_EmissiveColor", tracerColor);
 
-        Vector3[] linePositions = { lastPosition,transform.position };
-        lineRenderer.SetPositions(linePositions);
-        //lineRenderer.startColor = tracerColor;
-        //lineRenderer.endColor = tracerColor;
-        //lineRenderer.startWidth = 10;
-        //lineRenderer.endWidth = 5;
+        lineRenderer.material = newMat;
+
+
+
+        if (distFromOrigin > despawnDist) Destroy(gameObject);
+        positions.Add(curPoint);
+        transform.position = curPoint;
+    }
+    private void OnDrawGizmos()
+    {
+        foreach (Vector3 pos in positions)
+        {
+            Gizmos.DrawLineStrip(positions.ToArray(), false);
+        }
     }
 }

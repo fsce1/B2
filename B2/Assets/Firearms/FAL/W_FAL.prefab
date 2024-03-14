@@ -549,10 +549,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb63a4c837dcac4cb4f44da6cf4d6b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundInfo: {fileID: 11400000, guid: bdba222cc5569304b85c11ec278e2562, type: 2}
+  roundPrefab: {fileID: 6992067972337017737, guid: d34623e0824f91447aae02d721d26110, type: 3}
   info: {fileID: 11400000, guid: 4b5cd817996cc424c8d9c00991ca39b0, type: 2}
   camHolder: {fileID: 0}
   animator: {fileID: 7557152792563135026}
+  movementController: {fileID: 0}
   recoilRot: {x: 0, y: 0, z: 0}
   tgtRecoilRot: {x: 0, y: 0, z: 0}
   recoilPos: {x: 0, y: 0, z: 0}
@@ -562,7 +563,7 @@ MonoBehaviour:
   fullAutoHeld: 0
   curFireMode: 0
   isReloading: 0
-  roundsInMag: 200000
+  roundsInMag: 30
   canShoot: 1
   sustainedRecoilAdd: 0
   barrelPoint: {fileID: 3683721454467981984}

@@ -19,6 +19,7 @@ public class MovementController : MonoBehaviour
     public Transform camHolder;
     public CharacterController characterController;
     public Rigidbody rb;
+    public SwayController swayController;
 
     [Header("Camera")]
     public Vector2 cameraAngles;
@@ -75,12 +76,13 @@ public class MovementController : MonoBehaviour
         DoGroundCheck();
 
         CalculateLean();
+
         if (inputJump >= 0.5f && grounded) DoJump();
 
         if (defaultInput.Character.Walk.ReadValue<float>() > 0.5f) isWalking = true;
         else isWalking = false;
 
-        if (isWalking) maxSpeed = walkSpeed;
+        if (isWalking || swayController.isAiming) maxSpeed = walkSpeed;
         else maxSpeed = runSpeed;
 
         if (!grounded)
