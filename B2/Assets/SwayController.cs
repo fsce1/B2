@@ -90,7 +90,6 @@ public class SwayController : MonoBehaviour
     public bool rightFoot;
     public float stepDownAmount;
     public float stepSideAmount;
-    public float camWalkMoveAmount;
     public float walkMoveSmoothing;
 
     Vector3 camWalkMove;
@@ -190,11 +189,11 @@ public class SwayController : MonoBehaviour
             _swayScaler = swayRotScaler;
         }
 
-        weaponRotation.x += movementController.inputView.y * swayAmount * Time.deltaTime;
-        weaponRotation.y += -movementController.inputView.x * swayAmount * Time.deltaTime;
+        weaponRotation.x += movementController.inputView.y * swayAmount;
+        weaponRotation.y += -movementController.inputView.x * swayAmount;
         weaponRotation = Vector3.SmoothDamp(weaponRotation, Vector3.zero, ref weaponRotationVelocity, swaySmoothing);
         newWeaponRotation = Vector3.SmoothDamp(newWeaponRotation, weaponRotation, ref newWeaponRotationVelocity, swayResetSmoothing);
-        newWeaponRotation.z = newWeaponRotation.y;
+        newWeaponRotation.z = newWeaponRotation.y*0.75f;
 
         movementRotation.z = -movementSwayAmount * movementController.inputMovement.x;
         movementRotation = Vector3.SmoothDamp(movementRotation, Vector3.zero, ref movementRotationVelocity, movementSwaySmoothing);

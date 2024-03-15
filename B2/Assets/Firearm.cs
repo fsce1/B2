@@ -66,8 +66,6 @@ public class Firearm : MonoBehaviour
         defaultInput.Weapon.FullAutoHeld.performed += e => fullAutoHeld = !fullAutoHeld;
         defaultInput.Weapon.Reload.performed += e => BeginReload();
         defaultInput.Enable();
-
-        //
     }
     private void FixedUpdate()
     {
@@ -167,7 +165,7 @@ public class Firearm : MonoBehaviour
         isReloading = true;
         canShoot = false;
 
-        Invoke(nameof(EndReload), animator.GetCurrentAnimatorClipInfo(1).Length);
+        Invoke(nameof(EndReload), animator.GetCurrentAnimatorClipInfo(0).Length);
     }
     void EndReload()
     {
