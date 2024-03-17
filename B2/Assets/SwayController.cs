@@ -75,6 +75,7 @@ public class SwayController : MonoBehaviour
     [Header("Breathing")]
     public bool breathingIn;
     public float breathTime;
+    public float breathRotScaling;
     public Vector3 breathInTgt;
     public Vector3 breathOutTgt;
     public float breathSmoothing;
@@ -90,13 +91,8 @@ public class SwayController : MonoBehaviour
     public bool rightFoot;
     public float stepDownAmount;
     public float stepSideAmount;
+    public float stepRotScaling;
     public float walkMoveSmoothing;
-
-    Vector3 camWalkMove;
-    Vector3 camWalkMoveVelocity;
-    Vector3 newCamWalkMove;
-    Vector3 newCamWalkMoveVelocity;
-
 
     Vector3 walkMove;
     Vector3 walkMoveVelocity;
@@ -231,7 +227,7 @@ public class SwayController : MonoBehaviour
         newBreathMove = Vector3.SmoothDamp(newBreathMove, breathMove, ref newBreathMoveVelocity, breathSmoothing);
 
         wpnPos += (newLeanMove * _leanScaler) + (newMovementMove * _moveScaler) + (newBreathMove * _breathScaler);
-
+        wpnRot += (newBreathMove.y * transform.right) * breathRotScaling;
     }
     void CalculateAim()
     {
@@ -248,7 +244,6 @@ public class SwayController : MonoBehaviour
     }
     void CalculateWalk()
     {
-
         float _walkScaler = 1;
         if (isAiming) _walkScaler = walkScaler;
 
@@ -277,6 +272,7 @@ public class SwayController : MonoBehaviour
         walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
         newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);
         wpnPos += newWalkMove * _walkScaler;
+        wpnRot += new Vector3 (-newWalkMove.y, newWalkMove.x, 0) * stepRotScaling;
     }
 
 }

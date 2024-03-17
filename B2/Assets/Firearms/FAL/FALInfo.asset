@@ -16,8 +16,8 @@ MonoBehaviour:
   roundsPerMinute: 600
   magazineSize: 30
   bulletDamage: 0
-  restPos: {x: 0.075, y: -0.147, z: 0.129}
-  aimPos: {x: 0, y: -0.146, z: 0.11}
+  restPos: {x: 0.12, y: -0.168, z: 0.171}
+  aimPos: {x: 0, y: -0.1405, z: 0.085}
   sustainedRecoilAdd: 0.01
   sustainedAffectsVertical: 0
   verticalPerShot: {x: 2.5, y: 5}
