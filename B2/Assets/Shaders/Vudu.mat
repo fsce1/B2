@@ -192,7 +192,7 @@ Material:
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
-    - _EyeRelief: 0.7
+    - _EyeRelief: 0.48
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
@@ -227,9 +227,9 @@ Material:
     - _RefractionModel: 0
     - _ReticleOffsetX: 0
     - _ReticleOffsetY: 0
-    - _ReticleScale: 0.54
+    - _ReticleScale: 4.43
     - _SecondaryVignetteBool: 1
-    - _SecondaryVignetteRadius: 1.12
+    - _SecondaryVignetteRadius: 1.38
     - _SecondaryVignetteSmoothness: 0.001
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
@@ -266,7 +266,7 @@ Material:
     - _UVEmissive: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
-    - _VignetteRadius: 1.56
+    - _VignetteRadius: 1.82
     - _VignetteSmoothness: 0.33
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4

@@ -136,17 +136,19 @@ public class SwayController : MonoBehaviour
     }
     void ChangeZero(float inputZero)
     {
-        curZeroIndex += (int)inputZero / 120;
-        curZeroIndex = Mathf.Clamp(curZeroIndex, 0, zeroes.Count - 1);
-        curZero = zeroes[curZeroIndex];
+        //curZeroIndex += (int)inputZero / 120;
+        //curZeroIndex = Mathf.Clamp(curZeroIndex, 0, zeroes.Count - 1);
+        //curZero = zeroes[curZeroIndex];
 
-        Camera cam = Camera.main;
-        Vector2 screenCenter = new(Screen.width / 2, Screen.height / 2);
-        Vector3 centerTgt = cam.ScreenToWorldPoint(screenCenter);
-        centerTgt += curZero * cam.transform.forward;
+        //Camera cam = Camera.main;
+        //Vector2 screenCenter = new(Screen.width / 2, Screen.height / 2);
+        //Vector3 centerTgt = cam.ScreenToWorldPoint(screenCenter);
+        //centerTgt += curZero * cam.transform.forward;
 
-        transform.LookAt(centerTgt);
-        restRot = transform.localEulerAngles;
+        ////transform.LookAt(centerTgt);
+        ////restRot = transform.localEulerAngles;
+        //Quaternion q = Quaternion.LookRotation(centerTgt, transform.up);
+        //restRot = Quaternion.Euler(q);
     }
 
     void FixedUpdate()
@@ -185,8 +187,8 @@ public class SwayController : MonoBehaviour
             _swayScaler = swayRotScaler;
         }
 
-        weaponRotation.x += movementController.inputView.y * swayAmount;
-        weaponRotation.y += -movementController.inputView.x * swayAmount;
+        weaponRotation.x += movementController.accumulatedInputView.y * swayAmount;
+        weaponRotation.y += -movementController.accumulatedInputView.x * swayAmount;
         weaponRotation = Vector3.SmoothDamp(weaponRotation, Vector3.zero, ref weaponRotationVelocity, swaySmoothing);
         newWeaponRotation = Vector3.SmoothDamp(newWeaponRotation, weaponRotation, ref newWeaponRotationVelocity, swayResetSmoothing);
         newWeaponRotation.z = newWeaponRotation.y*0.75f;
@@ -196,6 +198,8 @@ public class SwayController : MonoBehaviour
 
         newMovementRotation = Vector3.SmoothDamp(newMovementRotation, movementRotation, ref newMovementRotationVelocity, movementSwaySmoothing);
         wpnRot += newWeaponRotation * _swayScaler + newMovementRotation * _movementScaler;
+
+        movementController.accumulatedInputView = Vector2.zero;
 
     }
     void CalculateWeaponPos()
@@ -272,7 +276,7 @@ public class SwayController : MonoBehaviour
         walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
         newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);
         wpnPos += newWalkMove * _walkScaler;
-        wpnRot += new Vector3 (-newWalkMove.y, newWalkMove.x, 0) * stepRotScaling;
+        wpnRot += new Vector3 (newWalkMove.y, newWalkMove.x, 0) * stepRotScaling;
     }
 
 }

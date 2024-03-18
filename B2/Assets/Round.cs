@@ -27,24 +27,34 @@ public class Round : MonoBehaviour
 
     private void Start()
     {
-        velocity = muzzleVelocity * transform.forward;
+        velocity.z = muzzleVelocity/50;
         startPoint = transform.position;
         curPoint = transform.position; 
         positions.Add(startPoint);
     }
-    void Update()
+    void FixedUpdate()
     {
         distFromOrigin = (transform.position - startPoint).magnitude;
-        float dropAmount = dropCurve.Evaluate(distFromOrigin/100);
+        float dropAmount = dropCurve.Evaluate(distFromOrigin);
 
-        curPoint += velocity;
-        curPoint.y += dropAmount;
+        //curPoint.y += dropAmount;
+
+        //velocity.z -= 0.01f;
+        //Vector3.ClampMagnitude(velocity, muzzleVelocity);
+
+        curPoint += (velocity.z * transform.forward)+(velocity.y * transform.up);
+        curPoint.y += dropAmount/1000;
+
+        float velocityReduction = Mathf.InverseLerp(0, maxDist, distFromOrigin);
+        velocity.z *= velocityReduction / 100;
+        Debug.Log(velocityReduction);
+        //velocity.z *= velocityReduction;
 
 
         //lastPoint = transform.position;
         Material newMat = new(tracerMat);
         newMat.color = tracerColor;
-        newMat.SetColor("_EmissiveColor", tracerColor);
+        newMat.SetColor("_EmissionColor", tracerColor);
 
         lineRenderer.material = newMat;
 
@@ -58,6 +68,7 @@ public class Round : MonoBehaviour
     {
         foreach (Vector3 pos in positions)
         {
+            if (Camera.current != Camera.main) return;
             Gizmos.DrawLineStrip(positions.ToArray(), false);
         }
     }

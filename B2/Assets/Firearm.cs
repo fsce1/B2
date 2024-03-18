@@ -54,7 +54,7 @@ public class Firearm : MonoBehaviour
     {
         if (Physics.Raycast(barrelPoint.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
         {
-
+            if (Camera.current != Camera.main) return;
             Gizmos.DrawLine(barrelPoint.position, hit.point);
         }
     }
@@ -66,6 +66,8 @@ public class Firearm : MonoBehaviour
         defaultInput.Weapon.FullAutoHeld.performed += e => fullAutoHeld = !fullAutoHeld;
         defaultInput.Weapon.Reload.performed += e => BeginReload();
         defaultInput.Enable();
+
+        animator.Play("Base Layer.Idle");
     }
     private void FixedUpdate()
     {
@@ -117,7 +119,7 @@ public class Firearm : MonoBehaviour
 
         muzzleFlash.transform.localEulerAngles = new(muzzleFlash.transform.localEulerAngles.x, muzzleFlash.transform.localEulerAngles.y, UnityEngine.Random.Range(0, 360));
         muzzleFlash.SetActive(true);
-        Invoke(nameof(ResetMuzzleFlash), Time.deltaTime *2.5f);
+        Invoke(nameof(ResetMuzzleFlash), Time.deltaTime * 2.5f);
 
         if (roundsInMag >= 0)
         {
@@ -141,7 +143,7 @@ public class Firearm : MonoBehaviour
         if (info.sustainedAffectsLateral) tgtRecoilPos.z *= sustainedRecoilAdd;
         tgtRecoilCam += -UnityEngine.Random.Range(info.camPerShot.x, info.camPerShot.y) * Vector3.right;
         if (info.sustainedAffectsCam) tgtRecoilCam.x *= sustainedRecoilAdd;
-    }   
+    }
     void CalculateRecoil()
     {
 

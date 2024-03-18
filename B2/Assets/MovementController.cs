@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Android;
 using UnityEngine.InputSystem.Controls;
 
 public class MovementController : MonoBehaviour
@@ -12,6 +10,7 @@ public class MovementController : MonoBehaviour
     DefaultInput defaultInput;
     public Vector2 inputMovement;
     public Vector2 inputView;
+    public Vector2 accumulatedInputView;
     public float inputLean;
     public float inputJump;
 
@@ -60,6 +59,7 @@ public class MovementController : MonoBehaviour
         defaultInput = new DefaultInput();
         defaultInput.Character.Movement.performed += e => inputMovement = e.ReadValue<Vector2>();
         defaultInput.Character.View.performed += e => inputView = e.ReadValue<Vector2>();
+        defaultInput.Character.View.performed += e => accumulatedInputView += e.ReadValue<Vector2>();
         defaultInput.Character.Jump.performed += e => inputJump = e.ReadValue<float>();
         defaultInput.Character.Jump.canceled += e => inputJump = e.ReadValue<float>();
         defaultInput.Character.Lean.performed += e => inputLean = e.ReadValue<float>();
