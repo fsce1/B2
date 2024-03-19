@@ -46,7 +46,7 @@ public class Round : MonoBehaviour
         curPoint.y += dropAmount/1000;
 
         float velocityReduction = Mathf.InverseLerp(0, maxDist, distFromOrigin);
-        velocity.z *= velocityReduction / 100;
+        //velocity.z *= velocityReduction / 100;
         Debug.Log(velocityReduction);
         //velocity.z *= velocityReduction;
 
