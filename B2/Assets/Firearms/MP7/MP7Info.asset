@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1707a1083064fd743a65c03f7e4e0cbb, type: 3}
+  m_Name: MP7Info
+  m_EditorClassIdentifier: 
+  firearmName: 
+  roundsPerMinute: 950
+  magazineSize: 40
+  bulletDamage: 0
+  restPos: {x: 0.117, y: -0.18, z: 0.3208}
+  aimPos: {x: 0, y: -0.1473, z: 0.1838}
+  sustainedRecoilAdd: 0.025
+  sustainedAffectsVertical: 1
+  verticalPerShot: {x: 0, y: 2}
+  sustainedAffectsHorizontal: 0
+  horizontalPerShot: {x: -1, y: 1}
+  rotRecovery: 15
+  rotSnappiness: 10
+  sustainedAffectsLateral: 0
+  lateralPerShot: {x: 0.005, y: 0.01}
+  lateralRecovery: 2
+  lateralSnappiness: 20
+  sustainedAffectsCam: 0
+  camPerShot: {x: 2, y: 4}
+  camRecovery: 15
+  camSnappiness: 10
+  fireModes: 0000000001000000

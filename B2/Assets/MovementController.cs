@@ -23,6 +23,7 @@ public class MovementController : MonoBehaviour
     [Header("Camera")]
     public Vector2 cameraAngles;
     public float sensitivity = 1;
+    public float baseSensitivity;
     public float FOV;
     public float AimFOV;
 

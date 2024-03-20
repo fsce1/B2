@@ -16,19 +16,19 @@ MonoBehaviour:
   roundsPerMinute: 900
   magazineSize: 12
   bulletDamage: 0
-  restPos: {x: 0.071, y: -0.1438, z: 0.26}
-  aimPos: {x: -0.0009, y: -0.1175, z: 0.1979}
-  sustainedRecoilAdd: 0
+  restPos: {x: 0.124, y: -0.163, z: 0.455}
+  aimPos: {x: 0.0013, y: -0.104, z: 0.24}
+  sustainedRecoilAdd: 0.25
   sustainedAffectsVertical: 0
-  verticalPerShot: {x: 5, y: 10}
+  verticalPerShot: {x: 10, y: 15}
   sustainedAffectsHorizontal: 1
   horizontalPerShot: {x: -1, y: 1}
   rotRecovery: 10
   rotSnappiness: 20
   sustainedAffectsLateral: 0
-  lateralPerShot: {x: 0.001, y: 0.001}
-  lateralRecovery: 5
-  lateralSnappiness: 5
+  lateralPerShot: {x: 0.075, y: 0.1}
+  lateralRecovery: 10
+  lateralSnappiness: 15
   sustainedAffectsCam: 0
   camPerShot: {x: 2.5, y: 5}
   camRecovery: 10

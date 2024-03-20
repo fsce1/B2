@@ -14,13 +14,12 @@ public enum FireMode
 
 public class Firearm : MonoBehaviour
 {
-
     public GameObject roundPrefab;
     DefaultInput defaultInput;
     public FirearmInfo info;
-    public Transform camHolder;
     public Animator animator;
     public MovementController movementController;
+    public List<Camera> cameras = new();
 
     public Vector3 recoilRot;
     public Vector3 tgtRecoilRot;
@@ -46,9 +45,15 @@ public class Firearm : MonoBehaviour
 
     [Header("Points")]
     public Transform barrelPoint;
-
-    [Header("Particles")]
     public GameObject muzzleFlash;
+
+    [Header("Scope")]
+    public bool hasScope;
+    public float curZoom;
+    public Camera scopeCamera;
+    public Vector2 zoomBounds;
+    public float scrollSpeed;
+    float baseFOV;
 
     private void OnDrawGizmos()
     {
@@ -65,9 +70,19 @@ public class Firearm : MonoBehaviour
         defaultInput.Weapon.CycleFireMode.performed += e => CycleFireMode();
         defaultInput.Weapon.FullAutoHeld.performed += e => fullAutoHeld = !fullAutoHeld;
         defaultInput.Weapon.Reload.performed += e => BeginReload();
+        defaultInput.Weapon.Zero.performed += e => UpdateScopeZoom(e.ReadValue<float>() / 120);
         defaultInput.Enable();
 
         animator.Play("Base Layer.Idle");
+
+        baseFOV = scopeCamera.fieldOfView;
+    }
+    void UpdateScopeZoom(float input)
+    {
+        if (!hasScope) return;
+        curZoom += input * scrollSpeed;
+        curZoom = Mathf.Clamp(curZoom, zoomBounds.x, zoomBounds.y);
+        scopeCamera.fieldOfView = baseFOV / curZoom;
     }
     private void FixedUpdate()
     {
@@ -78,12 +93,14 @@ public class Firearm : MonoBehaviour
         CalculateRecoil();
 
         transform.SetLocalPositionAndRotation(recoilPos, Quaternion.Euler(recoilRot));
-        Camera.main.transform.localRotation = Quaternion.Euler(recoilCam);
-
+        //cameraHolder.localEulerAngles += recoilCam;
+        //Camera.main.transform.localRotation = Quaternion.Euler(recoilCam);
+        foreach (Camera c in cameras) c.transform.localRotation = Quaternion.Euler(recoilCam);
         if (Vector3Int.RoundToInt(recoilRot) == Vector3.zero && Vector3Int.RoundToInt(recoilPos) == Vector3.zero && Vector3Int.RoundToInt(recoilCam) == Vector3.zero)
         {
             sustainedRecoilAdd = 1;
         }
+
 
         //if (!isReloading && movementController.velocity.magnitude > 0.01f )
         //{
@@ -117,13 +134,16 @@ public class Firearm : MonoBehaviour
         roundsInMag -= 1;
         sustainedRecoilAdd += info.sustainedRecoilAdd;
 
-        muzzleFlash.transform.localEulerAngles = new(muzzleFlash.transform.localEulerAngles.x, muzzleFlash.transform.localEulerAngles.y, UnityEngine.Random.Range(0, 360));
-        muzzleFlash.SetActive(true);
-        Invoke(nameof(ResetMuzzleFlash), Time.deltaTime * 2.5f);
+        if (muzzleFlash != null)
+        {
+            muzzleFlash.transform.localEulerAngles = new(muzzleFlash.transform.localEulerAngles.x, muzzleFlash.transform.localEulerAngles.y, UnityEngine.Random.Range(0, 360));
+            muzzleFlash.SetActive(true);
+            Invoke(nameof(ResetMuzzleFlash), Time.deltaTime * 2.5f);
+        }
 
         if (roundsInMag >= 0)
         {
-            Invoke(nameof(ResetShot), 60 / info.roundsPerMinute);
+            Invoke(nameof(ResetShot), 50 / info.roundsPerMinute);
         }
     }
     void ResetMuzzleFlash() => muzzleFlash.SetActive(false);

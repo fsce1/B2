@@ -112,7 +112,7 @@ public class SwayController : MonoBehaviour
         //InvokeRepeating("SwitchWalk", 0, stepTime);
 
         defaultInput = new DefaultInput();
-        defaultInput.Weapon.AimPressed.performed += e => isAiming = !isAiming;
+        defaultInput.Weapon.AimPressed.performed += e => isAiming = !isAiming; 
         defaultInput.Weapon.Zero.performed += e => ChangeZero(e.ReadValue<float>());
         defaultInput.Enable();
 
@@ -231,7 +231,7 @@ public class SwayController : MonoBehaviour
         newBreathMove = Vector3.SmoothDamp(newBreathMove, breathMove, ref newBreathMoveVelocity, breathSmoothing);
 
         wpnPos += (newLeanMove * _leanScaler) + (newMovementMove * _moveScaler) + (newBreathMove * _breathScaler);
-        wpnRot += (newBreathMove.y * transform.right) * breathRotScaling;
+        wpnRot += (newBreathMove.y * transform.right) * breathRotScaling * _breathScaler;
     }
     void CalculateAim()
     {

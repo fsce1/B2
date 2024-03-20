@@ -1,13 +1,12 @@
-https://sketchfab.com/3d-models/half-life-2-hk-usp-match-ce279b2fb6344757935e8660fa7d1a37
+	https://sketchfab.com/3d-models/half-life-2-hk-usp-match-ce279b2fb6344757935e8660fa7d1a37
 https://sketchfab.com/3d-models/pistol-9mm-8a9e804b452142d3a41548d89beb6430
-https://sketchfab.com/3d-models/desert-eagle-b0af2af6fa164a6c9a10ec0ce4b1c254
-https://sketchfab.com/3d-models/mp7a1-a7e5c1db09b840abb96778c579033c9e
+	https://sketchfab.com/3d-models/desert-eagle-b0af2af6fa164a6c9a10ec0ce4b1c254
+	https://sketchfab.com/3d-models/mp7a1-a7e5c1db09b840abb96778c579033c9e
 https://sketchfab.com/3d-models/tactical-p90-052b9598464046568f60526f335964c5
-https://sketchfab.com/3d-models/tactical-p90-052b9598464046568f60526f335964c5
-https://sketchfab.com/3d-models/okp-7-reflex-sight-be2717e42e9a422398de33286923bbc9
-https://sketchfab.com/3d-models/as-val-19866d2cb0bb45099185c93fee408f0a
+	https://sketchfab.com/3d-models/okp-7-reflex-sight-be2717e42e9a422398de33286923bbc9
+	https://sketchfab.com/3d-models/as-val-19866d2cb0bb45099185c93fee408f0a
 https://sketchfab.com/3d-models/desert-tech-mdrx-0908741bff6c4f8bbd827ec3b9e9b98f
 https://sketchfab.com/3d-models/sig-sauer-xm7-spear-304edbd1658a46ed9a01e6ac2e3644f4
-https://sketchfab.com/3d-models/hk-g36c-smg-c47b2d33ed4d4627bc681f5c3f58e272
+	https://sketchfab.com/3d-models/hk-g36c-smg-c47b2d33ed4d4627bc681f5c3f58e272
 https://sketchfab.com/3d-models/dragunov-svu-rifle-61997d135cda49ef8abe500e53eb3f89
 https://sketchfab.com/3d-models/keltec-rfb-nightforce-atarc-1-8x24-3e52b5d704e34a739b8f092a75cf7d9d
