@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MP7Info
   m_EditorClassIdentifier: 
   firearmName: 
+  firearmPrefab: {fileID: 0}
   roundsPerMinute: 950
   magazineSize: 40
-  bulletDamage: 0
   restPos: {x: 0.117, y: -0.18, z: 0.3208}
   aimPos: {x: 0, y: -0.1473, z: 0.1838}
   sustainedRecoilAdd: 0.025
@@ -26,8 +26,8 @@ MonoBehaviour:
   rotRecovery: 15
   rotSnappiness: 10
   sustainedAffectsLateral: 0
-  lateralPerShot: {x: 0.005, y: 0.01}
-  lateralRecovery: 2
+  lateralPerShot: {x: 0.025, y: 0.025}
+  lateralRecovery: 10
   lateralSnappiness: 20
   sustainedAffectsCam: 0
   camPerShot: {x: 2, y: 4}

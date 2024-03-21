@@ -797,8 +797,6 @@ MonoBehaviour:
   roundPrefab: {fileID: 6992067972337017737, guid: d34623e0824f91447aae02d721d26110, type: 3}
   info: {fileID: 11400000, guid: 193df828a42b8e84ab865fc44da0f16f, type: 2}
   animator: {fileID: 3675287126183148446}
-  movementController: {fileID: 0}
-  cameras: []
   recoilRot: {x: 0, y: 0, z: 0}
   tgtRecoilRot: {x: 0, y: 0, z: 0}
   recoilPos: {x: 0, y: 0, z: 0}
@@ -1072,7 +1070,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1115050421090428586, guid: df108c229da1e8b41b8d5e14c4b89648, type: 3}
+  - {fileID: 2100000, guid: 1f7aa5d43a541fc45899aaaf4541d851, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

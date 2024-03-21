@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1707a1083064fd743a65c03f7e4e0cbb, type: 3}
   m_Name: VSSInfo
   m_EditorClassIdentifier: 
-  firearmName: 
+  firearmName: VSS
+  firearmPrefab: {fileID: 5586596522270559470, guid: 16e35eb2d2a23bc42b36cc3e86be1a0c, type: 3}
   roundsPerMinute: 900
   magazineSize: 30
-  bulletDamage: 0
   restPos: {x: 0.1175, y: -0.1759, z: 0.208}
   aimPos: {x: -0.0092, y: -0.1656, z: 0.0864}
   sustainedRecoilAdd: 0.025

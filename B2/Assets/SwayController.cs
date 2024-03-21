@@ -5,10 +5,7 @@ using UnityEngine;
 public class SwayController : MonoBehaviour
 {
     DefaultInput defaultInput;
-    public MovementController movementController;
-    public Firearm firearm;
-    public Transform cameraHolder;
-
+    public Player player;
 
     [Header("Aim")]
     public bool isAiming;
@@ -106,13 +103,17 @@ public class SwayController : MonoBehaviour
 
     void SwitchBreath() => breathingIn = !breathingIn;
     //void SwitchWalk() => rightFoot = !rightFoot;
-    void Start()
+    private void Start()
     {
-        InvokeRepeating("SwitchBreath", 0, breathTime);
+        InvokeRepeating(nameof(SwitchBreath), 0, breathTime);
+    }
+    public void Initialize()
+    {
+
         //InvokeRepeating("SwitchWalk", 0, stepTime);
 
         defaultInput = new DefaultInput();
-        defaultInput.Weapon.AimPressed.performed += e => isAiming = !isAiming; 
+        defaultInput.Weapon.AimPressed.performed += e => isAiming = !isAiming;
         defaultInput.Weapon.Zero.performed += e => ChangeZero(e.ReadValue<float>());
         defaultInput.Enable();
 
@@ -130,8 +131,8 @@ public class SwayController : MonoBehaviour
         ChangeZero(0);
 
 
-        restPos = firearm.info.restPos;
-        aimPos = firearm.info.aimPos;
+        restPos = player.firearm.info.restPos;
+        aimPos = player.firearm.info.aimPos;
 
     }
     void ChangeZero(float inputZero)
@@ -154,7 +155,7 @@ public class SwayController : MonoBehaviour
     void FixedUpdate()
     {
 
-        if(movementController.inputMovement == Vector2.zero)
+        if (GameManager.GM.player.inputMovement == Vector2.zero)
         {
             curWalkLifetime = 0;
         }
@@ -187,19 +188,19 @@ public class SwayController : MonoBehaviour
             _swayScaler = swayRotScaler;
         }
 
-        weaponRotation.x += movementController.accumulatedInputView.y * swayAmount;
-        weaponRotation.y += -movementController.accumulatedInputView.x * swayAmount;
+        weaponRotation.x += GameManager.GM.player.accumulatedInputView.y * swayAmount;
+        weaponRotation.y += -GameManager.GM.player.accumulatedInputView.x * swayAmount;
         weaponRotation = Vector3.SmoothDamp(weaponRotation, Vector3.zero, ref weaponRotationVelocity, swaySmoothing);
         newWeaponRotation = Vector3.SmoothDamp(newWeaponRotation, weaponRotation, ref newWeaponRotationVelocity, swayResetSmoothing);
-        newWeaponRotation.z = newWeaponRotation.y*0.75f;
+        newWeaponRotation.z = newWeaponRotation.y * 0.75f;
 
-        movementRotation.z = -movementSwayAmount * movementController.inputMovement.x;
+        movementRotation.z = -movementSwayAmount * GameManager.GM.player.inputMovement.x;
         movementRotation = Vector3.SmoothDamp(movementRotation, Vector3.zero, ref movementRotationVelocity, movementSwaySmoothing);
 
         newMovementRotation = Vector3.SmoothDamp(newMovementRotation, movementRotation, ref newMovementRotationVelocity, movementSwaySmoothing);
         wpnRot += newWeaponRotation * _swayScaler + newMovementRotation * _movementScaler;
 
-        movementController.accumulatedInputView = Vector2.zero;
+        GameManager.GM.player.accumulatedInputView = Vector2.zero;
 
     }
     void CalculateWeaponPos()
@@ -214,12 +215,12 @@ public class SwayController : MonoBehaviour
             _breathScaler = breathScaler;
         }
 
-        leanMove.x = leanMoveAmount * movementController.inputLean;
+        leanMove.x = leanMoveAmount * GameManager.GM.player.inputLean;
         leanMove = Vector3.SmoothDamp(leanMove, Vector3.zero, ref leanMoveVelocity, leanMoveSmoothing);
         newLeanMove = Vector3.SmoothDamp(newLeanMove, leanMove, ref newLeanMoveVelocity, leanMoveSmoothing);
 
-        movementMove.x = movementMoveAmount * movementController.velocity.z;
-        movementMove.z = movementMoveAmount * movementController.velocity.x;
+        movementMove.x = movementMoveAmount * GameManager.GM.player.velocity.z;
+        movementMove.z = movementMoveAmount * GameManager.GM.player.velocity.x;
         movementMove = Vector3.SmoothDamp(movementMove, Vector3.zero, ref movementMoveVelocity, movementMoveSmoothing);
         newMovementMove = Vector3.SmoothDamp(newMovementMove, movementMove, ref newMovementMoveVelocity, movementMoveSmoothing);
 
@@ -235,11 +236,11 @@ public class SwayController : MonoBehaviour
     }
     void CalculateAim()
     {
-        float tgtFOV = movementController.FOV;
+        float tgtFOV = GameManager.GM.player.FOV;
         Vector3 targetPosition = Vector3.zero;
         if (isAiming)
         {
-            tgtFOV = movementController.AimFOV;
+            tgtFOV = GameManager.GM.player.AimFOV;
             targetPosition = aimPos - restPos;
         }
         weaponAimPos = Vector3.SmoothDamp(weaponAimPos, targetPosition, ref weaponAimPosVelocity, aimSmoothing);
@@ -255,13 +256,13 @@ public class SwayController : MonoBehaviour
         //Vector3 camTarget = new(movementController.transform.position.x, 2.75f, movementController.transform.position.z);
 
         //camTarget.y += camWalkMoveAmount;
-        if (movementController.velocity.magnitude > 0.01f)
+        if (GameManager.GM.player.velocity.magnitude > 0.01f)
         {
             if (curWalkLifetime < walkLifetime / 2)
             {
-                target.y -= stepDownAmount * movementController.velocity.magnitude;
-                if (rightFoot) target.x += stepSideAmount * movementController.velocity.magnitude;
-                else target.x -= stepSideAmount * movementController.velocity.magnitude;
+                target.y -= stepDownAmount * GameManager.GM.player.velocity.magnitude;
+                if (rightFoot) target.x += stepSideAmount * GameManager.GM.player.velocity.magnitude;
+                else target.x -= stepSideAmount * GameManager.GM.player.velocity.magnitude;
 
                 //camTarget.y -= camWalkMoveAmount;
             }
@@ -276,7 +277,7 @@ public class SwayController : MonoBehaviour
         walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
         newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);
         wpnPos += newWalkMove * _walkScaler;
-        wpnRot += new Vector3 (newWalkMove.y, newWalkMove.x, 0) * stepRotScaling;
+        wpnRot += new Vector3(newWalkMove.y, newWalkMove.x, 0) * stepRotScaling;
     }
 
 }

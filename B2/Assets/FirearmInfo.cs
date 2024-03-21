@@ -8,9 +8,9 @@ public class FirearmInfo : ScriptableObject
 
     [Header("Main")]
     public string firearmName;
+    public GameObject firearmPrefab;
     public float roundsPerMinute;
     public int magazineSize;
-    public float bulletDamage;
     public Vector3 restPos;
     public Vector3 aimPos;
 
