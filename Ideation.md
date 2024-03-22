@@ -14,5 +14,11 @@ Another game idea I had was a
 - Bipod stabilisation
 - Bolt action rifles
 - Simpler AI, will try to locate you and fire back as well as running to cover if they spot you.
-
+## Idea 4: Base-builder
+Inspired by Rimworld, Foxhole and Dwarf Fortress
+Set in the post-apocalypse, you are tasked with rebuilding a city using many AI NPCs.
+Top-down perspective, you micromanage hundreds of people with their own jobs such as collecting wood, mining resources, building structures, etc.
+You also need to balance the number of people in your military. More people in your army means fights will be easier, but there are less people to do normal jobs.
+Maybe an XCOM or Red Alert-style military system, with turn based combat and managing the entire army.
+## Chosen Idea
 I decided that I would choose the first idea, a tactical shooter. I chose this because I have more experience in similar games and they are some of my favourites to play. I created a moodboard to help pin down the visual style and setting of my game. I want to have a modern, Eastern European setting, with a large military presence and lots of army checkpoints.

@@ -95,7 +95,7 @@ public class Firearm : MonoBehaviour
         transform.SetLocalPositionAndRotation(recoilPos, Quaternion.Euler(recoilRot));
         //cameraHolder.localEulerAngles += recoilCam;
         //Camera.main.transform.localRotation = Quaternion.Euler(recoilCam);
-        GameManager.GM.playCamera.transform.localRotation = Quaternion.Euler(recoilCam);
+        foreach(Camera c in GameManager.GM.playCameras) c.transform.localRotation = Quaternion.Euler(recoilCam);
         if (Vector3Int.RoundToInt(recoilRot) == Vector3.zero && Vector3Int.RoundToInt(recoilPos) == Vector3.zero && Vector3Int.RoundToInt(recoilCam) == Vector3.zero)
         {
             sustainedRecoilAdd = 1;

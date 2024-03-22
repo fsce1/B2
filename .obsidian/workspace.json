@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Ideation.md",
+                "file": "GDD.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Ideation.md",
+                "file": "GDD.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Ideation.md",
+                "file": "GDD.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Ideation.md"
+                "file": "GDD.md"
               }
             }
           }
@@ -148,27 +148,37 @@
   },
   "active": "40b7347cbe804f81",
   "lastOpenFiles": [
-    "B2/Assets/Animations/Firearms.blend@",
-    "B2/Temp/UnityTempFile-935847160bb191140bcaacd34e101272",
-    "B2/Temp/UnityTempFile-fc5a3629b19a6a74bb3ef804b2e64a91",
-    "B2/Temp/UnityTempFile-4cd9d996b795b354199813ce4c46adec",
-    "B2/Library/Search/propertyDatabase.db_16a0d6591fba48e58bd518e0fdd4f0e1_temp",
-    "B2/Temp/UnityTempFile-0a7f1e274f0ffa144bd57503e26f0a5b",
-    "B2/Temp/ADB-Refresh6aacfdb3e8bba204884c8e39883fbb20",
-    "B2/Temp/UnityTempFile-2754a97375d26664ca323ec24fd3fbf7",
-    "B2/Library/Search/propertyDatabase.db_58fa6dc2bcd74c15b4a87d913cf9cfb2_temp",
-    "B2/Temp/UnityTempFile-f4117cab0521a9d469f0d2dcb267e9d9",
-    "B2/Library/Search/propertyDatabase.db_de15eded7ad14148b32c0e234f5e3bd1_temp",
-    "B2/Assets/Animations/textures/usp_color.png",
-    "B2/Assets/Animations/textures/usp_normal3.png",
-    "B2/Assets/Firearms/G36/G36/Material_017_roughness.jpeg",
-    "B2/Assets/Firearms/G36/G36/Material_017_normal.png",
-    "B2/Assets/Firearms/G36/G36/Material_017_metallic.jpeg",
-    "B2/Assets/Firearms/G36/G36/Material_017_AO.jpeg",
-    "B2/Assets/Firearms/G36/G36/Material_017_albedo.jpeg",
-    "B2/Assets/Firearms/G36/G36/Material_016_roughness.jpeg",
-    "B2/Assets/Firearms/G36/G36/Material_016_normal.png",
-    "B2/Assets/Firearms/G36/G36/Material_016_metallic.jpeg",
+    "Ideation.md",
+    "~$Jamie Serlin B2 Pitch Presentation.pptx",
+    "GDD.md",
+    "Research.md",
+    "Project Management.md",
+    "Pasted image 20240322152352.png",
+    "B2/Temp/UnityTempFile-765ba12a9d224ae41b206e2b876046df",
+    "B2/Temp/UnityTempFile-329085335d399894db38c9ff213250a7",
+    "B2/Library/Search/propertyAliases.db_27df0d92ef4e4a7eb93abca551eea785_temp",
+    "B2/Temp/ADB-Refreshee06fd84e0d0f894dac2efc4ce324304",
+    "B2/Temp/UnityTempFile-65839d58baf09b749b98544dedeac411",
+    "B2/Temp/UnityTempFile-e604a86caf0acb74c936841ac067c25c",
+    "B2/Temp/UnityTempFile-79a7b38b0190b494a9724c211321f9bb",
+    "B2/Library/Artifacts/5c/5ca54408c208a8f4fead2090bf07da7a",
+    "B2/Library/Artifacts/a1/a1ae0c4e3a3b8a838c34710cb3f493b1",
+    "Skills Development.md",
+    "Testing.md",
+    "Evaluation.md",
+    "Untitled.md",
+    "Untitled Kanban.md",
+    "B2.md",
+    "Analysis of Brief.md",
+    "B2/Assets/Firearms/MP7/Sight/Scope_all_aimpoint_micro_h1_high_marks.png",
+    "B2/Assets/Firearms/MP7/Sight/textures/Romeo3_Roughness.png",
+    "B2/Assets/Firearms/MP7/Sight/textures/Romeo3_Normal.png",
+    "B2/Assets/Firearms/MP7/Sight/textures/Romeo3_Metalness.png",
+    "B2/Assets/Firearms/MP7/Sight/textures/Romeo3_Lens_Transparent.jpg",
+    "B2/Assets/Firearms/MP7/Sight/textures/Romeo3_Lens_Normal.png",
+    "B2/Assets/Firearms/MP7/Sight/textures/Romeo3_Diffuse_(Dark_Earth).png",
+    "B2/Assets/Firearms/MP7/Sight/textures/Romeo3_AO.png",
+    "B2/Assets/Firearms/G36/Sight/Scope_all_eotech_xps3-0_marks.png",
     "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/TableOfContents.md",
     "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/optimization-overview.md",
     "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/optimization-skiplocalsinit.md",
@@ -182,17 +192,6 @@
     "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/editor-burst-inspector.md",
     "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/editor-reference-overview.md",
     "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/editor-burst-menu.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-type-support.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/debugging-profiling-tools.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-static-read-only-support.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-system-support.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-string-support.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-shared-static.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-hpc-overview.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-language-support.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-function-pointers.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-calling-burst-code.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-burst-intrinsics.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-burst-intrinsics-processors.md"
+    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/csharp-type-support.md"
   ]
 }

@@ -71,6 +71,15 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ArmaZoom"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d097877-393f-4501-93f2-f97c6ae2f783"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -194,6 +203,17 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5075de4-67da-4031-b997-4f972197fad8"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ArmaZoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -207,7 +227,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""id"": ""124af0ac-4681-4218-95d4-f443c0884f00"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -261,7 +281,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""ad8b465a-ff61-4b6e-a7fe-a620c3019592"",
                     ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AimPressed"",
@@ -357,6 +377,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Lean = m_Character.FindAction("Lean", throwIfNotFound: true);
         m_Character_Walk = m_Character.FindAction("Walk", throwIfNotFound: true);
+        m_Character_ArmaZoom = m_Character.FindAction("ArmaZoom", throwIfNotFound: true);
         // Weapon
         m_Weapon = asset.FindActionMap("Weapon", throwIfNotFound: true);
         m_Weapon_AimPressed = m_Weapon.FindAction("AimPressed", throwIfNotFound: true);
@@ -431,6 +452,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_Lean;
     private readonly InputAction m_Character_Walk;
+    private readonly InputAction m_Character_ArmaZoom;
     public struct CharacterActions
     {
         private @DefaultInput m_Wrapper;
@@ -440,6 +462,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
         public InputAction @Lean => m_Wrapper.m_Character_Lean;
         public InputAction @Walk => m_Wrapper.m_Character_Walk;
+        public InputAction @ArmaZoom => m_Wrapper.m_Character_ArmaZoom;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -464,6 +487,9 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @Walk.started += instance.OnWalk;
             @Walk.performed += instance.OnWalk;
             @Walk.canceled += instance.OnWalk;
+            @ArmaZoom.started += instance.OnArmaZoom;
+            @ArmaZoom.performed += instance.OnArmaZoom;
+            @ArmaZoom.canceled += instance.OnArmaZoom;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -483,6 +509,9 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @Walk.started -= instance.OnWalk;
             @Walk.performed -= instance.OnWalk;
             @Walk.canceled -= instance.OnWalk;
+            @ArmaZoom.started -= instance.OnArmaZoom;
+            @ArmaZoom.performed -= instance.OnArmaZoom;
+            @ArmaZoom.canceled -= instance.OnArmaZoom;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -593,6 +622,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLean(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
+        void OnArmaZoom(InputAction.CallbackContext context);
     }
     public interface IWeaponActions
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -9,9 +10,10 @@ public class GameManager : MonoBehaviour
     public static GameManager GM;
 
     [Header("Player")]
+    public GameObject playerPrefab;
     public Player player;
     public GameObject firearmPrefab;
-    public Camera playCamera;
+    public List<Camera> playCameras;
     [Header("InfilScreen")]
     public Transform curInfilPoint;
     public TMP_Text curFirearmText;
@@ -49,18 +51,23 @@ public class GameManager : MonoBehaviour
     }
     public void Infiltrate()
     {
-        infilCamera.gameObject.SetActive(false);
-        foreach (Transform t in infilLocations)
-        {
-            Destroy(t.gameObject);
-        }
+        foreach (Transform t in infilLocations) Destroy(t.gameObject);
+
+        GameObject p = Instantiate(playerPrefab, curInfilPoint.position, Quaternion.identity);
+        //p.transform.parent = null;
+
+        player = p.GetComponent<Player>();
+        playCameras = player.GetComponentsInChildren<Camera>().ToList<Camera>();
+
         GameObject g = Instantiate(firearmPrefab, player.swayController.transform);
         player.firearm = g.GetComponent<Firearm>();
 
         player.transform.position = curInfilPoint.position;
+
         player.Initialize();
         player.gameObject.SetActive(true);
 
+        infilCamera.gameObject.SetActive(false);
     }
 
 }

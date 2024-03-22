@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: G36Info
   m_EditorClassIdentifier: 
   firearmName: 
+  firearmPrefab: {fileID: 0}
   roundsPerMinute: 700
   magazineSize: 30
-  bulletDamage: 0
   restPos: {x: 0.1165, y: -0.2394, z: 0.235}
-  aimPos: {x: -0.0022, y: -0.2143, z: 0.1568}
+  aimPos: {x: -0.0022, y: -0.255, z: 0.1568}
   sustainedRecoilAdd: 0.01
   sustainedAffectsVertical: 0
   verticalPerShot: {x: 2, y: 3}

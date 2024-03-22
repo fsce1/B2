@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class SwayController : MonoBehaviour
 {
+    [Header("Ref")]
     DefaultInput defaultInput;
     public Player player;
 
     [Header("Aim")]
     public bool isAiming;
-
     public Vector3 restRot;
     public Vector3 restPos;
     public Vector3 aimPos;
 
     public float aimSmoothing;
+
+    public float armaAimMult;
+    public float armaAimAmount;
     [Header("Aim Sway Scaling")]
     public float movementRotScaler = 0.1f;
     public float swayRotScaler = 0.5f;
@@ -86,8 +89,8 @@ public class SwayController : MonoBehaviour
     public int curWalkLifetime;
     public int walkLifetime;
     public bool rightFoot;
-    public float stepDownAmount;
-    public float stepSideAmount;
+    public Vector2 stepDownAmount;
+    public Vector2 stepSideAmount;
     public float stepRotScaling;
     public float walkMoveSmoothing;
 
@@ -107,6 +110,7 @@ public class SwayController : MonoBehaviour
     {
         InvokeRepeating(nameof(SwitchBreath), 0, breathTime);
     }
+
     public void Initialize()
     {
 
@@ -115,6 +119,8 @@ public class SwayController : MonoBehaviour
         defaultInput = new DefaultInput();
         defaultInput.Weapon.AimPressed.performed += e => isAiming = !isAiming;
         defaultInput.Weapon.Zero.performed += e => ChangeZero(e.ReadValue<float>());
+        defaultInput.Character.ArmaZoom.performed += e => armaAimMult = armaAimAmount;
+        defaultInput.Character.ArmaZoom.canceled += e => armaAimMult = 1;
         defaultInput.Enable();
 
         zeroes = new()
@@ -236,15 +242,15 @@ public class SwayController : MonoBehaviour
     }
     void CalculateAim()
     {
-        float tgtFOV = GameManager.GM.player.FOV;
+        float tgtFOV = GameManager.GM.player.FOV* armaAimMult;
         Vector3 targetPosition = Vector3.zero;
         if (isAiming)
         {
-            tgtFOV = GameManager.GM.player.AimFOV;
+            tgtFOV = GameManager.GM.player.AimFOV*armaAimMult;
             targetPosition = aimPos - restPos;
         }
         weaponAimPos = Vector3.SmoothDamp(weaponAimPos, targetPosition, ref weaponAimPosVelocity, aimSmoothing);
-        Camera.main.fieldOfView = Mathf.SmoothDamp(Camera.main.fieldOfView, tgtFOV, ref FOVVelocity, aimSmoothing);
+        foreach(Camera c in GameManager.GM.playCameras) c.fieldOfView = Mathf.SmoothDamp(Camera.main.fieldOfView, tgtFOV, ref FOVVelocity, aimSmoothing);
         wpnPos += weaponAimPos;
     }
     void CalculateWalk()
@@ -260,9 +266,10 @@ public class SwayController : MonoBehaviour
         {
             if (curWalkLifetime < walkLifetime / 2)
             {
-                target.y -= stepDownAmount * GameManager.GM.player.velocity.magnitude;
-                if (rightFoot) target.x += stepSideAmount * GameManager.GM.player.velocity.magnitude;
-                else target.x -= stepSideAmount * GameManager.GM.player.velocity.magnitude;
+                target.y -= Random.Range(stepDownAmount.x, stepDownAmount.y) * GameManager.GM.player.velocity.magnitude;
+                float sideAmount = Random.Range(stepSideAmount.x, stepSideAmount.y);
+                if (rightFoot) target.x += sideAmount * GameManager.GM.player.velocity.magnitude;
+                else target.x -= sideAmount * GameManager.GM.player.velocity.magnitude;
 
                 //camTarget.y -= camWalkMoveAmount;
             }

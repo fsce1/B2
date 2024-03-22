@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
         defaultInput.Character.Jump.canceled += e => inputJump = e.ReadValue<float>();
         defaultInput.Character.Lean.performed += e => inputLean = e.ReadValue<float>();
 
+
         defaultInput.Enable();
 
         firearm.Initialize();
