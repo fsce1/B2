@@ -126,7 +126,7 @@ public class Player : MonoBehaviour
     {
         inputView *= sensitivity / 100;
 
-        cameraAngles += inputView;
+        cameraAngles += inputView / swayController.aimSensitivityMult;
         cameraAngles.y = Mathf.Clamp(cameraAngles.y, -90, 90);
 
         Quaternion camRot = Quaternion.AngleAxis(-cameraAngles.y, Vector3.right);

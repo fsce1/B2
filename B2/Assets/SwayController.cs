@@ -15,6 +15,7 @@ public class SwayController : MonoBehaviour
     public Vector3 aimPos;
 
     public float aimSmoothing;
+    public float aimSensitivityMult;
 
     public float armaAimMult;
     public float armaAimAmount;
@@ -198,13 +199,13 @@ public class SwayController : MonoBehaviour
         weaponRotation.y += -GameManager.GM.player.accumulatedInputView.x * swayAmount;
         weaponRotation = Vector3.SmoothDamp(weaponRotation, Vector3.zero, ref weaponRotationVelocity, swaySmoothing);
         newWeaponRotation = Vector3.SmoothDamp(newWeaponRotation, weaponRotation, ref newWeaponRotationVelocity, swayResetSmoothing);
-        newWeaponRotation.z = newWeaponRotation.y * 0.75f;
+        newWeaponRotation.z = newWeaponRotation.y * 0.25f;
 
         movementRotation.z = -movementSwayAmount * GameManager.GM.player.inputMovement.x;
         movementRotation = Vector3.SmoothDamp(movementRotation, Vector3.zero, ref movementRotationVelocity, movementSwaySmoothing);
 
         newMovementRotation = Vector3.SmoothDamp(newMovementRotation, movementRotation, ref newMovementRotationVelocity, movementSwaySmoothing);
-        wpnRot += newWeaponRotation * _swayScaler + newMovementRotation * _movementScaler;
+        wpnRot += newWeaponRotation * _swayScaler / aimSensitivityMult + newMovementRotation * _movementScaler;
 
         GameManager.GM.player.accumulatedInputView = Vector2.zero;
 
@@ -242,15 +243,24 @@ public class SwayController : MonoBehaviour
     }
     void CalculateAim()
     {
+        aimSensitivityMult = 1;
+
         float tgtFOV = GameManager.GM.player.FOV* armaAimMult;
         Vector3 targetPosition = Vector3.zero;
         if (isAiming)
         {
             tgtFOV = GameManager.GM.player.AimFOV*armaAimMult;
             targetPosition = aimPos - restPos;
+            if (player.firearm.hasScope)
+            {
+                aimSensitivityMult *= player.firearm.curZoom;
+            }
+
         }
         weaponAimPos = Vector3.SmoothDamp(weaponAimPos, targetPosition, ref weaponAimPosVelocity, aimSmoothing);
         foreach(Camera c in GameManager.GM.playCameras) c.fieldOfView = Mathf.SmoothDamp(Camera.main.fieldOfView, tgtFOV, ref FOVVelocity, aimSmoothing);
+
+
         wpnPos += weaponAimPos;
     }
     void CalculateWalk()

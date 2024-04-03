@@ -27,10 +27,16 @@ public class Round : MonoBehaviour
 
     private void Start()
     {
+        lineRenderer.enabled = false;
+        Invoke("Show", 0.05f);
         velocity.z = muzzleVelocity/50;
         startPoint = transform.position;
         curPoint = transform.position; 
         positions.Add(startPoint);
+    }
+    void Show()
+    {
+        lineRenderer.enabled = true;
     }
     void FixedUpdate()
     {

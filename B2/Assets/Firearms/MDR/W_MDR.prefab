@@ -123,7 +123,7 @@ Transform:
   m_Children:
   - {fileID: 5566080856511237096}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1305733541395580252
 MonoBehaviour:
@@ -140,10 +140,7 @@ MonoBehaviour:
   roundPrefab: {fileID: 6992067972337017737, guid: d34623e0824f91447aae02d721d26110, type: 3}
   info: {fileID: 11400000, guid: 872040fecfca4b246a2990cb32d210ce, type: 2}
   animator: {fileID: 7688006624102483579}
-  movementController: {fileID: 0}
-  cameras:
-  - {fileID: 0}
-  - {fileID: 0}
+  controller: {fileID: 0}
   recoilRot: {x: 0, y: 0, z: 0}
   tgtRecoilRot: {x: 0, y: 0, z: 0}
   recoilPos: {x: 0, y: 0, z: 0}
@@ -155,14 +152,18 @@ MonoBehaviour:
   isReloading: 0
   roundsInMag: 20
   canShoot: 1
+  reloadTime: 2
   sustainedRecoilAdd: 0
   barrelPoint: {fileID: 1473490687232621886}
   muzzleFlash: {fileID: 0}
   hasScope: 1
+  firstFocalPlane: 1
+  baseReticleScale: 0
   curZoom: 1
   scopeCamera: {fileID: 6564872919915734339}
+  scopeMesh: {fileID: 397187531418211010}
   zoomBounds: {x: 1, y: 8}
-  scrollSpeed: 0.1
+  scrollSpeed: 0.25
 --- !u!1 &2679886702644053301
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +751,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3d7bc940ceca424db7f16222f256454, type: 3}
+--- !u!23 &397187531418211010 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3915489600850142742, guid: e3d7bc940ceca424db7f16222f256454, type: 3}
+  m_PrefabInstance: {fileID: 5488327741263760168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5449580390292368579 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e3d7bc940ceca424db7f16222f256454, type: 3}

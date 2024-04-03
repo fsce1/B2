@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 public enum FireMode
 {
@@ -38,6 +39,7 @@ public class Firearm : MonoBehaviour
     public bool isReloading;
     public int roundsInMag;
     public bool canShoot;
+    public float reloadTime;
     public float sustainedRecoilAdd;
 
 
@@ -47,18 +49,20 @@ public class Firearm : MonoBehaviour
 
     [Header("Scope")]
     public bool hasScope;
+    public bool firstFocalPlane;
+    public float baseReticleScale;
     public float curZoom;
     public Camera scopeCamera;
+    public MeshRenderer scopeMesh;
     public Vector2 zoomBounds;
     public float scrollSpeed;
     float baseFOV;
 
     private void OnDrawGizmos()
     {
-        if (Physics.Raycast(barrelPoint.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+        if (Physics.Raycast(GameManager.GM.player.firearm.barrelPoint.position, GameManager.GM.player.swayController.restRot, out RaycastHit hit2, Mathf.Infinity))
         {
-            if (Camera.current != Camera.main) return;
-            Gizmos.DrawLine(barrelPoint.position, hit.point);
+            Gizmos.DrawLine(barrelPoint.position, hit2.point);
         }
     }
     public void Initialize()
@@ -75,14 +79,22 @@ public class Firearm : MonoBehaviour
         if (hasScope)
         {
             baseFOV = scopeCamera.fieldOfView;
+            baseReticleScale = scopeMesh.material.GetFloat("_ReticleScale");
         }
+        //controller = animator.runtimeAnimatorController;
     }
     void UpdateScopeZoom(float input)
     {
         if (!hasScope) return;
+
         curZoom += input * scrollSpeed;
         curZoom = Mathf.Clamp(curZoom, zoomBounds.x, zoomBounds.y);
+
         scopeCamera.fieldOfView = baseFOV / curZoom;
+        if (firstFocalPlane)
+        {
+            scopeMesh.material.SetFloat("_ReticleScale", baseReticleScale * curZoom);
+        }
     }
     private void FixedUpdate()
     {
@@ -95,7 +107,7 @@ public class Firearm : MonoBehaviour
         transform.SetLocalPositionAndRotation(recoilPos, Quaternion.Euler(recoilRot));
         //cameraHolder.localEulerAngles += recoilCam;
         //Camera.main.transform.localRotation = Quaternion.Euler(recoilCam);
-        foreach(Camera c in GameManager.GM.playCameras) c.transform.localRotation = Quaternion.Euler(recoilCam);
+        foreach (Camera c in GameManager.GM.playCameras) c.transform.localRotation = Quaternion.Euler(recoilCam);
         if (Vector3Int.RoundToInt(recoilRot) == Vector3.zero && Vector3Int.RoundToInt(recoilPos) == Vector3.zero && Vector3Int.RoundToInt(recoilCam) == Vector3.zero)
         {
             sustainedRecoilAdd = 1;
@@ -182,12 +194,22 @@ public class Firearm : MonoBehaviour
 
     void BeginReload()
     {
+        if (isReloading) return;
         animator.Play("Base Layer.Reload");
+
+        //float time = 0;
+        
+        //for (int i = 0; i < controller.animationClips.Length; i++)                 //For all animations
+        //{
+        //    if (controller.animationClips[i].name == "Base Layer.Reload")            //If it has the same name as your clip
+        //    {
+        //        time = controller.animationClips[i].length;
+        //    }
+        //}
 
         isReloading = true;
         canShoot = false;
-
-        Invoke(nameof(EndReload), animator.GetCurrentAnimatorClipInfo(0).Length);
+        Invoke(nameof(EndReload), reloadTime);
     }
     void EndReload()
     {

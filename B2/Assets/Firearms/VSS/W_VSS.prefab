@@ -268,10 +268,7 @@ MonoBehaviour:
   roundPrefab: {fileID: 6992067972337017737, guid: d34623e0824f91447aae02d721d26110, type: 3}
   info: {fileID: 11400000, guid: 05efc1954522b014a9f57c2e5b086988, type: 2}
   animator: {fileID: 3062861133684423870}
-  movementController: {fileID: 0}
-  cameras:
-  - {fileID: 0}
-  - {fileID: 0}
+  controller: {fileID: 0}
   recoilRot: {x: 0, y: 0, z: 0}
   tgtRecoilRot: {x: 0, y: 0, z: 0}
   recoilPos: {x: 0, y: 0, z: 0}
@@ -283,12 +280,16 @@ MonoBehaviour:
   isReloading: 0
   roundsInMag: 30
   canShoot: 1
+  reloadTime: 2
   sustainedRecoilAdd: 0
   barrelPoint: {fileID: 6001188540608739458}
   muzzleFlash: {fileID: 0}
   hasScope: 0
+  firstFocalPlane: 0
+  baseReticleScale: 0
   curZoom: 0
   scopeCamera: {fileID: 0}
+  scopeMesh: {fileID: 0}
   zoomBounds: {x: 0, y: 0}
   scrollSpeed: 0
 --- !u!1001 &7233870453914805529

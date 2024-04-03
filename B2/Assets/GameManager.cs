@@ -14,13 +14,19 @@ public class GameManager : MonoBehaviour
     public Player player;
     public GameObject firearmPrefab;
     public List<Camera> playCameras;
+
     [Header("InfilScreen")]
+    public bool skipInfilScreen;
+    public int defaultInfilPoint;
     public Transform curInfilPoint;
     public TMP_Text curFirearmText;
     public List<Transform> infilLocations;
     public List<GameObject> infilIcons;
     public Camera infilCamera;
     public GameObject infilPointIcon;
+
+    [Header("Enemies")]
+    public List<Enemy> enemies;
 
     void Awake()
     {
@@ -42,12 +48,23 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        infilCamera.gameObject.SetActive(true);
-
         foreach (Transform t in infilLocations)
         {
             infilIcons.Add(Instantiate(infilPointIcon, t));
         }
+        curInfilPoint = infilLocations[defaultInfilPoint];
+
+        if (skipInfilScreen)
+        {
+
+            Infiltrate();
+        }
+        else
+        {
+            infilCamera.gameObject.SetActive(true);
+
+        }
+
     }
     public void Infiltrate()
     {
@@ -68,6 +85,8 @@ public class GameManager : MonoBehaviour
         player.gameObject.SetActive(true);
 
         infilCamera.gameObject.SetActive(false);
+
+        foreach (Enemy e in enemies) e.Initialize();
     }
 
 }
