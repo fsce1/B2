@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
 
         CalculateLean();
 
-        if (inputJump >= 0.5f && characterController.isGrounded) DoJump();
+
 
         if (defaultInput.Character.Walk.ReadValue<float>() > 0.5f) isWalking = true;
         else isWalking = false;
@@ -93,13 +93,16 @@ public class Player : MonoBehaviour
         if (!characterController.isGrounded)
         {
             CalculateAirMovement();
-            velocity.y -= gravity * Time.deltaTime;
+            //velocity.y -= gravity * Time.deltaTime;
         }
         else
         {
             CalculateGroundMovement();
-            velocity.y = 0;
+            //velocity.y = 0;
         }
+
+        velocity.y = -gravity;
+        if (inputJump >= 0.5f && characterController.isGrounded) velocity.y = jumpForce;
 
         characterController.Move(velocity);
     }
@@ -130,7 +133,7 @@ public class Player : MonoBehaviour
     {
         inputView *= sensitivity / 100;
 
-        cameraAngles += inputView / swayController.aimSensitivityMult;
+        cameraAngles += inputView / sensitivity;
         cameraAngles.y = Mathf.Clamp(cameraAngles.y, -90, 90);
 
         Quaternion camRot = Quaternion.AngleAxis(-cameraAngles.y, Vector3.right);
@@ -158,7 +161,6 @@ public class Player : MonoBehaviour
         if (speed > 0) newSpeed /= speed;
         velocity.x *= newSpeed;
         velocity.z *= newSpeed;
-
 
         Debug.DrawRay(transform.position, wishDir, Color.green);
         Debug.DrawRay(transform.position, transform.forward, Color.red);

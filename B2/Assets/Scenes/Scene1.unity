@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.19557694, g: 0.23695657, b: 0.310541, a: 1}
+  m_IndirectSpecularColor: {r: 0.19557647, g: 0.23695676, b: 0.3105412, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9335,7 +9335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &760349313
 AudioListener:
   m_ObjectHideFlags: 0
@@ -19307,6 +19307,8 @@ MonoBehaviour:
   player: {fileID: 0}
   firearmPrefab: {fileID: 0}
   playCameras: []
+  skipInfilScreen: 0
+  defaultInfilPoint: 0
   curInfilPoint: {fileID: 0}
   curFirearmText: {fileID: 1348930768}
   infilLocations:
@@ -19317,6 +19319,7 @@ MonoBehaviour:
   infilIcons: []
   infilCamera: {fileID: 760349314}
   infilPointIcon: {fileID: 8439334098639010919, guid: 0bbd3e77ccaa0b841b9d569bf0f5f04d, type: 3}
+  enemies: []
 --- !u!1001 &1544559168
 PrefabInstance:
   m_ObjectHideFlags: 0

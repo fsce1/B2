@@ -90,6 +90,7 @@ public class SwayController : MonoBehaviour
     public int curWalkLifetime;
     public int walkLifetime;
     public bool rightFoot;
+    public float walkLifetimeScaler;
     public Vector2 stepDownAmount;
     public Vector2 stepSideAmount;
     public float stepRotScaling;
@@ -187,8 +188,10 @@ public class SwayController : MonoBehaviour
         CalculateWalk();
         transform.SetLocalPositionAndRotation(wpnPos, Quaternion.Euler(wpnRot));
 
+        walkLifetimeScaler = 1;
+        if (player.isWalking) walkLifetimeScaler = 1.5f;
 
-        if (curWalkLifetime < walkLifetime)
+        if (curWalkLifetime < walkLifetime * walkLifetimeScaler)
         {
             curWalkLifetime += 1;
         }
@@ -278,12 +281,13 @@ public class SwayController : MonoBehaviour
         //camTarget.y += camWalkMoveAmount;
         if (GameManager.GM.player.velocity.magnitude > 0.01f)
         {
-            if (curWalkLifetime < walkLifetime / 2)
+            if (curWalkLifetime < (walkLifetime * walkLifetimeScaler) / 2)
             {
-                target.y -= Random.Range(stepDownAmount.x, stepDownAmount.y) * GameManager.GM.player.velocity.magnitude;
+                float lateralVelocity = new Vector2(GameManager.GM.player.velocity.x, GameManager.GM.player.velocity.z).magnitude;
+                target.y -= Random.Range(stepDownAmount.x, stepDownAmount.y) * lateralVelocity;
                 float sideAmount = Random.Range(stepSideAmount.x, stepSideAmount.y);
-                if (rightFoot) target.x += sideAmount * GameManager.GM.player.velocity.magnitude;
-                else target.x -= sideAmount * GameManager.GM.player.velocity.magnitude;
+                if (rightFoot) target.x += sideAmount * lateralVelocity;
+                else target.x -= sideAmount * lateralVelocity;
 
                 //camTarget.y -= camWalkMoveAmount;
             }
