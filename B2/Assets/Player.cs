@@ -43,7 +43,6 @@ public class Player : MonoBehaviour
     public float leanSpeed;
 
     [Header("Jump")]
-    public bool grounded;
     public float gravity = 20f;
     public float jumpForce = 6.5f;
     public float bhopSpeedMult = 0.4f;
@@ -75,15 +74,15 @@ public class Player : MonoBehaviour
     private void Update()
     {
         CalculateView();
-
+        Debug.Log(characterController.isGrounded);
     }
     private void FixedUpdate()
     {
-        DoGroundCheck();
+        //DoGroundCheck();
 
         CalculateLean();
 
-        if (inputJump >= 0.5f && grounded) DoJump();
+        if (inputJump >= 0.5f && characterController.isGrounded) DoJump();
 
         if (defaultInput.Character.Walk.ReadValue<float>() > 0.5f) isWalking = true;
         else isWalking = false;
@@ -91,37 +90,42 @@ public class Player : MonoBehaviour
         if (isWalking || swayController.isAiming) maxSpeed = walkSpeed;
         else maxSpeed = runSpeed;
 
-        if (!grounded)
+        if (!characterController.isGrounded)
         {
             CalculateAirMovement();
             velocity.y -= gravity * Time.deltaTime;
         }
-        else CalculateGroundMovement();
+        else
+        {
+            CalculateGroundMovement();
+            velocity.y = 0;
+        }
 
         characterController.Move(velocity);
     }
-    void DoGroundCheck()
-    {
-        Vector3 rayOrigin = new(transform.position.x, transform.position.y + 1, transform.position.z);
-        Debug.DrawRay(rayOrigin, Vector3.down, Color.yellow);
+    //void DoGroundCheck()
+    //{
+    //    Vector3 rayOrigin = new(transform.position.x, transform.position.y + 1, transform.position.z);
+    //    Debug.DrawRay(rayOrigin, Vector3.down, Color.yellow);
 
 
-        if (velocity.y > 0)
-        {
-            grounded = false;
-            return;
-        }
-        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 1.1f))
-        {
-            if (hit.transform.CompareTag("Ground"))
-            {
-                velocity.y = 0;
-                grounded = true;
-            }
-            else grounded = false;
-        }
-        else grounded = false;
-    }
+    //    if (velocity.y > 0)
+    //    {
+    //        grounded = false;
+    //        return;
+    //    }
+    //    if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 1.1f))
+    //    {
+    //        if (hit.transform.CompareTag("Ground"))
+    //        {
+    //            velocity.y = 0;
+    //            grounded = true;
+    //        }
+    //        else grounded = false;
+    //    }
+    //    else grounded = false;
+
+    //}
     private void CalculateView()
     {
         inputView *= sensitivity / 100;

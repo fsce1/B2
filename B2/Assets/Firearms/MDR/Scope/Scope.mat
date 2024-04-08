@@ -84,16 +84,16 @@ Material:
     - _Parallax: 0.02
     - _ReticleOffsetX: 0
     - _ReticleOffsetY: 0
-    - _ReticleScale: 1
+    - _ReticleScale: 3.31
     - _SecondaryVignetteBool: 1
-    - _SecondaryVignetteRadius: 1.77
-    - _SecondaryVignetteSmoothness: 0
+    - _SecondaryVignetteRadius: 1.46
+    - _SecondaryVignetteSmoothness: 0.737
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _VignetteRadius: 14.5
-    - _VignetteSmoothness: 0.399
+    - _VignetteRadius: 18.4
+    - _VignetteSmoothness: 0.02
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

@@ -15,7 +15,6 @@ public class SwayController : MonoBehaviour
     public Vector3 aimPos;
 
     public float aimSmoothing;
-    public float aimSensitivityMult;
 
     public float armaAimMult;
     public float armaAimAmount;
@@ -77,8 +76,9 @@ public class SwayController : MonoBehaviour
     public bool breathingIn;
     public float breathTime;
     public float breathRotScaling;
-    public Vector3 breathInTgt;
-    public Vector3 breathOutTgt;
+    public Vector2 breathAmount;
+    public Vector2 breathSidewaysAmount;
+    public Vector3 breathTgt;
     public float breathSmoothing;
 
     Vector3 breathMove;
@@ -105,7 +105,20 @@ public class SwayController : MonoBehaviour
     public int curZeroIndex = 0;
     public List<int> zeroes;
 
-    void SwitchBreath() => breathingIn = !breathingIn;
+    void SwitchBreath()
+    {
+        breathingIn = !breathingIn;
+        breathTgt = Vector3.zero;
+        breathTgt.x = Random.Range(breathSidewaysAmount.x, breathSidewaysAmount.y);
+        breathTgt.y = Random.Range(breathAmount.x, breathAmount.y);
+
+        if(!breathingIn)
+        {
+            breathTgt.y = -breathTgt.y;
+            breathTgt.x = 0;
+        }
+    }
+
     //void SwitchWalk() => rightFoot = !rightFoot;
     private void Start()
     {
@@ -199,13 +212,13 @@ public class SwayController : MonoBehaviour
         weaponRotation.y += -GameManager.GM.player.accumulatedInputView.x * swayAmount;
         weaponRotation = Vector3.SmoothDamp(weaponRotation, Vector3.zero, ref weaponRotationVelocity, swaySmoothing);
         newWeaponRotation = Vector3.SmoothDamp(newWeaponRotation, weaponRotation, ref newWeaponRotationVelocity, swayResetSmoothing);
-        newWeaponRotation.z = newWeaponRotation.y * 0.25f;
+        newWeaponRotation.z = newWeaponRotation.y * 0.75f;
 
         movementRotation.z = -movementSwayAmount * GameManager.GM.player.inputMovement.x;
         movementRotation = Vector3.SmoothDamp(movementRotation, Vector3.zero, ref movementRotationVelocity, movementSwaySmoothing);
 
         newMovementRotation = Vector3.SmoothDamp(newMovementRotation, movementRotation, ref newMovementRotationVelocity, movementSwaySmoothing);
-        wpnRot += newWeaponRotation * _swayScaler / aimSensitivityMult + newMovementRotation * _movementScaler;
+        wpnRot += newWeaponRotation * _swayScaler + newMovementRotation * _movementScaler;
 
         GameManager.GM.player.accumulatedInputView = Vector2.zero;
 
@@ -231,36 +244,27 @@ public class SwayController : MonoBehaviour
         movementMove = Vector3.SmoothDamp(movementMove, Vector3.zero, ref movementMoveVelocity, movementMoveSmoothing);
         newMovementMove = Vector3.SmoothDamp(newMovementMove, movementMove, ref newMovementMoveVelocity, movementMoveSmoothing);
 
-        Vector3 breathTgt;
-        if (breathingIn) breathTgt = breathInTgt;
-        else breathTgt = breathOutTgt;
+        //Vector3 breathTgt;
+        //if (breathingIn) breathTgt.y = breathTgt;
+        //else breathTgt = breathOutTgt;
 
         breathMove = Vector3.SmoothDamp(breathMove, breathTgt, ref breathMoveVelocity, breathSmoothing);
         newBreathMove = Vector3.SmoothDamp(newBreathMove, breathMove, ref newBreathMoveVelocity, breathSmoothing);
 
         wpnPos += (newLeanMove * _leanScaler) + (newMovementMove * _moveScaler) + (newBreathMove * _breathScaler);
-        wpnRot += (newBreathMove.y * transform.right) * breathRotScaling * _breathScaler;
+        wpnRot += new Vector3(newBreathMove.y, newBreathMove.x, 0) * breathRotScaling * _breathScaler;
     }
     void CalculateAim()
     {
-        aimSensitivityMult = 1;
-
-        float tgtFOV = GameManager.GM.player.FOV* armaAimMult;
+        float tgtFOV = GameManager.GM.player.FOV * armaAimMult;
         Vector3 targetPosition = Vector3.zero;
         if (isAiming)
         {
-            tgtFOV = GameManager.GM.player.AimFOV*armaAimMult;
+            tgtFOV = GameManager.GM.player.AimFOV * armaAimMult;
             targetPosition = aimPos - restPos;
-            if (player.firearm.hasScope)
-            {
-                aimSensitivityMult *= player.firearm.curZoom;
-            }
-
         }
         weaponAimPos = Vector3.SmoothDamp(weaponAimPos, targetPosition, ref weaponAimPosVelocity, aimSmoothing);
-        foreach(Camera c in GameManager.GM.playCameras) c.fieldOfView = Mathf.SmoothDamp(Camera.main.fieldOfView, tgtFOV, ref FOVVelocity, aimSmoothing);
-
-
+        foreach (Camera c in GameManager.GM.playCameras) c.fieldOfView = Mathf.SmoothDamp(Camera.main.fieldOfView, tgtFOV, ref FOVVelocity, aimSmoothing);
         wpnPos += weaponAimPos;
     }
     void CalculateWalk()
@@ -294,7 +298,8 @@ public class SwayController : MonoBehaviour
         walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
         newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);
         wpnPos += newWalkMove * _walkScaler;
-        wpnRot += new Vector3(newWalkMove.y, newWalkMove.x, 0) * stepRotScaling;
+        wpnRot += new Vector3(newWalkMove.y, newWalkMove.x, -newWalkMove.x * 1.5f) * stepRotScaling;
     }
+
 
 }
