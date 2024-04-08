@@ -92,7 +92,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _VignetteRadius: 21.5
+    - _VignetteRadius: 18.4
     - _VignetteSmoothness: 0.02
     - _ZWrite: 1
     m_Colors:

@@ -86,7 +86,7 @@ MonoBehaviour:
   armaAimAmount: 0.5
   movementRotScaler: 0.1
   swayRotScaler: 0.5
-  leanScaler: 0.01
+  leanScaler: 0.1
   moveScaler: 0.25
   breathScaler: 0.25
   walkScaler: 0.1
@@ -97,21 +97,22 @@ MonoBehaviour:
   swayResetSmoothing: 0.15
   movementSwayAmount: 5
   movementSwaySmoothing: 0.1
-  leanMoveAmount: 0.01
+  leanMoveAmount: 0.05
   leanMoveSmoothing: 0.1
   movementMoveAmount: 0.025
   movementMoveSmoothing: 0.1
   breathingIn: 0
-  breathTime: 0.5
-  breathRotScaling: 75
-  breathInTgt: {x: 0, y: 0.001, z: 0}
-  breathOutTgt: {x: 0, y: -0.001, z: 0}
-  breathSmoothing: 0.5
+  breathTime: 2
+  breathRotScaling: 150
+  breathAmount: {x: 0.0025, y: 0.005}
+  breathSidewaysAmount: {x: -0.005, y: 0.005}
+  breathTgt: {x: 0, y: 0, z: 0}
+  breathSmoothing: 0.6
   curWalkLifetime: 0
   walkLifetime: 30
   rightFoot: 0
-  stepDownAmount: {x: 0.2, y: 0.3}
-  stepSideAmount: {x: 0.1, y: 0.2}
+  stepDownAmount: {x: 0.1, y: 0.3}
+  stepSideAmount: {x: 0.05, y: 0.2}
   stepRotScaling: 75
   walkMoveSmoothing: 0.15
   curZero: 0
@@ -228,7 +229,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
-  m_AllowMSAA: 0
+  m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -311,7 +312,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
-  m_AllowMSAA: 0
+  m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -372,7 +373,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 46
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -402,19 +403,18 @@ MonoBehaviour:
   cameraAngles: {x: 0, y: 0}
   sensitivity: 2
   baseSensitivity: 2
-  FOV: 75
-  AimFOV: 55
+  FOV: 65
+  AimFOV: 45
   isWalking: 0
   velocity: {x: 0, y: 0, z: 0}
-  decel: 6
-  accel: 10
+  decel: 8
+  accel: 4
   maxSpeed: 0
-  runSpeed: 8
-  walkSpeed: 4
+  runSpeed: 10
+  walkSpeed: 5
   leanHolder: {fileID: 8120415695228239801}
   leanAngle: 10
   leanSpeed: 50
-  grounded: 0
   gravity: 0.4
   jumpForce: 0.15
   bhopSpeedMult: 1
