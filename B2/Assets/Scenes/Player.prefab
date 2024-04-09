@@ -897,12 +897,12 @@ MonoBehaviour:
   accel: 4
   maxSpeed: 0
   runSpeed: 20
-  walkSpeed: 10
+  walkSpeed: 60
   leanHolder: {fileID: 8120415695228239801}
   leanAngle: 10
   leanSpeed: 50
   gravity: 0.1
-  jumpForce: 0.5
+  jumpForce: 1
   bhopSpeedMult: 1
   airAccel: 8
 --- !u!1 &5398692730103197591

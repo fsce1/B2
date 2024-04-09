@@ -74,7 +74,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         CalculateView();
-        Debug.Log(characterController.isGrounded);
     }
     private void FixedUpdate()
     {
@@ -105,6 +104,7 @@ public class Player : MonoBehaviour
         if (inputJump >= 0.5f && characterController.isGrounded) velocity.y = jumpForce;
 
         characterController.Move(velocity);
+        
     }
     //void DoGroundCheck()
     //{
