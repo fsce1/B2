@@ -50,16 +50,18 @@ MonoBehaviour:
   rb: {fileID: 2603573760896468443}
   roundName: 7.62x51 M80
   firearmFiredFrom: {fileID: 0}
-  muzzleVelocity: 360
+  muzzleVelocity: 90
   lineRenderer: {fileID: -302853788797367117}
   tracerMat: {fileID: 2100000, guid: 04830b2a2440dea4f8c670ef56050ff1, type: 2}
-  tracerColor: {r: 1, g: 0, b: 0, a: 1}
-  startPoint: {x: 0, y: 0, z: 0}
-  curPoint: {x: 0, y: 0, z: 0}
+  tracerColor: {r: 0.15100837, g: 1, b: 0, a: 1}
+  gravity: 0
+  startPosition: {x: 0, y: 0, z: 0}
+  startDir: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
+  startTime: -1
   distFromOrigin: 0
   maxDist: 1000
-  despawnDist: 1500
-  velocity: {x: 0, y: 0, z: 0}
+  despawnDist: 1000
   positions: []
   dropCurve:
     serializedVersion: 2

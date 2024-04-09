@@ -5,6 +5,7 @@ using UnityEngine;
 public class Round : MonoBehaviour
 {
 
+    //https://www.youtube.com/watch?v=4f6Az3Sp99w
     [Header("Generic")]
     public Rigidbody rb;
     public string roundName;
@@ -15,8 +16,12 @@ public class Round : MonoBehaviour
     public Material tracerMat;
     public Color tracerColor;
     [Header("Travel")]
-    public Vector3 startPoint;
+    public float gravity;
+    public Vector3 startPosition;
+    public Vector3 startDir;
+
     public Vector3 velocity;
+    public float startTime = -1;
     public float distFromOrigin;
     public float maxDist = 1000;
     public float despawnDist;
@@ -29,35 +34,81 @@ public class Round : MonoBehaviour
 
     private void Start()
     {
+
+        //velocity.z = muzzleVelocity/50;
+        startPosition = transform.position;
+        startDir = transform.forward.normalized;
+
         lineRenderer.enabled = false;
         Invoke("Show", 0.05f);
-        velocity.z = muzzleVelocity/50;
-        startPoint = transform.position;
-        //curPoint = transform.position; 
-        positions.Add(startPoint);
-
         Material newMat = new(tracerMat);
         newMat.color = tracerColor;
         newMat.SetColor("_EmissionColor", tracerColor);
         lineRenderer.material = newMat;
+
+        positions.Add(startPosition);
     }
     void Show()
     {
         lineRenderer.enabled = true;
     }
+
+    Vector3 PointOnParabola(float time)
+    {
+        Vector3 pos = startPosition + (muzzleVelocity * time * startDir);
+        Vector3 gravityVector = Vector3.down *(gravity * time * time);
+        return pos + gravityVector; 
+
+    }
+    bool RayBetweenPoints(Vector3 startPoint, Vector3 endPoint, out RaycastHit hit)
+    {
+        return Physics.Raycast(startPoint, endPoint-startPoint, out hit, (endPoint - startPoint).magnitude);
+    }
+    private void Update()
+    {
+        float currentTime = Time.time - startTime;
+        Vector3 currentPoint = PointOnParabola(currentTime);
+        transform.position = currentPoint;
+    }
     void FixedUpdate()
     {
-        distFromOrigin = (transform.position - startPoint).magnitude;
-        float lastDropAmount = curDropAmount;
+        distFromOrigin = (transform.position - startPosition).magnitude;
         curDropAmount = dropCurve.Evaluate(distFromOrigin);
 
+        if (startTime < 0) startTime = Time.time;
 
-        velocity.y = (curDropAmount - lastDropAmount);
+        float currentTime = Time.time - startTime;
+        float nextTime = Time.time + Time.fixedDeltaTime;
+
+        Vector3 currentPoint = PointOnParabola(currentTime);
+        Vector3 nextPoint = PointOnParabola(nextTime);
+
+        RaycastHit hit;
+        if(RayBetweenPoints(currentPoint, nextPoint, out hit))
+        {
+            Destroy(gameObject);
+        }
+
+
+
+
+
+        //Vector3 tgt = new()
+        //{
+        //    z = distFromOrigin + muzzleVelocity,
+        //    y = startPosition.y - curDropAmount
+        //};
+        //transform.SetLocalPositionAndRotation(tgt, transform.localRotation);
+
+
+
+        //velocity.y = (curDropAmount - lastDropAmount);
 
         //velocity.z *= -(distFromOrigin / maxDist)/100;
-        Debug.Log(distFromOrigin / maxDist);
+        //Debug.Log(distFromOrigin / maxDist);
+
         //rb.MovePosition(velocity);
-        rb.AddRelativeForce(velocity, ForceMode.VelocityChange);
+        //rb.AddRelativeForce(velocity, ForceMode.VelocityChange);
         //curPoint.y += dropAmount;
 
         //velocity.z -= 0.01f;

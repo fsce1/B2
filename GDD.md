@@ -1,21 +1,35 @@
 # Overview
-Silent-Rush is a Realistic Tactical Shooter in which you play as part of an insurgent group, fighting against the Russian Military in a fictional modern-day civil war.
+Silent-Rush is a Single-Player or Co-op Realistic Tactical Shooter in which you play as part of an insurgent group, fighting against the Russian Military in a fictional modern-day civil war.
 
 The game takes place in sessions where you decide an infiltration location, and then retake Forward-Operating Bases (FOBs) by infiltrating the location and clearing it of enemies. There are multiple side-objectives to each infiltration, such as picking up intelligence or freeing prisoners etc.
 Once you have completed the objectives that you can, you then proceed to an exfiltration area (on the other side of the map from your spawn).
 
 You play against multiple AI enemies that take defensive positions inside the map, and you have an AI teammate that you can direct to suppress fire, watch your back, or stay back and keep quiet for stealth segments. 
 # Controls and Player 
-Since the game is intended to be realistic, I want to approximate a real human's capabilities with the player controller. This means mechanics like slow base movement speed, weapon sway and inaccuracy while walking (so you need to stay still to shoot accurate shots), as well as the ability to lean around corners and slow walk for silent/quiet movement. This adds a lot of complexity to the movement, as you need to consider if you are close enough that the enemies can hear you. I aim for the gameplay to be relatively slow and methodical.
+Since the game is intended to be realistic, I want to approximate a real human's capabilities with the player controller. This means mechanics like slow base movement speed, weapon sway and inaccuracy while walking (so you need to stay still to shoot accurately), as well as the ability to lean around corners and slow walk for silent/quiet movement. This adds a lot of complexity and depth to the movement mechanics, for example need to consider if you are close enough that the enemies can hear you or having to . I aim for the gameplay to be relatively slow and methodical.
+Additional controls such as crouching and laying prone are also planned, as it makes sniping much more viable as a tactic. 
+Taking inspiration from the ArmA series, I decided to add a feature where you can hold down the right click button to zoom the camera in by 1.5x. This is a fun game mechanic as it allows you to survey the area in much more detail than you could with a higher Field of View (FOV). However, I think it would be a bit too powerful if you could aim down sights as well as zoom, especially with a magnified optic, so you are only able to use the ArmA-style zoom if you are not aiming down the sights.
 # Theme/Setting
 
 # Visuals
 
 # Game Loop
-Once you choose a map from the main menu screen, it shows the Infiltration Screen which includes the functionality to select where you are infiltrating from, selection for the gun that you want to bring in, and the current objectives + objective locations. Once you have selected all of that, you can infiltrate. This is where the gameplay itself is, as you spawn in with your teammate and begin attacking the objectives. An entire map will be around 500x500m - 1000x1000m
-
+Once you choose a map from the main menu screen, it shows the Infiltration Screen which includes the functionality to select where you are infiltrating from, selection for the guns that you want to bring in, selection of your teammates and the current objectives + objective locations. Once you have selected all of that, you can infiltrate. Then, you spawn in with your teammate(s) and begin attacking the objectives. An entire map will be around 500x500m - 1000x1000m and have multiple areas such as a town area, industrial zones, military bases, etc.
+Once you have 
 # AI
+There are 2 types of AI that will be in the game- Enemy and Friendly.
 
+Enemy AI will be more defensive, holding positions in cover and waiting for your attack to retaliate. They will spawn in different pre-set places randomly, so that each play-through will play differently and replay value is increased. 
+If you fire on an enemy that does not know you're there (stealth), then they may retreat and find a piece of cover to hide from you, or if they have the jump on you (I.E. they can hear you coming close), then they can push you aggressively and maybe throw a grenade. The likelihood to perform these actions are influenced by multiple variables, such as how many friendly AIs are nearby, current enemy health, if they just hit a shot on you, if they have low ammo, etc.
+
+The other type of AI will be friendly teammates that support you and can be indirectly controlled using an interface you can open with the middle mouse button.
+You can command teammates to:
+- Open suppressing fire on a specific area to keep enemies heads down
+- Open and flash a door for you
+- Watch your back
+- Toggle stealth/standing mode
+
+ Each AI teammate has a unique name, and you can hire new teammates with different skill levels as you progress through the game. AI teammates can also get shot and you may need to heal/help them up if they are downed. They also have perma-death, meaning if they are downed for too long and die, you cannot revive them or restore a save. This is intended to give you a more personal connection to the teammates that you play alongside, as you may miss a particularly high-skilled teammate if they die in combat.
 # Level Design
 
 # HUD and Menus
