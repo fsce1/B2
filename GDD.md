@@ -14,8 +14,8 @@ Taking inspiration from the ArmA series, I decided to add a feature where you ca
 # Visuals
 
 # Game Loop
-Once you choose a map from the main menu screen, it shows the Infiltration Screen which includes the functionality to select where you are infiltrating from, selection for the guns that you want to bring in, selection of your teammates and the current objectives + objective locations. Once you have selected all of that, you can infiltrate. Then, you spawn in with your teammate(s) and begin attacking the objectives. An entire map will be around 500x500m - 1000x1000m and have multiple areas such as a town area, industrial zones, military bases, etc.
-Once you have 
+Once you choose a map from the main menu screen, it shows the Infiltration Screen which includes the functionality to select where you are infiltrating from, selection for the guns that you want to bring in, selection of your teammates and the current objectives + objective locations. Once you have selected all of that, you can infiltrate. Then, you spawn in with your teammate(s) and begin attacking the objectives. Objectives may be things like clearing an area of enemies, picking up a piece of intelligence, 
+Once you have completed all the objectives that you want, you head to the exfiltration zone and exit the map.
 # AI
 There are 2 types of AI that will be in the game- Enemy and Friendly.
 
@@ -31,7 +31,10 @@ You can command teammates to:
 
  Each AI teammate has a unique name, and you can hire new teammates with different skill levels as you progress through the game. AI teammates can also get shot and you may need to heal/help them up if they are downed. They also have perma-death, meaning if they are downed for too long and die, you cannot revive them or restore a save. This is intended to give you a more personal connection to the teammates that you play alongside, as you may miss a particularly high-skilled teammate if they die in combat.
 # Level Design
-
+Taking inspiration from games like Escape from Tarkov and S.T.A.L.K.E.R., the game takes place in multiple large areas of around 500m^2 to 1000m^2. Each map will include forested areas, as well as locations such as towns, industrial parks, military bases, factories, etc. 
+Each area will have 2-4 infiltration points, where you can choose to start the map at a different location. This adds replay value as it allows for a lot of player freedom and expression. For example, a location might be more heavily guarded towards the north side, so you can choose to sneak in through the south and take them out from behind.
+At any point, you can head to an extraction zone and exfiltrate the area, ending that game, however the objectives you did not complete will fail.
 # HUD and Menus
+I want the UI to be minimal and clean, only showing information when it is necessary. For example, the ammo indicator will only show while you are shooting or reloading the gun. 
 
 # Audio

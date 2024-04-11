@@ -34,19 +34,19 @@ public class Round : MonoBehaviour
 
     private void Start()
     {
-
         //velocity.z = muzzleVelocity/50;
         startPosition = transform.position;
         startDir = transform.forward.normalized;
 
         lineRenderer.enabled = false;
         Invoke("Show", 0.05f);
+
         Material newMat = new(tracerMat);
         newMat.color = tracerColor;
         newMat.SetColor("_EmissionColor", tracerColor);
         lineRenderer.material = newMat;
 
-        positions.Add(startPosition);
+        //positions.Add(startPosition);
     }
     void Show()
     {
@@ -62,36 +62,41 @@ public class Round : MonoBehaviour
     }
     bool RayBetweenPoints(Vector3 startPoint, Vector3 endPoint, out RaycastHit hit)
     {
-        return Physics.Raycast(startPoint, endPoint-startPoint, out hit, (endPoint - startPoint).magnitude);
+        return Physics.Raycast(startPoint, endPoint - startPoint, out hit, (endPoint - startPoint).magnitude);
     }
     private void Update()
     {
+        if (startTime < 0) return;
+
         float currentTime = Time.time - startTime;
         Vector3 currentPoint = PointOnParabola(currentTime);
+
+
+
         transform.position = currentPoint;
     }
     void FixedUpdate()
     {
         distFromOrigin = (transform.position - startPosition).magnitude;
-        curDropAmount = dropCurve.Evaluate(distFromOrigin);
+        //curDropAmount = dropCurve.Evaluate(distFromOrigin);
+
 
         if (startTime < 0) startTime = Time.time;
-
         float currentTime = Time.time - startTime;
-        float nextTime = Time.time + Time.fixedDeltaTime;
+        float nextTime = currentTime + Time.fixedDeltaTime;
 
         Vector3 currentPoint = PointOnParabola(currentTime);
         Vector3 nextPoint = PointOnParabola(nextTime);
 
         RaycastHit hit;
-        if(RayBetweenPoints(currentPoint, nextPoint, out hit))
+        if (RayBetweenPoints(currentPoint, nextPoint, out hit))
         {
-            Destroy(gameObject);
+            if (!hit.collider.CompareTag("Round") && !hit.collider.CompareTag("Player"))
+            {
+                Destroy(gameObject);
+                Debug.Log(hit.collider.gameObject.name);
+            }
         }
-
-
-
-
 
         //Vector3 tgt = new()
         //{
@@ -130,21 +135,24 @@ public class Round : MonoBehaviour
 
         //lastPoint = transform.position;
 
-        if (distFromOrigin > despawnDist) Destroy(gameObject);
+        if (distFromOrigin > despawnDist)
+        {
+            Debug.Log(distFromOrigin);
+            Destroy(gameObject);
+        }
 
         positions.Add(transform.position);
         //transform.position = curPoint;
     }
     private void OnDrawGizmos()
     {
-        foreach (Vector3 pos in positions)
-        {
-            if (Camera.current != Camera.main) return;
-            Gizmos.DrawLineStrip(positions.ToArray(), false);
-        }
+        if (Camera.current != Camera.main) return;
+        Gizmos.DrawLineStrip(positions.ToArray(), false);
+
+
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        Destroy(gameObject);
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Destroy(gameObject);
+    //}
 }

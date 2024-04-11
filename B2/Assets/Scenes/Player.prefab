@@ -817,7 +817,7 @@ GameObject:
   - component: {fileID: 3660377620561370799}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -896,8 +896,8 @@ MonoBehaviour:
   decel: 8
   accel: 4
   maxSpeed: 0
-  runSpeed: 20
-  walkSpeed: 60
+  runSpeed: 30
+  walkSpeed: 15
   leanHolder: {fileID: 8120415695228239801}
   leanAngle: 10
   leanSpeed: 50

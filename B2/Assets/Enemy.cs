@@ -15,12 +15,22 @@ public class Enemy : MonoBehaviour
     public Vector3 finalTgt;
 
     [Header("Gun")]
-    public GameObject firearm;
+    public Transform firearm;
+    public GameObject bulletPrefab;
 
+
+    [Header("Enemy")]
+    public int health = 100;
+    public int enemiesNearby;
+    public bool canSeePlayer;
+    public bool canHearPlayer;
+    public Vector3 lastPositionPlayerSeen;
+    public Vector3 lastPositionPlayerHeard;
 
     public void Initialize()
     {
         isInitialised = true;
+        surface = Object.FindObjectsOfType<NavMeshSurface>()[0];
     }
     void Update()
     {
@@ -28,11 +38,26 @@ public class Enemy : MonoBehaviour
 
         agent.destination = finalTgt;
 
+        if(canSeePlayer)
+        {
+            transform.forward = GameManager.GM.player.transform.position - transform.position;
+
+            Shoot();
+        }
+
+
+
+
+
+
         FindCover();
         if ((transform.position - finalTgt).magnitude <= 1f) isMoving = false;
     }
 
-
+    void Shoot()
+    {
+        Instantiate(bulletPrefab, firearm.position, firearm.localRotation);
+    }
     void FindCover()
     {
         if (isMoving) return;
@@ -69,5 +94,9 @@ public class Enemy : MonoBehaviour
         }
         finalTgt = bestCover;
         isMoving = true;
+    }
+    public void Hit(float damage)
+    {
+
     }
 }

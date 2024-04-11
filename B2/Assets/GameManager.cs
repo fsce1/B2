@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
     public GameObject infilPointIcon;
 
     [Header("Enemies")]
+    public GameObject enemyPrefab;
+    public List<Transform> enemySpawns;
+    public Vector2Int enemyCountBounds;
     public List<Enemy> enemies;
 
     void Awake()
@@ -75,18 +79,28 @@ public class GameManager : MonoBehaviour
 
         player = p.GetComponent<Player>();
         playCameras = player.GetComponentsInChildren<Camera>().ToList<Camera>();
-
         GameObject g = Instantiate(firearmPrefab, player.swayController.transform);
         player.firearm = g.GetComponent<Firearm>();
-
         player.transform.position = curInfilPoint.position;
-
         player.Initialize();
         player.gameObject.SetActive(true);
 
         infilCamera.gameObject.SetActive(false);
 
-        foreach (Enemy e in enemies) e.Initialize();
+        int enemiesToSpawn = Random.Range(enemyCountBounds.x, enemyCountBounds.y);
+
+        for (int i = enemiesToSpawn; i > 0; i--)
+        {
+            int spawnPos = Random.Range(0, enemySpawns.Count - 1);
+            Enemy e = Instantiate(enemyPrefab, enemySpawns[spawnPos]).GetComponent<Enemy>();
+            enemies.Add(e);
+        }
+
+        foreach (Enemy e in enemies)
+        {
+            e.Initialize();
+            
+        }
     }
 
 }
