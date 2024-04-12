@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
         foreach (Enemy e in enemies)
         {
             e.Initialize();
+            e.transform.parent = null;
             
         }
     }

@@ -88,6 +88,8 @@ public class Round : MonoBehaviour
         Vector3 currentPoint = PointOnParabola(currentTime);
         Vector3 nextPoint = PointOnParabola(nextTime);
 
+        transform.LookAt(nextPoint);
+
         RaycastHit hit;
         if (RayBetweenPoints(currentPoint, nextPoint, out hit))
         {

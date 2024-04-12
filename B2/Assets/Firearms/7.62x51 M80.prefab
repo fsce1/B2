@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -302853788797367117}
   - component: {fileID: -3502944300484010650}
   - component: {fileID: 2603573760896468443}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 7.62x51 M80
   m_TagString: Round
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-7939404807948049192
 MonoBehaviour:
@@ -50,10 +50,10 @@ MonoBehaviour:
   rb: {fileID: 2603573760896468443}
   roundName: 7.62x51 M80
   firearmFiredFrom: {fileID: 0}
-  muzzleVelocity: 20
+  muzzleVelocity: 460
   lineRenderer: {fileID: -302853788797367117}
   tracerMat: {fileID: 2100000, guid: 04830b2a2440dea4f8c670ef56050ff1, type: 2}
-  tracerColor: {r: 0.15100837, g: 1, b: 0, a: 1}
+  tracerColor: {r: 1, g: 0, b: 0, a: 1}
   gravity: 1.5
   startPosition: {x: 0, y: 0, z: 0}
   startDir: {x: 0, y: 0, z: 0}

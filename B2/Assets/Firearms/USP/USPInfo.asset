@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: USPInfo
   m_EditorClassIdentifier: 
   firearmName: 
+  firearmPrefab: {fileID: 0}
   roundsPerMinute: 900
   magazineSize: 12
-  bulletDamage: 0
   restPos: {x: 0.124, y: -0.163, z: 0.455}
-  aimPos: {x: 0.0013, y: -0.104, z: 0.24}
+  aimPos: {x: 0, y: -0.11, z: 0.53}
   sustainedRecoilAdd: 0.25
   sustainedAffectsVertical: 0
   verticalPerShot: {x: 10, y: 15}

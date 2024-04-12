@@ -35,6 +35,7 @@ Taking inspiration from games like Escape from Tarkov and S.T.A.L.K.E.R., the ga
 Each area will have 2-4 infiltration points, where you can choose to start the map at a different location. This adds replay value as it allows for a lot of player freedom and expression. For example, a location might be more heavily guarded towards the north side, so you can choose to sneak in through the south and take them out from behind.
 At any point, you can head to an extraction zone and exfiltrate the area, ending that game, however the objectives you did not complete will fail.
 # HUD and Menus
-I want the UI to be minimal and clean, only showing information when it is necessary. For example, the ammo indicator will only show while you are shooting or reloading the gun. 
+I want the UI to be minimal and clean, only showing information when it is necessary. For example, the ammo indicator will only show while you are shooting or reloading the gun. There will be a crosshair on screen, using a raycast from the barrel of the gun to determine its end position. This means that when weapon sway from walking, breathing, moving etc. is added, it also affects the position of the crosshair, so it is always accurate to where the bullet will go.
+I have also make a mockup of the Infiltration Screen and the UI for commanding friendly NPCs.
 
 # Audio

@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text zoomText;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -28,9 +28,9 @@ public class UIManager : MonoBehaviour
         {
             if (Physics.Raycast(GameManager.GM.player.firearm.barrelPoint.position, GameManager.GM.player.firearm.transform.forward, out RaycastHit hit, Mathf.Infinity))
             {
-                crosshair.gameObject.SetActive(true);
-                crosshair.position = UICamera.WorldToScreenPoint(hit.point);
-                crosshair.localScale = crosshairSize * Vector3.one;
+                    crosshair.gameObject.SetActive(true);
+                    crosshair.position = UICamera.WorldToScreenPoint(hit.point);
+                    crosshair.localScale = crosshairSize * Vector3.one;
             }
             else crosshair.gameObject.SetActive(false);
 
@@ -47,9 +47,9 @@ public class UIManager : MonoBehaviour
         ammo.maxValue = GameManager.GM.player.firearm.info.magazineSize;
         ammo.value = GameManager.GM.player.firearm.roundsInMag;
 
-        if(GameManager.GM.player.firearm.hasScope && GameManager.GM.player.swayController.isAiming)
+        if (GameManager.GM.player.firearm.hasScope && GameManager.GM.player.swayController.isAiming)
         {
-            zoomText.text = (Mathf.Round(GameManager.GM.player.firearm.curZoom *100f)/100).ToString() + "x";
+            zoomText.text = (Mathf.Round(GameManager.GM.player.firearm.curZoom * 100f) / 100).ToString() + "x";
         }
         else { zoomText.text = ""; }
     }

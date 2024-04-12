@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Devlog.md",
+                "file": "GDD.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Devlog.md",
+                "file": "GDD.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Devlog.md",
+                "file": "GDD.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Devlog.md"
+                "file": "GDD.md"
               }
             }
           }
@@ -149,32 +149,33 @@
   },
   "active": "94cc8a9dae35e803",
   "lastOpenFiles": [
-    "B2/Temp/UnityTempFile-e08e84e1d4d46e54bbac33d38f7cd825",
-    "B2/Temp/UnityTempFile-ebcd76a5cfa5c994590b2cb08bbdfdca",
-    "B2/Library/Artifacts/8f/8fc6815db822ae1ac03e29e7d9e6b627",
-    "B2/Library/TempArtifacts/Extra/a3336d1bbd5c08f4c9542718dd6177d1.info",
-    "B2/Temp/UnityTempFile-222d1b256e9d6ed4bae8c9c7e5a60566",
-    "B2/Library/Bee/TundraBuildState.state",
-    "B2/Assets/fgpiemdx.tpg~",
-    "B2/Assets/yl3bmgbl.nuq~",
-    "B2/Temp/UnityTempFile-409aa7db3b7960449bf17ab5c1525fdb",
-    "B2/Temp/UnityTempFile-9508892a7ebe3f54690c70b2bb712475",
-    "B2/Temp/UnityTempFile-9817aea8a3a8ae942af77547c4f76f1e",
-    "B2/Temp/Export Package/7a6b13e7e275cad4a9b5082972d35726/fcb334eb247ae3e488abb081c847cf09/preview.png",
-    "B2/Temp/Export Package/7a6b13e7e275cad4a9b5082972d35726/f1ffde0cab3b53e4b8db6c78d825b21a/preview.png",
-    "B2/Temp/Export Package/7a6b13e7e275cad4a9b5082972d35726/cdc2f2cf3b64f884e88745604d95f11f/preview.png",
-    "B2/Temp/Export Package/7a6b13e7e275cad4a9b5082972d35726/8293059b819fbd34983493640ff4b930/preview.png",
-    "B2/Temp/Export Package/7a6b13e7e275cad4a9b5082972d35726/69c0fd068809d2a4cafbb12fd8e38326/preview.png",
-    "B2/Temp/Export Package/3df163d49e329bd4c8ca7705f0e48b85/8293059b819fbd34983493640ff4b930/preview.png",
-    "B2/Temp/Export Package/3df163d49e329bd4c8ca7705f0e48b85/69c0fd068809d2a4cafbb12fd8e38326/preview.png",
+    "B2/Assets/xtapboro.jjf~",
+    "B2/Assets/hwfjfqg0.nqr~",
+    "B2/Library/Search/propertyDatabase.db_ae48fec0047349218f379e963c9f2c9b_temp",
+    "B2/Assets/grrccgnp.dez~",
+    "B2/Library/TempArtifacts/Extra/25fb51570701e6644ba25d0998f910e0.info",
+    "B2/Library/ShaderCache/builtin/unity_builtin_extra0000/00/90c5b0754fb48c3c4449590e4712c7dc.bin",
+    "B2/Library/ShaderCache/builtin/unity_builtin_extra0000/00/aae20188a8f1cc3a75a8fffc62087522.bin",
+    "B2/Temp/UnityTempFile-a78c22874e3833d4bb444cc854511429",
+    "B2/Temp/UnityTempFile-29cc87bb313177c4e8dc915719bd95b7",
+    "B2/Library/Search/propertyAliases.db_d74e4701c33545759e04bb6419501de0_temp",
+    "B2/Library/Artifacts/a6/a67ba85c7d5f64f895f6024d841cad13",
+    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V4_normal.png",
+    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V4_Mask.png",
+    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V4_basecolor.png",
+    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V3_Mask.png",
+    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V3_normal.png",
+    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Leaf_Spruce_Yellow_BaseMap.png",
+    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V3_basecolor.png",
+    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Leaf_Spruce_Yellow_Normal.png",
+    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Leaf_Spruce_Yellow_MaskMap.png",
+    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Leaf_Spruce_BaseMap.png",
+    "Excalidraw/Drawing 2024-04-09 13.28.28.excalidraw.md",
+    "Excalidraw/Drawing 2024-04-09 15.06.55.excalidraw.md",
+    "Devlog.md",
     "GDD.md",
     "Ideation.md",
-    "Excalidraw/Drawing 2024-04-09 15.06.55.excalidraw.md",
-    "Pasted Image 20240409151631_706.png",
-    "Pasted Image 20240409151212_716.png",
-    "Pasted Image 20240409150756_704.png",
     "B2.md",
-    "Excalidraw/Drawing 2024-04-09 13.28.28.excalidraw.md",
     "Research.md",
     "Untitled.md",
     "Project Management.md",
@@ -193,7 +194,6 @@
     "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/optimization-assumerange.md",
     "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/index.md",
     "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/getting-started.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/editor-burst-inspector.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/editor-reference-overview.md"
+    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/editor-burst-inspector.md"
   ]
 }

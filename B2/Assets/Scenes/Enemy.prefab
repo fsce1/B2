@@ -23,12 +23,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2714754421962007198}
-  m_LocalRotation: {x: 0.26592484, y: 0.61909777, z: 0.7186714, w: 0.17179497}
-  m_LocalPosition: {x: -0.45481125, y: -0.672101, z: -0.24053736}
-  m_LocalScale: {x: -1, y: -1, z: -1}
+  m_LocalRotation: {x: -0.00000010430809, y: 0.000000059604623, z: 0.00000017881388, w: 1}
+  m_LocalPosition: {x: -0, y: 2.363, z: 0.26}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7621585895632933488}
+  m_Father: {fileID: 7621585895632933476}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3469027912261806136
@@ -63,7 +63,7 @@ Transform:
   m_Children:
   - {fileID: 7621585895632933476}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2846050450381559054
 MonoBehaviour:
@@ -80,10 +80,18 @@ MonoBehaviour:
   isInitialised: 0
   agent: {fileID: 2493145659054569558}
   surface: {fileID: 0}
+  eyePos: {fileID: 5602961579718173373}
   isMoving: 0
   finalTgt: {x: 0, y: 0, z: 0}
+  roundsLeftInBurst: 0
+  magSize: 30
+  roundsInMag: 30
+  canShoot: 0
   firearm: {fileID: 5602961579718173373}
   bulletPrefab: {fileID: 6992067972337017737, guid: d34623e0824f91447aae02d721d26110, type: 3}
+  bulletsToShoot: 0
+  reactionTime: 0
+  timeSincePlayerSeen: 0
   health: 100
   enemiesNearby: 0
   canSeePlayer: 1
@@ -475,8 +483,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 400040, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
-      insertIndex: -1
+    - targetCorrespondingSourceObject: {fileID: 400060, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
+      insertIndex: 0
       addedObject: {fileID: 5602961579718173373}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100062, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
@@ -513,10 +521,5 @@ MeshCollider:
 --- !u!4 &7621585895632933476 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400060, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
-  m_PrefabInstance: {fileID: 7621585895632799960}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7621585895632933488 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400040, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
   m_PrefabInstance: {fileID: 7621585895632799960}
   m_PrefabAsset: {fileID: 0}

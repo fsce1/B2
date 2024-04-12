@@ -11,15 +11,22 @@ public class Enemy : MonoBehaviour
     public NavMeshSurface surface;
 
     [Header("Positions")]
+    public Transform eyePos;
     public bool isMoving;
     public Vector3 finalTgt;
 
     [Header("Gun")]
-    public Transform firearm;
+    public int roundsLeftInBurst;
+    public int magSize = 30;
+    public int roundsInMag = 30;
+    public bool canShoot;
     public GameObject bulletPrefab;
+    public int bulletsToShoot;
 
 
     [Header("Enemy")]
+    public float reactionTime;
+    public float timeSincePlayerSeen;
     public int health = 100;
     public int enemiesNearby;
     public bool canSeePlayer;
@@ -32,57 +39,101 @@ public class Enemy : MonoBehaviour
         isInitialised = true;
         surface = Object.FindObjectsOfType<NavMeshSurface>()[0];
     }
-    void Update()
+    void FixedUpdate()
     {
         if (!isInitialised) return;
 
-        agent.destination = finalTgt;
+        Vector3 playerDir = GameManager.GM.player.transform.position - eyePos.position;
+        if (Physics.Raycast(eyePos.position, playerDir, out RaycastHit hit, playerDir.magnitude)) // less chance to spot if far away?
+        {
+            Debug.DrawLine(eyePos.position, hit.point);
 
-        if(canSeePlayer)
+
+
+
+
+        }
+
+
+
+
+        if (canSeePlayer)
         {
             transform.forward = GameManager.GM.player.transform.position - transform.position;
+            //canShoot = false;
 
-            Shoot();
+            timeSincePlayerSeen += Time.fixedDeltaTime;
+
+
+
+            //if (firstFrameSeen) Invoke(nameof(ReactionTime), reactionTime);
+
+
+            //if (canShoot) Shoot();
+
         }
 
 
 
 
 
+        if(!isMoving || agent.isPathStale) FindCover();
 
-        FindCover();
-        if ((transform.position - finalTgt).magnitude <= 1f) isMoving = false;
+
+
+
+
+        if (finalTgt == Vector3.positiveInfinity)
+        {
+            agent.destination = transform.position;
+        }
+        else agent.destination = finalTgt;
+
+        if ((transform.position.x - finalTgt.x) <= 1f && (transform.position.z - finalTgt.z) <= 1f) isMoving = false;
     }
-
+    void ReactionTime()
+    {
+        canShoot = true;
+    }
     void Shoot()
     {
-        Instantiate(bulletPrefab, firearm.position, firearm.localRotation);
+        
+
+        Instantiate(bulletPrefab, eyePos.position, eyePos.rotation);
+        Invoke(nameof(ResetShot), 50/650); //AK-74 RPM 
     }
+    void ResetShot()
+    {
+        canShoot = true;
+        roundsLeftInBurst--;
+    }
+
     void FindCover()
     {
-        if (isMoving) return;
         List<Vector3> checkPositions = new();
 
-        Vector3 searchDir = (transform.position - GameManager.GM.player.transform.position);
-        Debug.DrawLine(transform.position, searchDir, Color.red);
-        for (int i = 0; i < 5; i++)
+        Vector3 searchDir = (GameManager.GM.player.transform.position - transform.position).normalized;
+        Debug.DrawRay(transform.position, searchDir, Color.red);
+
+        for (int i = 0; i < 10; i++)
         {
-            searchDir = new(Random.Range(searchDir.x - 10, searchDir.x + 10), transform.position.y, Random.Range(searchDir.z - 10, searchDir.z + 10));
-            Vector3 position = transform.position + searchDir;
+            searchDir = new(Random.Range(searchDir.x - 30, searchDir.x + 30), transform.position.y, Random.Range(searchDir.z - 5, searchDir.z + 5));
+            Vector3 position = transform.position - searchDir;
             checkPositions.Add(position);
             Debug.DrawLine(transform.position, position);
         }
-        Vector3 bestCover = transform.position;
-        float bestDist = Mathf.Infinity;
+
+        Vector3 bestCover = Vector3.positiveInfinity;
+        float bestDist = 0;
         foreach (Vector3 pos in checkPositions)
         {
-            if (Physics.Raycast(pos, -searchDir, out RaycastHit hit, Mathf.Infinity))
+            if (Physics.Raycast(pos, searchDir, out RaycastHit hit, Mathf.Infinity))
             {
                 if (hit.transform.CompareTag("Player")) return;
                 else
                 {
-                    float dist = (pos - GameManager.GM.player.transform.position).magnitude;
-                    if (dist > bestDist) return;
+                    float dist = (GameManager.GM.player.transform.position - pos).magnitude;
+                    if (dist < bestDist) return;
                     else
                     {
                         bestDist = dist;
