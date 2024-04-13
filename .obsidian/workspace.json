@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GDD.md",
+                "file": "Ideation.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "GDD.md",
+                "file": "Ideation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "GDD.md",
+                "file": "Ideation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "GDD.md"
+                "file": "Ideation.md"
               }
             }
           }
@@ -149,6 +149,7 @@
   },
   "active": "94cc8a9dae35e803",
   "lastOpenFiles": [
+    "GDD.md",
     "B2/Assets/xtapboro.jjf~",
     "B2/Assets/hwfjfqg0.nqr~",
     "B2/Library/Search/propertyDatabase.db_ae48fec0047349218f379e963c9f2c9b_temp",
@@ -157,43 +158,6 @@
     "B2/Library/ShaderCache/builtin/unity_builtin_extra0000/00/90c5b0754fb48c3c4449590e4712c7dc.bin",
     "B2/Library/ShaderCache/builtin/unity_builtin_extra0000/00/aae20188a8f1cc3a75a8fffc62087522.bin",
     "B2/Temp/UnityTempFile-a78c22874e3833d4bb444cc854511429",
-    "B2/Temp/UnityTempFile-29cc87bb313177c4e8dc915719bd95b7",
-    "B2/Library/Search/propertyAliases.db_d74e4701c33545759e04bb6419501de0_temp",
-    "B2/Library/Artifacts/a6/a67ba85c7d5f64f895f6024d841cad13",
-    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V4_normal.png",
-    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V4_Mask.png",
-    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V4_basecolor.png",
-    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V3_Mask.png",
-    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V3_normal.png",
-    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Leaf_Spruce_Yellow_BaseMap.png",
-    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Stylize_Bark_V3_basecolor.png",
-    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Leaf_Spruce_Yellow_Normal.png",
-    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Leaf_Spruce_Yellow_MaskMap.png",
-    "B2/Assets/StylizedSpruceTree/Assets/Vegetation/Texture/Leaf_Spruce_BaseMap.png",
-    "Excalidraw/Drawing 2024-04-09 13.28.28.excalidraw.md",
-    "Excalidraw/Drawing 2024-04-09 15.06.55.excalidraw.md",
-    "Devlog.md",
-    "GDD.md",
-    "Ideation.md",
-    "B2.md",
-    "Research.md",
-    "Untitled.md",
-    "Project Management.md",
-    "Skills Development.md",
-    "Testing.md",
-    "Evaluation.md",
-    "Untitled Kanban.md",
-    "Analysis of Brief.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/TableOfContents.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/optimization-overview.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/optimization-skiplocalsinit.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/optimization-loop-vectorization.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/optimization-hint.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/optimization-constant.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/modding-support.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/optimization-assumerange.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/index.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/getting-started.md",
-    "B2/Library/PackageCache/com.unity.burst@1.8.12/Documentation~/editor-burst-inspector.md"
+    "B2/Temp/UnityTempFile-29cc87bb313177c4e8dc915719bd95b7"
   ]
 }

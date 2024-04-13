@@ -24,3 +24,5 @@ Maybe an XCOM or Red Alert-style military system, with turn based combat and man
 I decided that I would choose the first idea, a tactical shooter. I chose this because I have more experience in similar games and they are some of my favourites to play.
 
 I created a moodboard to help pin down the visual style and setting of my game. I want to have a modern, Eastern European setting, with a large military presence and lots of army checkpoints.
+
+As well as this, I debated on which game engine to use for this project.
