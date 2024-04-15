@@ -887,8 +887,8 @@ MonoBehaviour:
   swayController: {fileID: 1012741678551233663}
   firearm: {fileID: 0}
   cameraAngles: {x: 0, y: 0}
-  sensitivity: 3
-  baseSensitivity: 3
+  sensitivity: 100
+  baseSensitivity: 100
   FOV: 65
   AimFOV: 45
   isWalking: 0

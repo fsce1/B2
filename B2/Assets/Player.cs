@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     [Header("Camera")]
     public Vector2 cameraAngles;
-    public float sensitivity = 1;
+    public float sensitivity;
     public float baseSensitivity;
     public float FOV;
     public float AimFOV;

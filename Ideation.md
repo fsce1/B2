@@ -23,6 +23,7 @@ Maybe an XCOM or Red Alert-style military system, with turn based combat and man
 ## Chosen Idea
 I decided that I would choose the first idea, a tactical shooter. I chose this because I have more experience in similar games and they are some of my favourites to play.
 
-I created a moodboard to help pin down the visual style and setting of my game. I want to have a modern, Eastern European setting, with a large military presence and lots of army checkpoints.
+I created a moodboard to help pin down the visual style and setting of my game. I want to have a modern, Eastern European setting, with a large military presence and realistic area maps.
 
-As well as this, I debated on which game engine to use for this project.
+As well as this, I debated on which game engine to use for this project. The main 2 I considered were Unreal Engine 5 and Unity.
+Each engine has its upsides and downsides for example, Unreal Engine 5 has access to Quixel Megascans. This is one of the largest 3D asset databases in the world, including over 18,000 photorealistic and photo-scanned assets for completely free, as long as you use them inside Unreal Engine 5. In comparison, Unity has a few free assets on the Unity Asset Store, however they are made by the community and have varying levels of quality.

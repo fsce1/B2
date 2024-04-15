@@ -17,15 +17,16 @@ public class Enemy : MonoBehaviour
 
     [Header("Gun")]
     public int roundsLeftInBurst;
+    public float cooldown;
     public int magSize = 30;
     public int roundsInMag = 30;
     public bool canShoot;
     public GameObject bulletPrefab;
-    public int bulletsToShoot;
 
 
     [Header("Enemy")]
     public float reactionTime;
+    public float viewCone;
     public float timeSincePlayerSeen;
     public int health = 100;
     public int enemiesNearby;
@@ -43,45 +44,54 @@ public class Enemy : MonoBehaviour
     {
         if (!isInitialised) return;
 
-        Vector3 playerDir = GameManager.GM.player.transform.position - eyePos.position;
-        if (Physics.Raycast(eyePos.position, playerDir, out RaycastHit hit, playerDir.magnitude)) // less chance to spot if far away?
+        Vector3 playerEyePos = GameManager.GM.player.transform.position;
+        playerEyePos.y += 1.75f;
+        Vector3 playerDir = playerEyePos - eyePos.position;
+        canSeePlayer = false;
+        if (Physics.Raycast(eyePos.position, playerDir, out RaycastHit hit, Mathf.Infinity) && hit.collider.CompareTag("Player")) // less chance to spot if far away?
         {
-            Debug.DrawLine(eyePos.position, hit.point);
-
-
-
-
-
+            if (Vector3.Angle(transform.forward, playerDir) < viewCone)
+            {
+                canSeePlayer = true;
+                lastPositionPlayerSeen = GameManager.GM.player.transform.position;
+                lastPositionPlayerSeen.y -= 0.5f;
+            }
         }
-
-
-
 
         if (canSeePlayer)
         {
-            transform.forward = GameManager.GM.player.transform.position - transform.position;
-            //canShoot = false;
+            eyePos.forward = lastPositionPlayerSeen - transform.position;
+
+            if (timeSincePlayerSeen == 0)
+            {
+                Debug.Log("FirstFrame");
+                CooldownShot();
+                ResetShot();
+            }
+
+            //if (timeSincePlayerSeen < reactionTime) canShoot = false;
+
+            if (canShoot && roundsLeftInBurst > 0)
+            {
+                Debug.Log(roundsLeftInBurst);
+                Instantiate(bulletPrefab, eyePos.position, eyePos.rotation);
+                canShoot = false;
+                roundsLeftInBurst--;
+                //Invoke(nameof(ResetShot), 50/650);
+                Invoke(nameof(ResetShot), 0.1f);
+            }
+            if(roundsLeftInBurst <= 0)
+            {
+                Debug.Log("Cooldown Start");
+                canShoot = false;
+                Invoke(nameof(CooldownShot), cooldown);
+            }
 
             timeSincePlayerSeen += Time.fixedDeltaTime;
-
-
-
-            //if (firstFrameSeen) Invoke(nameof(ReactionTime), reactionTime);
-
-
-            //if (canShoot) Shoot();
-
         }
+        else timeSincePlayerSeen = 0;
 
-
-
-
-
-        if(!isMoving || agent.isPathStale) FindCover();
-
-
-
-
+        //if (!isMoving || agent.isPathStale) FindCover();
 
         if (finalTgt == Vector3.positiveInfinity)
         {
@@ -91,21 +101,12 @@ public class Enemy : MonoBehaviour
 
         if ((transform.position.x - finalTgt.x) <= 1f && (transform.position.z - finalTgt.z) <= 1f) isMoving = false;
     }
-    void ReactionTime()
+    void ResetShot() => canShoot = true;
+    void CooldownShot()
     {
+        Debug.Log("Cooldown End");
+        roundsLeftInBurst = Random.Range(0, 4);
         canShoot = true;
-    }
-    void Shoot()
-    {
-        
-
-        Instantiate(bulletPrefab, eyePos.position, eyePos.rotation);
-        Invoke(nameof(ResetShot), 50/650); //AK-74 RPM 
-    }
-    void ResetShot()
-    {
-        canShoot = true;
-        roundsLeftInBurst--;
     }
 
     void FindCover()

@@ -96,7 +96,7 @@ public class Round : MonoBehaviour
             if (!hit.collider.CompareTag("Round") && !hit.collider.CompareTag("Player"))
             {
                 Destroy(gameObject);
-                Debug.Log(hit.collider.gameObject.name);
+                //Debug.Log(hit.collider.gameObject.name);
             }
         }
 
@@ -139,7 +139,7 @@ public class Round : MonoBehaviour
 
         if (distFromOrigin > despawnDist)
         {
-            Debug.Log(distFromOrigin);
+            //Debug.Log(distFromOrigin);
             Destroy(gameObject);
         }
 
