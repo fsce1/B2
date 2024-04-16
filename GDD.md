@@ -32,13 +32,15 @@ You can command teammates to:
  Each AI teammate has a unique name, and you can hire new teammates with different skill levels as you progress through the game. AI teammates can also get shot and you may need to heal/help them up if they are downed. They also have perma-death, meaning if they are downed for too long and die, you cannot revive them or restore a save. This is intended to give you a more personal connection to the teammates that you play alongside, as you may miss a particularly high-skilled teammate if they die in combat.
  This is where I think the prompt is reflected the most. I aim to code my own AI system using Unity's 
 # Level Design
-Taking inspiration from games like Escape from Tarkov and S.T.A.L.K.E.R., the game takes place in multiple large areas of around 500m^2 to 1000m^2. Each map will include forested areas, as well as locations such as towns, industrial parks, military bases, factories, etc. 
+Taking inspiration from games like Escape from Tarkov and S.T.A.L.K.E.R., the game takes place in multiple large areas of around 500m^2 to 1000m^2. Each map will include forested areas, as well as locations such as towns, industrial parks, military bases, factories, etc.
 Each area will have 2-4 infiltration points, where you can choose to start the map at a different location. This adds replay value as it allows for a lot of player freedom and expression. For example, a location might be more heavily guarded towards the north side, so you can choose to sneak in through the south and take them out from behind.
 At any point, you can head to an extraction zone and exfiltrate the area, ending that game, however the objectives you did not complete will fail.
 
 # Health / Death
+Enemies will die in one hit to the head, or 2-4 shots in the body. They can sit in place and slowly heal, however are vulnerable to pushes while this is happening as their gun is not ready.
+The player's health system is similar, in the way that you can heal by putting your gun away. As well as this, If you get killed, you enter a "coma" state, in which your teammate must rush to you and give you aid, or you will die in 90 seconds. Your teammate can enter the same "coma" state, and you will need to help them up.
 # HUD and Menus
-I want the UI to be minimal and clean, only showing information when it is necessary. For example, the ammo indicator will only show while you are shooting or reloading the gun. There will be a crosshair on screen, using a raycast from the barrel of the gun to determine its end position. This means that when weapon sway from walking, breathing, moving etc. is added, it also affects the position of the crosshair, so it is always accurate to where the bullet will go.
+I want the UI to be minimal and clean, only showing information when it is necessary. For example, the ammo indicator will only show while you are shooting or reloading the gun. There will be a crosshair on screen, using a raycast from the barrel of the gun to determine its end position. This means that when weapon sway from walking, breathing, moving etc. is added, it also affects the position of the crosshair, so it is always accurate to where the bullet will go. This is the way I will add moving innacuracy.
 I have also make a mockup of the Infiltration Screen and the UI for commanding friendly NPCs.
 
 # Audio

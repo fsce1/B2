@@ -68,6 +68,12 @@ public class Enemy : MonoBehaviour
                 CooldownShot();
                 ResetShot();
             }
+            else if (roundsLeftInBurst <= 0)
+            {
+                Debug.Log("Cooldown Start");
+                canShoot = false;
+                Invoke(nameof(CooldownShot), cooldown);
+            }
 
             //if (timeSincePlayerSeen < reactionTime) canShoot = false;
 
@@ -80,12 +86,7 @@ public class Enemy : MonoBehaviour
                 //Invoke(nameof(ResetShot), 50/650);
                 Invoke(nameof(ResetShot), 0.1f);
             }
-            if(roundsLeftInBurst <= 0)
-            {
-                Debug.Log("Cooldown Start");
-                canShoot = false;
-                Invoke(nameof(CooldownShot), cooldown);
-            }
+
 
             timeSincePlayerSeen += Time.fixedDeltaTime;
         }

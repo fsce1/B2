@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "94cc8a9dae35e803",
+            "id": "34b356b9e9ccb882",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Ideation.md",
+                "file": "Devlog.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Ideation.md",
+                "file": "Devlog.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Ideation.md",
+                "file": "Devlog.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Ideation.md"
+                "file": "Devlog.md"
               }
             }
           }
@@ -147,19 +147,26 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "94cc8a9dae35e803",
+  "active": "34b356b9e9ccb882",
   "lastOpenFiles": [
-    "B2/Temp/UnityTempFile-955d8acd0718a1f4686850e5cd90f05e",
-    "B2/Assets/f0sysboy.gur~",
-    "B2/Temp/UnityTempFile-e2afe2850814acd49abdd3cedaf06e19",
-    "B2/Temp/Burst/burst-aot4dlyuzip.b2a",
-    "B2/Temp/Burst/burst-aotvhvwf0za.zdg",
-    "B2/Temp/Burst/burst-aotlg5t9a27.jls",
-    "B2/Temp/Burst/burst-aotpkng6bge.tu5",
-    "B2/Temp/Burst/burst-aot2usz8lh6.hwi",
-    "B2/Temp/Burst/burst-aotgzz3crqx.zyf",
-    "B2/Temp/Burst/burst-aotxt59jjnp.9lw",
-    "B2/Temp/Burst/burst-aot9iyno3ih.t29",
+    "2024-04-11 10-41-36.mkv",
+    "2024-03-07 12-01-50.mkv",
+    "2024-02-26 15-31-45.mkv",
+    "Powerpoint Reflection.md",
+    "Devlog.md",
+    "B2/Assets/ottzticx.as4~",
+    "B2/Assets/oozsvanl.kbd~",
+    "B2.md",
+    "B2 1.md",
+    "GDD.md",
+    "B2/Assets/d3wzgb0l.50b~",
+    "B2/Assets/oycckj3z.0qn~",
+    "B2/Assets/yvrki4uo.bkh~",
+    "B2/Assets/q0oslwcz.nbb~",
+    "B2/Assets/0twfyopz.mwh~",
+    "B2/Assets/zwdr1ipb.2tc~",
+    "Evaluation.md",
+    "Ideation.md",
     "B2/Assets/Scenes/Quixel/Pallet/xiwcfassc_2K_Roughness.jpg",
     "B2/Assets/Scenes/Quixel/Pallet/xiwcfassc_2K_Normal_LOD2.jpg",
     "B2/Assets/Scenes/Quixel/Pallet/xiwcfassc_2K_Albedo.jpg",
@@ -169,7 +176,6 @@
     "B2/Assets/Scenes/Quixel/vjdqcba_4K_Albedo.jpg",
     "B2/Assets/Scenes/Quixel/sgmkajak_2K_Roughness.jpg",
     "B2/Assets/Scenes/Quixel/sgmkajak_2K_Normal.jpg",
-    "B2/Assets/Scenes/Quixel/sgmkajak_2K_AO.jpg",
-    "GDD.md"
+    "B2/Assets/Scenes/Quixel/sgmkajak_2K_AO.jpg"
   ]
 }

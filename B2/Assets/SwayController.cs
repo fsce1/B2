@@ -175,11 +175,11 @@ public class SwayController : MonoBehaviour
 
     void FixedUpdate()
     {
-
         if (GameManager.GM.player.inputMovement == Vector2.zero)
         {
             curWalkLifetime = 0;
         }
+
         wpnPos = restPos;
         wpnRot = restRot;
         CalculateWeaponPos();
@@ -246,10 +246,6 @@ public class SwayController : MonoBehaviour
         movementMove.z = movementMoveAmount * GameManager.GM.player.velocity.x;
         movementMove = Vector3.SmoothDamp(movementMove, Vector3.zero, ref movementMoveVelocity, movementMoveSmoothing);
         newMovementMove = Vector3.SmoothDamp(newMovementMove, movementMove, ref newMovementMoveVelocity, movementMoveSmoothing);
-
-        //Vector3 breathTgt;
-        //if (breathingIn) breathTgt.y = breathTgt;
-        //else breathTgt = breathOutTgt;
 
         breathMove = Vector3.SmoothDamp(breathMove, breathTgt, ref breathMoveVelocity, breathSmoothing);
         newBreathMove = Vector3.SmoothDamp(newBreathMove, breathMove, ref newBreathMoveVelocity, breathSmoothing);

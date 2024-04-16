@@ -155,14 +155,12 @@ public class Firearm : MonoBehaviour
 
         if (roundsInMag >= 0)
         {
-            Invoke(nameof(ResetShot), 50 / info.roundsPerMinute);
+            //Invoke(nameof(ResetShot), 50 / info.roundsPerMinute);
+            Invoke(nameof(ResetShot), 1 / (info.roundsPerMinute / 60));
         }
     }
     void ResetMuzzleFlash() => muzzleFlash.SetActive(false);
-    void ResetShot()
-    {
-        canShoot = true;
-    }
+    void ResetShot() => canShoot = true;
     void AddRecoil()
     {
         tgtRecoilRot +=

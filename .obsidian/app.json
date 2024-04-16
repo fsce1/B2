@@ -2,5 +2,14 @@
   "alwaysUpdateLinks": false,
   "useMarkdownLinks": false,
   "promptDelete": false,
-  "readableLineLength": false
+  "readableLineLength": true,
+  "strictLineBreaks": true,
+  "showInlineTitle": true,
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "A4",
+    "landscape": false,
+    "margin": "2",
+    "downscalePercent": 100
+  }
 }
