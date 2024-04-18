@@ -88,10 +88,15 @@ public class GameManager : MonoBehaviour
         infilCamera.gameObject.SetActive(false);
 
         int enemiesToSpawn = Random.Range(enemyCountBounds.x, enemyCountBounds.y);
-
+        List<int> usedPositions = new();
         for (int i = enemiesToSpawn; i > 0; i--)
         {
             int spawnPos = Random.Range(0, enemySpawns.Count - 1);
+            if (usedPositions.Contains(spawnPos)) //TODO
+            {
+
+            }
+            usedPositions.Add(spawnPos);
             Enemy e = Instantiate(enemyPrefab, enemySpawns[spawnPos]).GetComponent<Enemy>();
             enemies.Add(e);
         }

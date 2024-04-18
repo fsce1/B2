@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +10,8 @@ public class Enemy : MonoBehaviour
     public bool isInitialised = false;
     public NavMeshAgent agent;
     public NavMeshSurface surface;
-
+    public Animator anim;
+    public GameObject ragdoll;
     [Header("Positions")]
     public Transform eyePos;
     public bool isMoving;
@@ -21,6 +23,8 @@ public class Enemy : MonoBehaviour
     public int magSize = 30;
     public int roundsInMag = 30;
     public bool canShoot;
+    public bool onCooldown;
+    public float curRecoilInaccuracy;
     public GameObject bulletPrefab;
 
 
@@ -44,6 +48,12 @@ public class Enemy : MonoBehaviour
     {
         if (!isInitialised) return;
 
+        if (isMoving)
+        {
+            anim.Play("BaseLayer.Run");
+        }
+        else anim.Play("BaseLayer.Idle");
+
         Vector3 playerEyePos = GameManager.GM.player.transform.position;
         playerEyePos.y += 1.75f;
         Vector3 playerDir = playerEyePos - eyePos.position;
@@ -55,37 +65,50 @@ public class Enemy : MonoBehaviour
                 canSeePlayer = true;
                 lastPositionPlayerSeen = GameManager.GM.player.transform.position;
                 lastPositionPlayerSeen.y -= 0.5f;
+                //if(GameManager.GM.player.leanHolder.localEulerAngles.z > 0)
+                //{
+                //    lastPositionPlayerSeen.x += 0.5f;
+                //}
+                //else if (GameManager.GM.player.leanHolder.localEulerAngles.z < 0)
+                //{
+                //    lastPositionPlayerSeen.x -= 0.5f;
+                //}
             }
         }
 
         if (canSeePlayer)
         {
             eyePos.forward = lastPositionPlayerSeen - transform.position;
+            eyePos.localEulerAngles += curRecoilInaccuracy * transform.right;
+            eyePos.localEulerAngles += Random.Range(-0.5f, 0.5f) * Vector3.up;
 
             if (timeSincePlayerSeen == 0)
             {
                 Debug.Log("FirstFrame");
-                CooldownShot();
+                //CooldownShot();
                 ResetShot();
             }
             else if (roundsLeftInBurst <= 0)
             {
                 Debug.Log("Cooldown Start");
-                canShoot = false;
+                onCooldown = true;
                 Invoke(nameof(CooldownShot), cooldown);
+                curRecoilInaccuracy = 0;
+
+
             }
 
-            //if (timeSincePlayerSeen < reactionTime) canShoot = false;
-
-            if (canShoot && roundsLeftInBurst > 0)
+            if (!onCooldown && canShoot && roundsLeftInBurst > 0 && timeSincePlayerSeen > reactionTime)
             {
-                Debug.Log(roundsLeftInBurst);
                 Instantiate(bulletPrefab, eyePos.position, eyePos.rotation);
                 canShoot = false;
                 roundsLeftInBurst--;
                 //Invoke(nameof(ResetShot), 50/650);
+                curRecoilInaccuracy += 0.001f;
                 Invoke(nameof(ResetShot), 0.1f);
+                anim.Play("Base Layer.Shoot");
             }
+            else curRecoilInaccuracy -= 0.01f;
 
 
             timeSincePlayerSeen += Time.fixedDeltaTime;
@@ -94,7 +117,7 @@ public class Enemy : MonoBehaviour
 
         //if (!isMoving || agent.isPathStale) FindCover();
 
-        if (finalTgt == Vector3.positiveInfinity)
+        if (finalTgt == Vector3.positiveInfinity || finalTgt == Vector3.zero)
         {
             agent.destination = transform.position;
         }
@@ -106,15 +129,15 @@ public class Enemy : MonoBehaviour
     void CooldownShot()
     {
         Debug.Log("Cooldown End");
-        roundsLeftInBurst = Random.Range(0, 4);
-        canShoot = true;
+        roundsLeftInBurst = Random.Range(1, 6);
+        onCooldown = false;
     }
 
     void FindCover()
     {
         List<Vector3> checkPositions = new();
 
-        Vector3 searchDir = (GameManager.GM.player.transform.position - transform.position).normalized;
+        Vector3 searchDir = -(GameManager.GM.player.transform.position - transform.position).normalized;
         Debug.DrawRay(transform.position, searchDir, Color.red);
 
         for (int i = 0; i < 10; i++)
@@ -148,8 +171,14 @@ public class Enemy : MonoBehaviour
         finalTgt = bestCover;
         isMoving = true;
     }
-    public void Hit(float damage)
+    public void Hit(int damage)
     {
-
+        health -= damage;
+        if (health <= 0) Die();
+    }
+    public void Die()
+    {
+        Instantiate(ragdoll, transform).transform.parent = null;
+        Destroy(gameObject);
     }
 }

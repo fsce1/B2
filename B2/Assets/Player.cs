@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     public float inputLean;
     public float inputJump;
 
+    public float health = 100;
+
     [Header("References")]
     public CharacterController characterController;
     public Transform camHolder;
@@ -217,6 +219,9 @@ public class Player : MonoBehaviour
     {
         velocity.y += jumpForce;
     }
-
+    public void Hit(int damage)
+    {
+        health -= damage;
+    }
 
 }

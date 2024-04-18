@@ -51,6 +51,7 @@ MonoBehaviour:
   roundName: 7.62x51 M80
   firearmFiredFrom: {fileID: 0}
   muzzleVelocity: 460
+  damage: {x: 25, y: 30}
   lineRenderer: {fileID: -302853788797367117}
   tracerMat: {fileID: 2100000, guid: 04830b2a2440dea4f8c670ef56050ff1, type: 2}
   tracerColor: {r: 1, g: 0, b: 0, a: 1}
@@ -62,6 +63,8 @@ MonoBehaviour:
   distFromOrigin: 0
   maxDist: 1000
   despawnDist: 1000
+  concreteHit: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
+  bloodHit: {fileID: 100002, guid: fc7f8379080d0a844ad699b91bfd56f0, type: 3}
   positions: []
   dropCurve:
     serializedVersion: 2

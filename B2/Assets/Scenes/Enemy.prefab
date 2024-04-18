@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 4948095537994710069}
   - component: {fileID: 2846050450381559054}
   - component: {fileID: 2493145659054569558}
+  - component: {fileID: 8150390878510442649}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,14 +81,18 @@ MonoBehaviour:
   isInitialised: 0
   agent: {fileID: 2493145659054569558}
   surface: {fileID: 0}
+  anim: {fileID: 7621585895640202680}
+  ragdoll: {fileID: 583890623788364990, guid: afda9c33cc6ded147a96ffbf727cd98f, type: 3}
   eyePos: {fileID: 5602961579718173373}
   isMoving: 0
   finalTgt: {x: 0, y: 0, z: 0}
-  roundsLeftInBurst: 0
-  cooldown: 1
+  roundsLeftInBurst: 6
+  cooldown: 0.5
   magSize: 30
   roundsInMag: 30
-  canShoot: 0
+  canShoot: 1
+  onCooldown: 0
+  curRecoilInaccuracy: 0
   bulletPrefab: {fileID: 6992067972337017737, guid: d34623e0824f91447aae02d721d26110, type: 3}
   reactionTime: 0.2
   viewCone: 50
@@ -120,6 +125,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &8150390878510442649
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3469027912261806136}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Height: 2.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.1649563, z: 0}
 --- !u!1001 &7621585895632799960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -491,5 +519,10 @@ PrefabInstance:
 --- !u!4 &7621585895632933476 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400060, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
+  m_PrefabInstance: {fileID: 7621585895632799960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7621585895640202680 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
   m_PrefabInstance: {fileID: 7621585895632799960}
   m_PrefabAsset: {fileID: 0}

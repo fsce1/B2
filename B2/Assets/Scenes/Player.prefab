@@ -432,7 +432,7 @@ MonoBehaviour:
   movementSwayAmount: 5
   movementSwaySmoothing: 0.1
   leanMoveAmount: 0.05
-  leanMoveSmoothing: 0.1
+  leanMoveSmoothing: 0.2
   movementMoveAmount: 0.025
   movementMoveSmoothing: 0.1
   breathingIn: 0
@@ -815,6 +815,7 @@ GameObject:
   - component: {fileID: 6206157317033075870}
   - component: {fileID: 1542130509276308138}
   - component: {fileID: 3660377620561370799}
+  - component: {fileID: -4148753329109318414}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -887,8 +888,8 @@ MonoBehaviour:
   swayController: {fileID: 1012741678551233663}
   firearm: {fileID: 0}
   cameraAngles: {x: 0, y: 0}
-  sensitivity: 100
-  baseSensitivity: 100
+  sensitivity: 4
+  baseSensitivity: 4
   FOV: 65
   AimFOV: 45
   isWalking: 0
@@ -899,12 +900,35 @@ MonoBehaviour:
   runSpeed: 30
   walkSpeed: 15
   leanHolder: {fileID: 8120415695228239801}
-  leanAngle: 10
-  leanSpeed: 50
+  leanAngle: 15
+  leanSpeed: 25
   gravity: 0.1
   jumpForce: 1
   bhopSpeedMult: 1
   airAccel: 8
+--- !u!136 &-4148753329109318414
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4987792011278141034}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5398692730103197591
 GameObject:
   m_ObjectHideFlags: 0

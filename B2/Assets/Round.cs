@@ -11,6 +11,8 @@ public class Round : MonoBehaviour
     public string roundName;
     public Firearm firearmFiredFrom;
     public float muzzleVelocity;
+    public Vector2Int damage;
+
     [Header("Tracer")]
     public LineRenderer lineRenderer;
     public Material tracerMat;
@@ -25,7 +27,9 @@ public class Round : MonoBehaviour
     public float distFromOrigin;
     public float maxDist = 1000;
     public float despawnDist;
-
+    [Header("Impact FX")]
+    public GameObject concreteHit;
+    public GameObject bloodHit;
 
     float curDropAmount;
     public List<Vector3> positions = new();
@@ -93,8 +97,30 @@ public class Round : MonoBehaviour
         RaycastHit hit;
         if (RayBetweenPoints(currentPoint, nextPoint, out hit))
         {
-            if (!hit.collider.CompareTag("Round") && !hit.collider.CompareTag("Player"))
+            if (!hit.collider.CompareTag("Round"))
             {
+                if (hit.collider.CompareTag("Ground"))
+                {
+                    GameObject g = Instantiate(concreteHit, hit.point, Quaternion.Euler(nextPoint - currentPoint));
+                    g.transform.parent = null;
+                }
+
+                if (hit.collider.CompareTag("Enemy"))
+                {
+
+                    Instantiate(bloodHit, hit.point, Quaternion.Euler(nextPoint - currentPoint));
+                    hit.collider.gameObject.GetComponent<Enemy>().Hit(Random.Range(damage.x, damage.y));
+                }
+                if (hit.collider.CompareTag("Player"))
+                {
+                    Transform player = GameManager.GM.player.transform;
+                    Vector3 hitPoint = player.position;
+                    hitPoint.y += 1.75f;
+                    hitPoint += 0.5f * player.forward;
+                    Instantiate(bloodHit, hitPoint, Quaternion.Euler(nextPoint - currentPoint));
+
+                    hit.collider.gameObject.GetComponent<Player>().Hit(Random.Range(damage.x, damage.y));
+                }
                 Destroy(gameObject);
                 //Debug.Log(hit.collider.gameObject.name);
             }
