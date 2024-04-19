@@ -49,13 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2603573760896468443}
   roundName: 7.62x51 M80
-  firearmFiredFrom: {fileID: 0}
-  muzzleVelocity: 460
+  muzzleVelocity: 500
   damage: {x: 25, y: 30}
   lineRenderer: {fileID: -302853788797367117}
   tracerMat: {fileID: 2100000, guid: 04830b2a2440dea4f8c670ef56050ff1, type: 2}
   tracerColor: {r: 1, g: 0, b: 0, a: 1}
-  gravity: 1.5
+  gravity: 2
   startPosition: {x: 0, y: 0, z: 0}
   startDir: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
@@ -218,11 +217,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1
+  m_Radius: 4.7665205
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2603573760896468443
 Rigidbody:

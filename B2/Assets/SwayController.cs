@@ -95,11 +95,17 @@ public class SwayController : MonoBehaviour
     public Vector2 stepSideAmount;
     public float stepRotScaling;
     public float walkMoveSmoothing;
+    public float camWalkMoveAmount;
 
     Vector3 walkMove;
     Vector3 walkMoveVelocity;
     Vector3 newWalkMove;
     Vector3 newWalkMoveVelocity;
+
+    Vector3 camWalkMove;
+    Vector3 camWalkMoveVelocity;
+    Vector3 newCamWalkMove;
+    Vector3 newCamWalkMoveVelocity;
 
     [Header("Zeroing")]
     public int curZero = 0;
@@ -272,7 +278,7 @@ public class SwayController : MonoBehaviour
         if (isAiming) _walkScaler = walkScaler;
 
         Vector3 target = Vector3.zero;
-        //Vector3 camTarget = new(movementController.transform.position.x, 2.75f, movementController.transform.position.z);
+        Vector3 camTarget = Vector3.zero;
 
         //camTarget.y += camWalkMoveAmount;
         if (GameManager.GM.player.velocity.magnitude > 0.01f)
@@ -285,15 +291,15 @@ public class SwayController : MonoBehaviour
                 if (rightFoot) target.x += sideAmount * lateralVelocity;
                 else target.x -= sideAmount * lateralVelocity;
 
-                //camTarget.y -= camWalkMoveAmount;
+                camTarget.y = camWalkMoveAmount;
             }
-            //else camTarget.y += camWalkMoveAmount;
+            else camTarget = Vector3.zero;
         }
 
 
-        //camWalkMove = Vector3.SmoothDamp(camWalkMove, camTarget, ref camWalkMoveVelocity, walkMoveSmoothing);
-        //newCamWalkMove = Vector3.SmoothDamp(newCamWalkMove, camWalkMove, ref newCamWalkMoveVelocity, walkMoveSmoothing);
-        //cameraHolder.position = newCamWalkMove;
+        camWalkMove = Vector3.SmoothDamp(camWalkMove, camTarget, ref camWalkMoveVelocity, walkMoveSmoothing);
+        newCamWalkMove = Vector3.SmoothDamp(newCamWalkMove, camWalkMove, ref newCamWalkMoveVelocity, walkMoveSmoothing);
+        player.camHolder.position += newCamWalkMove;
 
         walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
         newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);

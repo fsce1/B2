@@ -87,15 +87,16 @@ MonoBehaviour:
   isMoving: 0
   finalTgt: {x: 0, y: 0, z: 0}
   roundsLeftInBurst: 6
-  cooldown: 0.5
+  cooldown: {x: 0.75, y: 1.5}
   magSize: 30
   roundsInMag: 30
   canShoot: 1
   onCooldown: 0
   curRecoilInaccuracy: 0
-  bulletPrefab: {fileID: 6992067972337017737, guid: d34623e0824f91447aae02d721d26110, type: 3}
-  reactionTime: 0.2
-  viewCone: 50
+  bulletPrefab: {fileID: 6992067972337017737, guid: 01785b2bfadd2594383d2b6a8ace680b, type: 3}
+  reactionTime: {x: 0.5, y: 3}
+  curReactionTime: 0
+  viewCone: 80
   timeSincePlayerSeen: 0
   health: 100
   enemiesNearby: 0

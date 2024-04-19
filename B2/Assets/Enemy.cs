@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Gun")]
     public int roundsLeftInBurst;
-    public float cooldown;
+    public Vector2 cooldown;
     public int magSize = 30;
     public int roundsInMag = 30;
     public bool canShoot;
@@ -29,7 +29,8 @@ public class Enemy : MonoBehaviour
 
 
     [Header("Enemy")]
-    public float reactionTime;
+    public Vector2 reactionTime;
+    public float curReactionTime;
     public float viewCone;
     public float timeSincePlayerSeen;
     public int health = 100;
@@ -78,37 +79,37 @@ public class Enemy : MonoBehaviour
 
         if (canSeePlayer)
         {
+            
             eyePos.forward = lastPositionPlayerSeen - transform.position;
             eyePos.localEulerAngles += curRecoilInaccuracy * transform.right;
-            eyePos.localEulerAngles += Random.Range(-0.5f, 0.5f) * Vector3.up;
-
+            eyePos.localEulerAngles += Random.Range(-0.5f, 0.5f) * transform.up;
+            
             if (timeSincePlayerSeen == 0)
             {
-                Debug.Log("FirstFrame");
-                //CooldownShot();
+                curReactionTime = Random.Range(reactionTime.x, reactionTime.y);
+                onCooldown = true;
+                CooldownShot();
+                //roundsLeftInBurst = 1;
                 ResetShot();
             }
-            else if (roundsLeftInBurst <= 0)
+            else if (!onCooldown && roundsLeftInBurst <= 0)
             {
-                Debug.Log("Cooldown Start");
                 onCooldown = true;
-                Invoke(nameof(CooldownShot), cooldown);
+                Invoke(nameof(CooldownShot), Random.Range(cooldown.x, cooldown.y));
                 curRecoilInaccuracy = 0;
-
-
             }
 
-            if (!onCooldown && canShoot && roundsLeftInBurst > 0 && timeSincePlayerSeen > reactionTime)
+            if (!onCooldown && canShoot && roundsLeftInBurst > 0 && timeSincePlayerSeen > curReactionTime)
             {
                 Instantiate(bulletPrefab, eyePos.position, eyePos.rotation);
                 canShoot = false;
-                roundsLeftInBurst--;
+                roundsLeftInBurst -= 1;
                 //Invoke(nameof(ResetShot), 50/650);
-                curRecoilInaccuracy += 0.001f;
-                Invoke(nameof(ResetShot), 0.1f);
+                curRecoilInaccuracy -= 0.01f;
+                Invoke(nameof(ResetShot), 0.05f);
                 anim.Play("Base Layer.Shoot");
             }
-            else curRecoilInaccuracy -= 0.01f;
+            else curRecoilInaccuracy += 0.0025f;
 
 
             timeSincePlayerSeen += Time.fixedDeltaTime;
@@ -128,11 +129,18 @@ public class Enemy : MonoBehaviour
     void ResetShot() => canShoot = true;
     void CooldownShot()
     {
-        Debug.Log("Cooldown End");
-        roundsLeftInBurst = Random.Range(1, 6);
+        float distFromPlayer = (lastPositionPlayerSeen - transform.position).magnitude;
+        distFromPlayer = Mathf.InverseLerp(0, 500, distFromPlayer);
+        float maxShots = Mathf.Lerp(6, 1, distFromPlayer);
+        Debug.Log(maxShots);
+        roundsLeftInBurst = (int)Random.Range(1, maxShots);
         onCooldown = false;
     }
-
+    public void BulletWhiz()
+    {
+        finalTgt = transform.position + (GameManager.GM.player.transform.position - transform.position).normalized * 3;
+        Debug.Log("Whiz");
+    }
     void FindCover()
     {
         List<Vector3> checkPositions = new();
@@ -171,14 +179,17 @@ public class Enemy : MonoBehaviour
         finalTgt = bestCover;
         isMoving = true;
     }
-    public void Hit(int damage)
+    public void Hit(int damage, Vector3 hitPoint)
     {
         health -= damage;
-        if (health <= 0) Die();
+        if (health <= 0) Die(hitPoint);
     }
-    public void Die()
+    public void Die(Vector3 hitPoint)
     {
-        Instantiate(ragdoll, transform).transform.parent = null;
+        GameObject g = Instantiate(ragdoll, transform);
+        g.transform.parent = null;
+        g.GetComponent<Rigidbody>().AddForceAtPosition(Vector3.forward * 100, hitPoint);
+
         Destroy(gameObject);
     }
 }

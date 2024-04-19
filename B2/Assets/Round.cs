@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Round : MonoBehaviour
@@ -9,7 +10,6 @@ public class Round : MonoBehaviour
     [Header("Generic")]
     public Rigidbody rb;
     public string roundName;
-    public Firearm firearmFiredFrom;
     public float muzzleVelocity;
     public Vector2Int damage;
 
@@ -109,7 +109,7 @@ public class Round : MonoBehaviour
                 {
 
                     Instantiate(bloodHit, hit.point, Quaternion.Euler(nextPoint - currentPoint));
-                    hit.collider.gameObject.GetComponent<Enemy>().Hit(Random.Range(damage.x, damage.y));
+                    hit.collider.gameObject.GetComponent<Enemy>().Hit(Random.Range(damage.x, damage.y), hit.point);
                 }
                 if (hit.collider.CompareTag("Player"))
                 {
@@ -178,6 +178,13 @@ public class Round : MonoBehaviour
         Gizmos.DrawLineStrip(positions.ToArray(), false);
 
 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<Enemy>().BulletWhiz();
+        }
     }
     //private void OnCollisionEnter(Collision collision)
     //{

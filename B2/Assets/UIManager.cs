@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public float crosshairSize;
     public Slider ammo;
     public TMP_Text zoomText;
+    public TMP_Text health;
     void Start()
     {
 
@@ -52,5 +53,8 @@ public class UIManager : MonoBehaviour
             zoomText.text = (Mathf.Round(GameManager.GM.player.firearm.curZoom * 100f) / 100).ToString() + "x";
         }
         else { zoomText.text = ""; }
+
+
+        health.text = GameManager.GM.player.health.ToString();
     }
 }

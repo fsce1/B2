@@ -10,7 +10,7 @@ The camera and player movement happens in the `Player.cs` file.
 ```cs
 private void CalculateGroundMovement()
 {
-	//wishDir is direction you wish to move in
+	//wishDir is direction you wish to move in, or the vector directly resulting from your key presses
     Vector3 wishDir = Vector3.Normalize(inputMovement.y * transform.forward + inputMovement.x * transform.right);
 
     float wishSpeed = maxSpeed / 100;
@@ -34,10 +34,6 @@ private void CalculateGroundMovement()
     //Apply deceleration
     velocity.x *= newSpeed;
     velocity.z *= newSpeed;
-
-    Debug.DrawRay(transform.position, wishDir, Color.green);
-    Debug.DrawRay(transform.position, transform.forward, Color.red);
-    Debug.DrawRay(transform.position, velocity * 100, Color.blue);
 }
 ```
 This creates a much higher quality character movement controller than a lot of other solutions for Unity, as it has smooth acceleration and deceleration.
@@ -50,7 +46,7 @@ This creates a much higher quality character movement controller than a lot of o
         cameraAngles += inputView;
         //Clamp the Y axis to +-90 so you can't do "backflips"
         cameraAngles.y = Mathf.Clamp(cameraAngles.y, -90, 90);
-		//Rotate the entire player on the Y axis, and only the camera holder on the X axis.This means you are always looking forward, but the player does not glitch out when you look up or down.
+		//Rotate the entire player on the Y axis, and only the camera holder on the X axis.This means the entire player object is always looking forward, but the player does not glitch out when you look up or down as vertical rotation is only done on the camera.
         Quaternion camRot = Quaternion.AngleAxis(-cameraAngles.y, Vector3.right);
         Quaternion playerRot = Quaternion.AngleAxis(cameraAngles.x, Vector3.up);
         
@@ -130,6 +126,7 @@ void FixedUpdate(){
         //Apply movement towards target
         walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
         newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);
+        
         wpnPos += newWalkMove * _walkScaler;
         wpnRot += new Vector3(newWalkMove.y, newWalkMove.x, -newWalkMove.x * 1.5f) * stepRotScaling;
     }
@@ -172,3 +169,5 @@ void FixedUpdate(){
 ```
 I also added a button (V by default), to change the fire mode from single fire to full-auto. Once all of the shooting was finished, recoil was next.
 Recoil is done in a very similar way to weapon sway, by adding rotation to the gun using `Vector3.SmoothDamp()`. There are 4 ways that recoil affects you, vertical rotation, horizontal rotation, camera rotation and lateral movement. Each shot's recoil is slightly randomized as well, to make spray patterns different every time.
+
+I knew that I wanted to have a realistic bullet physics, including travel time and 

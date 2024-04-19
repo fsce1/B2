@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
         foreach (Transform t in infilLocations)
         {
             infilIcons.Add(Instantiate(infilPointIcon, t));
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
     }
     public void Infiltrate()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         foreach (Transform t in infilLocations) Destroy(t.gameObject);
 
         GameObject p = Instantiate(playerPrefab, curInfilPoint.position, Quaternion.identity);
@@ -88,16 +90,12 @@ public class GameManager : MonoBehaviour
         infilCamera.gameObject.SetActive(false);
 
         int enemiesToSpawn = Random.Range(enemyCountBounds.x, enemyCountBounds.y);
-        List<int> usedPositions = new();
         for (int i = enemiesToSpawn; i > 0; i--)
         {
             int spawnPos = Random.Range(0, enemySpawns.Count - 1);
-            if (usedPositions.Contains(spawnPos)) //TODO
-            {
 
-            }
-            usedPositions.Add(spawnPos);
             Enemy e = Instantiate(enemyPrefab, enemySpawns[spawnPos]).GetComponent<Enemy>();
+            enemySpawns.Remove(enemySpawns[spawnPos]);
             enemies.Add(e);
         }
 

@@ -98,6 +98,7 @@ public class Firearm : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (GameManager.GM.player.isDead) return;
         if (canShoot && fullAutoHeld && curFireMode == FireMode.fullAuto && !isReloading && roundsInMag > 0)
         {
             Shoot();
@@ -139,7 +140,6 @@ public class Firearm : MonoBehaviour
     {
         GameObject roundObj = Instantiate(roundPrefab, barrelPoint.position, transform.rotation);
         //roundObj.transform.localEulerAngles = transform.forward;
-        roundObj.GetComponent<Round>().firearmFiredFrom = this;
 
         AddRecoil();
         canShoot = false;

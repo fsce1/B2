@@ -4,9 +4,12 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public bool isDead;
+    public float regenHealthSpeed;
     DefaultInput defaultInput;
     public Vector2 inputMovement;
     public Vector2 inputView;
@@ -15,6 +18,7 @@ public class Player : MonoBehaviour
     public float inputJump;
 
     public float health = 100;
+
 
     [Header("References")]
     public CharacterController characterController;
@@ -55,7 +59,11 @@ public class Player : MonoBehaviour
     //public bool isJumping;
     //public float jumpVelocity = 1;
     //public float jumpStartY;
-
+    void RegenHealth()
+    {
+        health++;
+        if (health > 100) health = 100;
+    }
     public void Initialize()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -72,6 +80,8 @@ public class Player : MonoBehaviour
 
         firearm.Initialize();
         swayController.Initialize();
+
+        InvokeRepeating(nameof(RegenHealth), 0, regenHealthSpeed);
     }
     private void Update()
     {
@@ -79,6 +89,8 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (isDead) return;
+        
         //DoGroundCheck();
 
         CalculateLean();
@@ -102,11 +114,12 @@ public class Player : MonoBehaviour
             //velocity.y = 0;
         }
 
-        velocity.y = -gravity;
-        if (inputJump >= 0.5f && characterController.isGrounded) velocity.y = jumpForce;
+        
+        if (inputJump >= 0.5f && characterController.isGrounded) velocity.y += jumpForce/4;
+        else velocity.y -= gravity / 10;
 
         characterController.Move(velocity);
-        
+
     }
     //void DoGroundCheck()
     //{
@@ -134,7 +147,7 @@ public class Player : MonoBehaviour
     private void CalculateView()
     {
         inputView *= sensitivity / 100;
-
+        if (swayController.isAiming && firearm.hasScope) inputView /= firearm.curZoom;
         cameraAngles += inputView;
         cameraAngles.y = Mathf.Clamp(cameraAngles.y, -90, 90);
 
@@ -180,8 +193,8 @@ public class Player : MonoBehaviour
 
         if (addspeed > 0)
         {
-            velocity.x += (accelspeed * wishDir.x)*bhopSpeedMult;
-            velocity.z += (accelspeed * wishDir.z)*bhopSpeedMult;
+            velocity.x += (accelspeed * wishDir.x) * bhopSpeedMult;
+            velocity.z += (accelspeed * wishDir.z) * bhopSpeedMult;
         }
     }
     private void CalculateLean()
@@ -222,6 +235,20 @@ public class Player : MonoBehaviour
     public void Hit(int damage)
     {
         health -= damage;
+        if (health <= 0) Die();
     }
-
+    void Die()
+    {
+        if (isDead) return;
+        transform.position += 1.5f * Vector3.down;
+        GameManager.GM.playCameras[1].gameObject.SetActive(false);
+        isDead = true;
+        firearm.canShoot = false;
+        Invoke(nameof(RestartScene), 5);
+    }
+    void RestartScene()
+    {
+        Destroy(GameManager.GM.gameObject);
+        SceneManager.LoadScene(0);
+    }
 }
