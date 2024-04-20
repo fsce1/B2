@@ -1,4 +1,5 @@
 # Character Controller
+## Feb 20th - Feb 26th
 The first thing I had to do was to create a first-person character controller. I need to be able to walk, crouch, sprint, jump, lean and potentially lie prone.
 
 After doing some searching online, I found an example Github Repo that mimicks the Source Engine movement code. This was the code used in CS:2, Half-Life 2 and other Valve games.
@@ -54,7 +55,8 @@ This creates a much higher quality character movement controller than a lot of o
         transform.localRotation = playerRot;
     }
 ```
-# Weapon + Weapon Sway
+# Weapon Sway
+## Feb 27th - Mar 3rd
 Once I had completed the movement controller, it was time to work on the weapon controller. I searched online for some tutorials on first person weapons in Unity, and found this very helpful tutorial series.
 https://www.youtube.com/playlist?list=PLW3-6V9UKVh2T0wIqYWC1qvuCk2LNSG5c
 First, I worked on weapon sway, which is the gun's movement when you look around quickly, are currently walking, etc. 
@@ -133,6 +135,8 @@ void FixedUpdate(){
 ```
 I also wrote a similar method for breathing, with some randomness to increase realism.
 Once I was done with that, I also needed to allow the player to aim down the sights of their gun. This is where I started to create the actual gun logic (shooting, reloading, recoil, etc.) Each firearm has 2 Vector3s called `restPos` and `aimPos`. These are the 2 positions of the gun at rest and while you are aiming down sights. They are different for each gun, so is stored in the `firearmInfo` class along with stats such as recoil, fire rate, fire modes and magazine size.
+# Weapon
+## Mar 4th
 I then added shooting mechanics.
 ```cs
 void FixedUpdate(){
@@ -163,11 +167,17 @@ void FixedUpdate(){
      if (roundsInMag >= 0)
      {
 	     //Invoke() calls a method after a set period of time
-	     //In this circumstance, ResetShot() sets canShoot back to true after a single rpm interval
+	     //In this circumstance, ResetShot() sets canShoot back to true after a single rpm interval (converted into seconds from rounds per minute)
          Invoke(nameof(ResetShot), 1/ (info.roundsPerMinute/60));
      }
 ```
 I also added a button (V by default), to change the fire mode from single fire to full-auto. Once all of the shooting was finished, recoil was next.
 Recoil is done in a very similar way to weapon sway, by adding rotation to the gun using `Vector3.SmoothDamp()`. There are 4 ways that recoil affects you, vertical rotation, horizontal rotation, camera rotation and lateral movement. Each shot's recoil is slightly randomized as well, to make spray patterns different every time.
+
+
+# Map Design
+At this point, I knew that the debug scene I had created in order to test movement needed an update to further iterate on my game concept. I started making a larger scene that would become the first area in the game: "Clifftown". Originally a small town in Sujusterea, it was taken over by military forces and turned into a stronghold defending important intelligence. With a large cliff overlooking the town, long range combat is inevitable, and you'll want to bring an optic.
+
+
 
 I knew that I wanted to have a realistic bullet physics, including travel time and 
