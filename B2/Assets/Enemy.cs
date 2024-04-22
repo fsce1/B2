@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Enemy")]
     public Vector2 reactionTime;
+    public float surprise;
     public float curReactionTime;
     public float viewCone;
     public float timeSincePlayerSeen;
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour
     public bool canHearPlayer;
     public Vector3 lastPositionPlayerSeen;
     public Vector3 lastPositionPlayerHeard;
+    public Vector2 timeToMove;
 
     public void Initialize()
     {
@@ -51,9 +53,9 @@ public class Enemy : MonoBehaviour
 
         if (isMoving)
         {
-            anim.Play("BaseLayer.Run");
+            anim.Play("Base Layer.Run");
         }
-        else anim.Play("BaseLayer.Idle");
+        else anim.Play("Base Layer.Idle");
 
         Vector3 playerEyePos = GameManager.GM.player.transform.position;
         playerEyePos.y += 1.75f;
@@ -63,6 +65,7 @@ public class Enemy : MonoBehaviour
         {
             if (Vector3.Angle(transform.forward, playerDir) < viewCone)
             {
+                if (!canSeePlayer) SpotPlayer();
                 canSeePlayer = true;
                 lastPositionPlayerSeen = GameManager.GM.player.transform.position;
                 lastPositionPlayerSeen.y -= 0.5f;
@@ -104,6 +107,7 @@ public class Enemy : MonoBehaviour
                 Instantiate(bulletPrefab, eyePos.position, eyePos.rotation);
                 canShoot = false;
                 roundsLeftInBurst -= 1;
+                roundsInMag -= 1;
                 //Invoke(nameof(ResetShot), 50/650);
                 curRecoilInaccuracy -= 0.01f;
                 Invoke(nameof(ResetShot), 0.05f);
@@ -126,6 +130,30 @@ public class Enemy : MonoBehaviour
 
         if ((transform.position.x - finalTgt.x) <= 1f && (transform.position.z - finalTgt.z) <= 1f) isMoving = false;
     }
+
+    void SpotPlayer()
+    {
+        Debug.Log("Spotted");
+        float healthChance = Mathf.InverseLerp(0, 100, health);
+        float magChance = Mathf.InverseLerp(0, magSize, roundsInMag);
+        float surpriseChance = Mathf.InverseLerp(0, 180, surprise);
+
+        
+        float chanceToPush = Mathf.InverseLerp(0, 3, healthChance + magChance + surpriseChance);
+
+        float decision = Random.Range(0f, 1f);
+        if (decision < chanceToPush)
+        {
+            Invoke(nameof(RunAway), Random.Range(timeToMove.x, timeToMove.y));
+            Debug.Log("Running away");
+        }
+        else
+        {
+            Invoke(nameof(RunTowards), Random.Range(timeToMove.x, timeToMove.y));
+            Debug.Log("Pushing");
+        }
+
+    }
     void ResetShot() => canShoot = true;
     void CooldownShot()
     {
@@ -138,14 +166,30 @@ public class Enemy : MonoBehaviour
     }
     public void BulletWhiz()
     {
-        finalTgt = transform.position + (GameManager.GM.player.transform.position - transform.position).normalized * 3;
+        finalTgt = transform.position + (GameManager.GM.player.transform.position - transform.position).normalized * 5;
+
+        Vector3 playerEyePos = GameManager.GM.player.transform.position;
+        playerEyePos.y += 1.75f;
+        Vector3 playerDir = playerEyePos - eyePos.position;
+
+        surprise = Vector3.Angle(transform.forward, playerDir);
         Debug.Log("Whiz");
     }
-    void FindCover()
+    void RunTowards()
+    {
+         Vector3 dir = (GameManager.GM.player.transform.position - transform.position).normalized;
+
+    }
+    void RunAway()
+    {
+        Vector3 dir = -(GameManager.GM.player.transform.position - transform.position).normalized;
+    }
+    void FindCover(Vector3 direction)
     {
         List<Vector3> checkPositions = new();
 
-        Vector3 searchDir = -(GameManager.GM.player.transform.position - transform.position).normalized;
+        Vector3 searchDir = direction;
+
         Debug.DrawRay(transform.position, searchDir, Color.red);
 
         for (int i = 0; i < 10; i++)

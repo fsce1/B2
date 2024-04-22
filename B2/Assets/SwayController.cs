@@ -119,7 +119,7 @@ public class SwayController : MonoBehaviour
         breathTgt.x = Random.Range(breathSidewaysAmount.x, breathSidewaysAmount.y);
         breathTgt.y = Random.Range(breathAmount.x, breathAmount.y);
 
-        if(!breathingIn)
+        if (!breathingIn)
         {
             breathTgt.y = -breathTgt.y;
             breathTgt.x = 0;
@@ -278,28 +278,35 @@ public class SwayController : MonoBehaviour
         if (isAiming) _walkScaler = walkScaler;
 
         Vector3 target = Vector3.zero;
-        Vector3 camTarget = Vector3.zero;
+        Vector3 camTarget = player.camHolder.position;
+        camTarget.y += camWalkMoveAmount;
 
-        //camTarget.y += camWalkMoveAmount;
-        if (GameManager.GM.player.velocity.magnitude > 0.01f)
+        float lateralVelocity = new Vector2(GameManager.GM.player.velocity.x, GameManager.GM.player.velocity.z).magnitude;
+
+        if (lateralVelocity > 0.01f)
         {
+
             if (curWalkLifetime < (walkLifetime * walkLifetimeScaler) / 2)
             {
-                float lateralVelocity = new Vector2(GameManager.GM.player.velocity.x, GameManager.GM.player.velocity.z).magnitude;
                 target.y -= Random.Range(stepDownAmount.x, stepDownAmount.y) * lateralVelocity;
                 float sideAmount = Random.Range(stepSideAmount.x, stepSideAmount.y);
                 if (rightFoot) target.x += sideAmount * lateralVelocity;
                 else target.x -= sideAmount * lateralVelocity;
 
-                camTarget.y = camWalkMoveAmount;
+                camTarget.y -= camWalkMoveAmount;
             }
-            else camTarget = Vector3.zero;
+        }
+        else
+        {
+            camTarget = player.camHolder.position;
         }
 
 
-        camWalkMove = Vector3.SmoothDamp(camWalkMove, camTarget, ref camWalkMoveVelocity, walkMoveSmoothing);
-        newCamWalkMove = Vector3.SmoothDamp(newCamWalkMove, camWalkMove, ref newCamWalkMoveVelocity, walkMoveSmoothing);
-        player.camHolder.position += newCamWalkMove;
+        //Debug.Log(camTarget);
+        //camWalkMove = Vector3.SmoothDamp(camWalkMove, camTarget, ref camWalkMoveVelocity, walkMoveSmoothing);
+        //newCamWalkMove = Vector3.SmoothDamp(newCamWalkMove, camWalkMove, ref newCamWalkMoveVelocity, walkMoveSmoothing);
+
+        //player.camHolder.position = newCamWalkMove;
 
         walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
         newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);
