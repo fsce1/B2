@@ -6,7 +6,7 @@ public class Target : MonoBehaviour
 {
     public AudioSource source;
 
-    public void OnTriggerEnter(Collider col)
+    public void OnColliderEnter(Collider col)
     {
         Debug.Log("Hit");
         source.Play();

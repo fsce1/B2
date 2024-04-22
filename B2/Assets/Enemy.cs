@@ -13,7 +13,9 @@ public class Enemy : MonoBehaviour
     public Animator anim;
     public GameObject ragdoll;
     [Header("Positions")]
+    public Transform lookPos;
     public Transform eyePos;
+    public Transform firearmPos;
     public bool isMoving;
     public Vector3 finalTgt;
 
@@ -53,9 +55,9 @@ public class Enemy : MonoBehaviour
 
         if (isMoving)
         {
-            anim.Play("Base Layer.Run");
+            anim.Play("Base Layer.demo_combat_run");
         }
-        else anim.Play("Base Layer.Idle");
+        else anim.Play("Base Layer.demo_combat_idle");
 
         Vector3 playerEyePos = GameManager.GM.player.transform.position;
         playerEyePos.y += 1.75f;
@@ -63,12 +65,12 @@ public class Enemy : MonoBehaviour
         canSeePlayer = false;
         if (Physics.Raycast(eyePos.position, playerDir, out RaycastHit hit, Mathf.Infinity) && hit.collider.CompareTag("Player")) // less chance to spot if far away?
         {
-            if (Vector3.Angle(transform.forward, playerDir) < viewCone)
+            if (Vector3.Angle(eyePos.forward, playerDir) < viewCone)
             {
                 if (!canSeePlayer) SpotPlayer();
                 canSeePlayer = true;
                 lastPositionPlayerSeen = GameManager.GM.player.transform.position;
-                lastPositionPlayerSeen.y -= 0.5f;
+                lastPositionPlayerSeen.y += 1.75f;
                 //if(GameManager.GM.player.leanHolder.localEulerAngles.z > 0)
                 //{
                 //    lastPositionPlayerSeen.x += 0.5f;
@@ -82,11 +84,13 @@ public class Enemy : MonoBehaviour
 
         if (canSeePlayer)
         {
-            
-            eyePos.forward = lastPositionPlayerSeen - transform.position;
-            eyePos.localEulerAngles += curRecoilInaccuracy * transform.right;
-            eyePos.localEulerAngles += Random.Range(-0.5f, 0.5f) * transform.up;
-            
+
+            lookPos.forward = lastPositionPlayerSeen - lookPos.position;
+            lookPos.localEulerAngles = new(0, lookPos.localEulerAngles.y, 0);
+            firearmPos.forward = lastPositionPlayerSeen - firearmPos.position;
+            //firearmPos.localEulerAngles += curRecoilInaccuracy * transform.right;
+            firearmPos.localEulerAngles += Random.Range(-0.5f, 0.5f) * transform.up;
+            firearmPos.localEulerAngles += Random.Range(-0.5f, 0.5f) * transform.right;
             if (timeSincePlayerSeen == 0)
             {
                 curReactionTime = Random.Range(reactionTime.x, reactionTime.y);
@@ -104,16 +108,16 @@ public class Enemy : MonoBehaviour
 
             if (!onCooldown && canShoot && roundsLeftInBurst > 0 && timeSincePlayerSeen > curReactionTime)
             {
-                Instantiate(bulletPrefab, eyePos.position, eyePos.rotation);
+                Instantiate(bulletPrefab, firearmPos.position, firearmPos.rotation);
                 canShoot = false;
                 roundsLeftInBurst -= 1;
                 roundsInMag -= 1;
                 //Invoke(nameof(ResetShot), 50/650);
-                curRecoilInaccuracy -= 0.01f;
+                curRecoilInaccuracy += 0.001f;
                 Invoke(nameof(ResetShot), 0.05f);
-                anim.Play("Base Layer.Shoot");
+                anim.Play("Base Layer.demo_combat_shoot");
             }
-            else curRecoilInaccuracy += 0.0025f;
+            else curRecoilInaccuracy -= 0.0025f;
 
 
             timeSincePlayerSeen += Time.fixedDeltaTime;
@@ -133,12 +137,13 @@ public class Enemy : MonoBehaviour
 
     void SpotPlayer()
     {
+        if(isMoving) return;
         Debug.Log("Spotted");
         float healthChance = Mathf.InverseLerp(0, 100, health);
         float magChance = Mathf.InverseLerp(0, magSize, roundsInMag);
         float surpriseChance = Mathf.InverseLerp(0, 180, surprise);
 
-        
+
         float chanceToPush = Mathf.InverseLerp(0, 3, healthChance + magChance + surpriseChance);
 
         float decision = Random.Range(0f, 1f);
@@ -177,7 +182,7 @@ public class Enemy : MonoBehaviour
     }
     void RunTowards()
     {
-         Vector3 dir = (GameManager.GM.player.transform.position - transform.position).normalized;
+        Vector3 dir = (GameManager.GM.player.transform.position - transform.position).normalized;
 
     }
     void RunAway()

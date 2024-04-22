@@ -95,6 +95,7 @@ public class Round : MonoBehaviour
         transform.LookAt(nextPoint);
 
         RaycastHit hit;
+
         if (RayBetweenPoints(currentPoint, nextPoint, out hit))
         {
             if (!hit.collider.CompareTag("Round"))
@@ -111,6 +112,11 @@ public class Round : MonoBehaviour
                     Instantiate(bloodHit, hit.point, Quaternion.Euler(nextPoint - currentPoint));
                     hit.collider.gameObject.GetComponent<Enemy>().Hit(Random.Range(damage.x, damage.y), hit.point);
                 }
+                if (hit.collider.CompareTag("EnemyHead"))
+                {
+                    hit.collider.gameObject.GetComponent<Head>().Hit();
+
+                }
                 if (hit.collider.CompareTag("Player"))
                 {
                     Transform player = GameManager.GM.player.transform;
@@ -120,6 +126,11 @@ public class Round : MonoBehaviour
                     Instantiate(bloodHit, hitPoint, Quaternion.Euler(nextPoint - currentPoint));
 
                     hit.collider.gameObject.GetComponent<Player>().Hit(Random.Range(damage.x, damage.y));
+                }
+                if (hit.collider.CompareTag("Target"))
+                {
+                    AudioSource g = hit.collider.gameObject.GetComponent<AudioSource>();
+                    g.PlayOneShot(g.clip);
                 }
                 Destroy(gameObject);
                 //Debug.Log(hit.collider.gameObject.name);

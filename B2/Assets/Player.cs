@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
     public float leanSpeed;
 
     [Header("Jump")]
+    public bool hasJumped = false;
     public float gravity = 20f;
     public float jumpForce = 6.5f;
     public float bhopSpeedMult = 0.4f;
@@ -114,10 +115,17 @@ public class Player : MonoBehaviour
             //velocity.y = 0;
         }
 
-        
-        if (inputJump >= 0.5f && characterController.isGrounded) velocity.y += jumpForce/4;
-        else velocity.y -= gravity / 10;
 
+        if (inputJump >= 0.5f && characterController.isGrounded && !hasJumped) 
+        { 
+            velocity.y += jumpForce / 4;
+            hasJumped = true;
+        }
+        else
+        {
+            velocity.y -= gravity / 10;
+            hasJumped = false;
+        }
         characterController.Move(velocity);
 
     }

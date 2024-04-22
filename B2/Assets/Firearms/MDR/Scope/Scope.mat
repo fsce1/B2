@@ -17,7 +17,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -71,7 +71,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _ExpansionSpeed: 20.1
+    - _ExpansionSpeed: 20.3
     - _EyeRelief: 8.12
     - _EyeboxStartPoint: 7.03
     - _GlossMapScale: 1
@@ -85,14 +85,14 @@ Material:
     - _ReticleOffsetY: 0
     - _ReticleScale: 0.8
     - _SecondaryVignetteBool: 1
-    - _SecondaryVignetteRadius: 1.46
-    - _SecondaryVignetteSmoothness: 0.737
+    - _SecondaryVignetteRadius: 1.27
+    - _SecondaryVignetteSmoothness: 0.415
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _VignetteRadius: 21.5
-    - _VignetteSmoothness: 0.02
+    - _VignetteRadius: 22.5
+    - _VignetteSmoothness: 0.249
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

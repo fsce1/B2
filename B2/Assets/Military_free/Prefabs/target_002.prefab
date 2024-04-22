@@ -26,19 +26,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.131165
+      value: 12.977985
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.81
+      value: 2.29
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.002287
+      value: 149.63362
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.24234113
+      value: 0.06200906
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
       propertyPath: m_LocalRotation.x
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9701911
+      value: -0.9980756
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
       propertyPath: m_LocalRotation.z
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -208.05
+      value: -172.89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -72,15 +72,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: target_002
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
+      propertyPath: m_TagString
+      value: Target
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
       insertIndex: 1
-      addedObject: {fileID: 404615141284199410}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
-      insertIndex: 2
       addedObject: {fileID: 6154874560995421880}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
       insertIndex: -1
@@ -91,19 +92,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cf4ca4f1a4303c440ba180917e7938dc, type: 3}
   m_PrefabInstance: {fileID: 2343977364632855351}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &404615141284199410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3190258480241073766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee943a2896697a546b9ab88422dcfe16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 6154874560995421880}
 --- !u!82 &6154874560995421880
 AudioSource:
   m_ObjectHideFlags: 0
@@ -111,11 +99,11 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3190258480241073766}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8a8b194532d1ba840aa1a15f23bf959a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -215,7 +203,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5

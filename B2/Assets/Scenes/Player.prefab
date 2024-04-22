@@ -785,6 +785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5121221488897818332}
   - component: {fileID: 8374355990411010938}
+  - component: {fileID: 1725012457501049470}
   m_Layer: 0
   m_Name: MainCompositorCamera
   m_TagString: MainCamera
@@ -840,13 +841,13 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 80
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -858,6 +859,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!81 &1725012457501049470
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413164778527944398}
+  m_Enabled: 1
 --- !u!1 &4834704338702443571
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +984,7 @@ Transform:
   m_Children:
   - {fileID: 8120415695228239801}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &1542130509276308138
 CharacterController:
@@ -1029,10 +1038,10 @@ MonoBehaviour:
   swayController: {fileID: 1012741678551233663}
   firearm: {fileID: 0}
   cameraAngles: {x: 0, y: 0}
-  sensitivity: 4
-  baseSensitivity: 4
-  FOV: 65
-  AimFOV: 45
+  sensitivity: 2
+  baseSensitivity: 2
+  FOV: 60
+  AimFOV: 40
   isWalking: 0
   velocity: {x: 0, y: 0, z: 0}
   decel: 8
@@ -1043,10 +1052,11 @@ MonoBehaviour:
   leanHolder: {fileID: 8120415695228239801}
   leanAngle: 15
   leanSpeed: 25
+  hasJumped: 0
   gravity: 0.1
-  jumpForce: 1
-  bhopSpeedMult: 1
-  airAccel: 8
+  jumpForce: 0.5
+  bhopSpeedMult: 0.25
+  airAccel: 2
 --- !u!136 &-4148753329109318414
 CapsuleCollider:
   m_ObjectHideFlags: 0
