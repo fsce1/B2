@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2603573760896468443}
   roundName: 7.62x51 M80
-  muzzleVelocity: 500
+  muzzleVelocity: 715
   damage: {x: 25, y: 30}
   lineRenderer: {fileID: -302853788797367117}
   tracerMat: {fileID: 2100000, guid: 04830b2a2440dea4f8c670ef56050ff1, type: 2}

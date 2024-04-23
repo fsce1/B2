@@ -32,3 +32,10 @@ However, overall, the gunplay is excellent, recoil feels reasonable for the gun 
 # Student 6
 Indicator of where you are getting shot from around crosshair
 Jumping is broken
+
+# Tommi
+correct names showing in menu
+jumping is not working all the time
+movement speed is slow maybe a speed boost or a closer spawn
+audio would be nice for knowing directions of enemies
+some textures are broken on vehicles Normals are facing wrong direction

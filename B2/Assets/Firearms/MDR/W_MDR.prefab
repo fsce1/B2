@@ -154,6 +154,11 @@ MonoBehaviour:
   scopeMesh: {fileID: 397187531418211010}
   zoomBounds: {x: 1, y: 8}
   scrollSpeed: 0.25
+  shotSounds:
+  - {fileID: 8300000, guid: 4a03cc03e89d3fa46be9876b47c3df10, type: 3}
+  - {fileID: 8300000, guid: 448d8ddd3d5f7c544bcf8acede8b3bf2, type: 3}
+  - {fileID: 8300000, guid: a090c5380f094f14cb96085e6ca2f76a, type: 3}
+  - {fileID: 8300000, guid: a0848d29a88e4bc4f950885f981b27df, type: 3}
 --- !u!1 &2679886702644053301
 GameObject:
   m_ObjectHideFlags: 0

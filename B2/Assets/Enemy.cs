@@ -29,6 +29,10 @@ public class Enemy : MonoBehaviour
     public float curRecoilInaccuracy;
     public GameObject bulletPrefab;
 
+    [Header("Audio")]
+    public AudioSource source;
+    public List<AudioClip> shotSounds;
+
 
     [Header("Enemy")]
     public Vector2 reactionTime;
@@ -112,10 +116,12 @@ public class Enemy : MonoBehaviour
                 canShoot = false;
                 roundsLeftInBurst -= 1;
                 roundsInMag -= 1;
-                //Invoke(nameof(ResetShot), 50/650);
                 curRecoilInaccuracy += 0.001f;
-                Invoke(nameof(ResetShot), 0.05f);
+
+                Invoke(nameof(ResetShot), 0.1f);
+
                 anim.Play("Base Layer.demo_combat_shoot");
+                source.PlayOneShot(shotSounds[Random.Range(0, shotSounds.Count)]);
             }
             else curRecoilInaccuracy -= 0.0025f;
 
@@ -164,7 +170,7 @@ public class Enemy : MonoBehaviour
     {
         float distFromPlayer = (lastPositionPlayerSeen - transform.position).magnitude;
         distFromPlayer = Mathf.InverseLerp(0, 500, distFromPlayer);
-        float maxShots = Mathf.Lerp(6, 1, distFromPlayer);
+        float maxShots = Mathf.Lerp(15, 1, distFromPlayer);
         Debug.Log(maxShots);
         roundsLeftInBurst = (int)Random.Range(1, maxShots);
         onCooldown = false;

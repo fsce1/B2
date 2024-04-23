@@ -46,10 +46,6 @@ public class GameManager : MonoBehaviour
         firearmPrefab = _firearm;
         curFirearmText.text = firearmPrefab.name;
     }
-    public void ChangeInfilPoint(Transform infilPoint)
-    {
-
-    }
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;

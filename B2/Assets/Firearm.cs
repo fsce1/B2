@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
+
 public enum FireMode
 {
     singleFire,
@@ -57,6 +58,9 @@ public class Firearm : MonoBehaviour
     public Vector2 zoomBounds;
     public float scrollSpeed;
     float baseFOV;
+
+    [Header("Audio")]
+    public List<AudioClip> shotSounds;
 
     private void OnDrawGizmos()
     {
@@ -138,13 +142,21 @@ public class Firearm : MonoBehaviour
 
     void Shoot()
     {
-        GameObject roundObj = Instantiate(roundPrefab, barrelPoint.position, transform.rotation);
-        //roundObj.transform.localEulerAngles = transform.forward;
+        Vector3 shootDir = transform.rotation.eulerAngles;
+        shootDir += UnityEngine.Random.Range(-0.075f, 0.075f) * transform.right + UnityEngine.Random.Range(-0.075f, 0.075f) * transform.up;
+
+
+        GameObject roundObj = Instantiate(roundPrefab, barrelPoint.position,
+            Quaternion.Euler(shootDir));
+        // + UnityEngine.Random.Range(-5f, 5f) * transform.right + UnityEngine.Random.Range(-5f, 5f) * transform.up)
+
 
         AddRecoil();
         canShoot = false;
         roundsInMag -= 1;
         sustainedRecoilAdd += info.sustainedRecoilAdd;
+
+        GameManager.GM.player.swayController.audioSource.PlayOneShot(shotSounds[UnityEngine.Random.Range(0, shotSounds.Count)]);
 
         if (muzzleFlash != null)
         {
@@ -196,7 +208,7 @@ public class Firearm : MonoBehaviour
         animator.Play("Base Layer.Reload");
 
         //float time = 0;
-        
+
         //for (int i = 0; i < controller.animationClips.Length; i++)                 //For all animations
         //{
         //    if (controller.animationClips[i].name == "Base Layer.Reload")            //If it has the same name as your clip

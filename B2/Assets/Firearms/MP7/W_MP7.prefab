@@ -794,7 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb63a4c837dcac4cb4f44da6cf4d6b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundPrefab: {fileID: 6992067972337017737, guid: d34623e0824f91447aae02d721d26110, type: 3}
+  roundPrefab: {fileID: 6992067972337017737, guid: 4f5440b6cc4a8864f9830234b11a4c0b, type: 3}
   info: {fileID: 11400000, guid: 193df828a42b8e84ab865fc44da0f16f, type: 2}
   animator: {fileID: 3675287126183148446}
   recoilRot: {x: 0, y: 0, z: 0}
@@ -820,6 +820,11 @@ MonoBehaviour:
   scopeMesh: {fileID: 0}
   zoomBounds: {x: 0, y: 0}
   scrollSpeed: 0
+  shotSounds:
+  - {fileID: 8300000, guid: 4a03cc03e89d3fa46be9876b47c3df10, type: 3}
+  - {fileID: 8300000, guid: 448d8ddd3d5f7c544bcf8acede8b3bf2, type: 3}
+  - {fileID: 8300000, guid: a090c5380f094f14cb96085e6ca2f76a, type: 3}
+  - {fileID: 8300000, guid: a0848d29a88e4bc4f950885f981b27df, type: 3}
 --- !u!1 &2226995261851038840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,7 +2994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &365010999023448387
 Transform:
   m_ObjectHideFlags: 0

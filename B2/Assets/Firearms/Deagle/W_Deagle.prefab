@@ -45,10 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb63a4c837dcac4cb4f44da6cf4d6b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundPrefab: {fileID: 6992067972337017737, guid: d34623e0824f91447aae02d721d26110, type: 3}
+  roundPrefab: {fileID: 6992067972337017737, guid: 4f5440b6cc4a8864f9830234b11a4c0b, type: 3}
   info: {fileID: 11400000, guid: a24d27d47861fbf4389474ed7f0577c5, type: 2}
   animator: {fileID: 6211847420079982199}
-  controller: {fileID: 0}
   recoilRot: {x: 0, y: 0, z: 0}
   tgtRecoilRot: {x: 0, y: 0, z: 0}
   recoilPos: {x: 0, y: 0, z: 0}
@@ -72,6 +71,11 @@ MonoBehaviour:
   scopeMesh: {fileID: 0}
   zoomBounds: {x: 0, y: 0}
   scrollSpeed: 0
+  shotSounds:
+  - {fileID: 8300000, guid: 825214c70bc517441a7342e9aab3b18e, type: 3}
+  - {fileID: 8300000, guid: 32f250bb2fce4cd4e938700378f15aaf, type: 3}
+  - {fileID: 8300000, guid: 6f34759a84d59134d91e5f7c67d27ad0, type: 3}
+  - {fileID: 8300000, guid: 4ec668622d4113241b46d4ea4e91edf3, type: 3}
 --- !u!1 &6105705999923581668
 GameObject:
   m_ObjectHideFlags: 0

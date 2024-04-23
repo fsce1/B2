@@ -178,6 +178,12 @@ Recoil is done in a very similar way to weapon sway, by adding rotation to the g
 # Map Design
 At this point, I knew that the debug scene I had created in order to test movement needed an update to further iterate on my game concept. I started making a larger scene that would become the first area in the game: "Clifftown". Originally a small town in Sujusterea, it was taken over by military forces and turned into a stronghold defending important intelligence. With a large cliff overlooking the town, long range combat is inevitable, and you'll want to bring an optic.
 
-
+![[Pasted image 20240423161410.png]]
+Here is a very early photo of the map from the players perspective. I used many assets from the Unity Asset Store and the website Sketchfab, all of which were free and even though the visual style of my game is very kitbashed (meaning there are lots of different parts from different people, and the aesthetics are not consistent), I ended up with a functional and quite large play area for the initial build.
+I begun creating the map with Unity's Terrain system. This is a plane that you can deform and paint on to create the ground for the world.
+![[Pasted image 20240423162225.png]]
+I then added pathways by painting gravel and dirt, added many assets, including buildings, military tents, tanks and watchtowers, as well as cover such as cars and trees.
+The grass and trees use Unity's terrain system as well, as there is functionality for painting trees and grass onto the ground.
+![[Pasted image 20240423162429.png]]
 
 I knew that I wanted to have a realistic bullet physics, including travel time and 

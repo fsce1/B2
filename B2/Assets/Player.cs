@@ -73,7 +73,6 @@ public class Player : MonoBehaviour
         defaultInput.Character.View.performed += e => inputView = e.ReadValue<Vector2>();
         defaultInput.Character.View.performed += e => accumulatedInputView += e.ReadValue<Vector2>();
         defaultInput.Character.Jump.performed += e => inputJump = e.ReadValue<float>();
-        defaultInput.Character.Jump.canceled += e => inputJump = e.ReadValue<float>();
         defaultInput.Character.Lean.performed += e => inputLean = e.ReadValue<float>();
 
 
@@ -116,7 +115,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (inputJump >= 0.5f && characterController.isGrounded && !hasJumped) 
+        if (inputJump >= 0.1f && characterController.isGrounded && !hasJumped) 
         { 
             velocity.y += jumpForce / 4;
             hasJumped = true;

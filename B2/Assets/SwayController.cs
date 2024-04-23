@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SwayController : MonoBehaviour
@@ -7,6 +8,7 @@ public class SwayController : MonoBehaviour
     [Header("Ref")]
     DefaultInput defaultInput;
     public Player player;
+    public AudioSource audioSource;
 
     [Header("Aim")]
     public bool isAiming;
@@ -96,6 +98,7 @@ public class SwayController : MonoBehaviour
     public float stepRotScaling;
     public float walkMoveSmoothing;
     public float camWalkMoveAmount;
+    public List<AudioClip> stepSounds;
 
     Vector3 walkMove;
     Vector3 walkMoveVelocity;
@@ -205,6 +208,7 @@ public class SwayController : MonoBehaviour
         {
             curWalkLifetime = 0;
             rightFoot = !rightFoot;
+            audioSource.PlayOneShot(stepSounds[Random.Range(0,stepSounds.Count)]);
         }
     }
     void CalculateWeaponRot()

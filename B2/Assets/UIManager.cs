@@ -11,6 +11,9 @@ public class UIManager : MonoBehaviour
     //public RectTransform restCrosshair;
     public float crosshairSize;
     public Slider ammo;
+    public Image fireMode;
+    public Sprite singleFire;
+    public Sprite fullAuto;
     public TMP_Text zoomText;
     public TMP_Text health;
     void Start()
@@ -56,5 +59,16 @@ public class UIManager : MonoBehaviour
 
 
         health.text = GameManager.GM.player.health.ToString();
+
+
+        switch (GameManager.GM.player.firearm.curFireMode)
+        {
+            case FireMode.singleFire:
+                fireMode.sprite = singleFire;
+                break;
+            case FireMode.fullAuto:
+                fireMode.sprite = fullAuto;
+                break;
+        }
     }
 }
