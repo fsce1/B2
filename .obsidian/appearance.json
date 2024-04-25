@@ -3,5 +3,6 @@
   "baseFontSize": 16,
   "cssTheme": "",
   "theme": "obsidian",
-  "textFontFamily": ""
+  "textFontFamily": "",
+  "nativeMenus": true
 }

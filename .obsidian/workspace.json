@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Devlog.md",
+                "file": "B2.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Devlog.md",
+                "file": "B2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Devlog.md",
+                "file": "B2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Devlog.md"
+                "file": "B2.md"
               }
             }
           }
@@ -149,34 +149,37 @@
   },
   "active": "34b356b9e9ccb882",
   "lastOpenFiles": [
+    "Devlog.md",
+    "Pasted image 20240425122221.png",
+    "Pasted image 20240425121405.png",
+    "Evaluation.md",
+    "Ideation.md",
+    "GDD.md",
+    "Excalidraw/Drawing 2024-04-09 13.28.28.excalidraw.md",
+    "Excalidraw/Drawing 2024-04-09 15.06.55.excalidraw.md",
+    "Pasted Image 20240409135043_740.png",
+    "Pasted Image 20240409135344_752.png",
+    "Pasted Image 20240409140300_360.png",
+    "Pasted Image 20240409140420_735.png",
+    "Pasted Image 20240409140510_736.png",
+    "Pasted Image 20240409141332_191.png",
+    "Pasted Image 20240409145234_711.png",
+    "Pasted Image 20240409150756_704.png",
+    "B2.md",
+    "2024-04-11 10-41-36.mkv",
+    "2024-02-26 15-31-45.mkv",
+    "2024-03-07 12-01-50.mkv",
+    "B2/Assets/y4dm4rt5.z5m~",
+    "B2/Assets/z0agy44u.xgk~",
+    "~$Jamie Serlin B2 Pitch Presentation.pptx",
+    "Analysis of Brief.md",
+    "Powerpoint Reflection.md",
+    "Project Management.md",
     "B2/Temp/ADB-Refreshf52e6255b1f4ce641a66bc26846ed610",
     "B2/Temp/UnityTempFile-49c6409feaf82134cbd9489fcb75684d",
     "B2/Temp/UnityTempFile-88ba5672557f13c47bc9096416a7aa1d",
     "B2/Library/Artifacts/46/46d4915b67a5a4f8fcecd1747db64aa1",
-    "B2/Library/Artifacts/47/4707cf0aa5638364f1b7b8bad93add7e",
-    "B2/Library/Artifacts/f9/f98b859f75ec1584aa7ac406583e3578",
-    "B2/Library/Artifacts/c8/c8e8bec1a14a55a0cf35c6b35eb942de",
-    "B2/Library/Artifacts/c9/c94f92e496c93ab0d63fc463041c1198",
-    "B2/Library/TempArtifacts/Extra/73303a36c51cf9049a887905bb0a2fa1.info",
-    "B2/Library/Artifacts/f1/f1fbe0385b82c01c4fc1d0b90e8cf8f1",
-    "B2/Library/Artifacts/85/85f99e4637eae3cd38749eb1f0df932c",
-    "B2/Assets/Granite Rocks/Meshes/rock05/Textures/rock05_occlusion.png",
-    "B2/Assets/Granite Rocks/Meshes/rock05/Textures/rock05_Normal.png",
-    "B2/Assets/Granite Rocks/Meshes/rock05/Textures/rock05_Albedo.png",
-    "B2/Assets/Granite Rocks/Meshes/rock04/Textures/rock04_occlusion.png",
-    "B2/Assets/Granite Rocks/Meshes/rock04/Textures/rock04_Normal.png",
-    "B2/Assets/Granite Rocks/Meshes/rock04/Textures/rock04_Albedo.png",
-    "B2/Assets/Granite Rocks/Meshes/rock03/Textures/rock03_occlusion.png",
-    "B2/Assets/Granite Rocks/Meshes/rock03/Textures/rock03_Normal.png",
-    "B2/Assets/Granite Rocks/Meshes/rock03/Textures/rock03_Albedo.png",
-    "B2/Assets/Granite Rocks/Meshes/rock02/Textures/rock02_occlusion.png",
     "Testing and Feedback.md",
-    "Devlog.md",
-    "Powerpoint Reflection.md",
-    "B2.md",
-    "B2 1.md",
-    "GDD.md",
-    "Evaluation.md",
-    "Ideation.md"
+    "B2 1.md"
   ]
 }

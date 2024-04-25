@@ -61,8 +61,7 @@ public class Round : MonoBehaviour
     {
         Vector3 pos = startPosition + (muzzleVelocity * time * startDir);
         Vector3 gravityVector = Vector3.down *(gravity * time * time);
-        return pos + gravityVector; 
-
+        return pos + gravityVector;
     }
     bool RayBetweenPoints(Vector3 startPoint, Vector3 endPoint, out RaycastHit hit)
     {
