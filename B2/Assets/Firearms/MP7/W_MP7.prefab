@@ -806,6 +806,7 @@ MonoBehaviour:
   fullAutoHeld: 0
   curFireMode: 0
   isReloading: 0
+  isSuppressed: 1
   roundsInMag: 40
   canShoot: 1
   reloadTime: 2

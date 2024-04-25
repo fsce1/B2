@@ -13,6 +13,7 @@ public class FirearmInfo : ScriptableObject
     public int magazineSize;
     public Vector3 restPos;
     public Vector3 aimPos;
+    
 
     [Header("Recoil")]
     public float sustainedRecoilAdd;

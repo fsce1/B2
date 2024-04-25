@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InfilPointButton : MonoBehaviour
 {
-    private void OnMouseDown()
+    public Image image;
+    public Transform infilPoint;
+    public void ChangeInfilPoint()
     {
-        GameManager.GM.curInfilPoint = transform;
+        GameManager.GM.curInfilPoint = infilPoint;
         
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        if (GameManager.GM.curInfilPoint == transform)
-        {
-            transform.localScale = Vector3.one * 30f;
-        }
-        else transform.localScale = Vector3.one * 15;
+        if(infilPoint == GameManager.GM.curInfilPoint)image.color = Color.green;
+        else image.color = Color.white;
     }
 }

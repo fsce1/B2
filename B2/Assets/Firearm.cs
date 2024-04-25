@@ -36,8 +36,9 @@ public class Firearm : MonoBehaviour
     [Header("State")]
     public FireMode curFireMode = FireMode.singleFire;
     int curMode = 0;
-
+    
     public bool isReloading;
+    public bool isSuppressed;
     public int roundsInMag;
     public bool canShoot;
     public float reloadTime;
@@ -156,6 +157,8 @@ public class Firearm : MonoBehaviour
         roundsInMag -= 1;
         sustainedRecoilAdd += info.sustainedRecoilAdd;
 
+        if (isSuppressed) GameManager.GM.player.swayController.audioSource.volume = 0.2f;
+        else GameManager.GM.player.swayController.audioSource.volume = 0.6f;
         GameManager.GM.player.swayController.audioSource.PlayOneShot(shotSounds[UnityEngine.Random.Range(0, shotSounds.Count)]);
 
         if (muzzleFlash != null)

@@ -12,19 +12,19 @@ public class GameManager : MonoBehaviour
 
     [Header("Player")]
     public GameObject playerPrefab;
+    public GameObject curFirearm;
+    public TMP_Text curFirearmText;
     public Player player;
-    public GameObject firearmPrefab;
     public List<Camera> playCameras;
 
     [Header("InfilScreen")]
     public bool skipInfilScreen;
-    public int defaultInfilPoint;
-    public Transform curInfilPoint;
-    public TMP_Text curFirearmText;
-    public List<Transform> infilLocations;
-    public List<GameObject> infilIcons;
+    public Transform infilCanvas;
     public Camera infilCamera;
+    public List<Transform> infilLocations;
     public GameObject infilPointIcon;
+    public List<GameObject> infilIcons;
+    public Transform curInfilPoint;
 
     [Header("Enemies")]
     public GameObject enemyPrefab;
@@ -43,27 +43,35 @@ public class GameManager : MonoBehaviour
     }
     public void ChangeCurWeapon(GameObject _firearm)
     {
-        firearmPrefab = _firearm;
-        curFirearmText.text = firearmPrefab.name;
+        curFirearm = _firearm;
+        curFirearmText.text = curFirearm.name;
+    }
+    public void ChangeCurInfilPoint()
+    {
+
     }
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
         foreach (Transform t in infilLocations)
         {
-            infilIcons.Add(Instantiate(infilPointIcon, t));
+            GameObject g = Instantiate(infilPointIcon, infilCanvas, false);
+            infilIcons.Add(g);
+            g.GetComponent<RectTransform>().localPosition = new(t.position.x, t.position.z, 0);
+            g.GetComponent<InfilPointButton>().infilPoint = t;
+            //g.GetComponent<RectTransform>().position = new(t.position.x, t.position.z, 0);
+            //infilCamera.WorldToScreenPoint();
+
         }
-        curInfilPoint = infilLocations[defaultInfilPoint];
+        curInfilPoint = infilLocations[0];
 
         if (skipInfilScreen)
         {
-
             Infiltrate();
         }
         else
         {
             infilCamera.gameObject.SetActive(true);
-
         }
 
     }
@@ -72,14 +80,11 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         foreach (Transform t in infilLocations) Destroy(t.gameObject);
 
-        GameObject p = Instantiate(playerPrefab, curInfilPoint.position, Quaternion.identity);
-        //p.transform.parent = null;
-
-        player = p.GetComponent<Player>();
+        player = Instantiate(playerPrefab, curInfilPoint.position, curInfilPoint.localRotation).GetComponent<Player>();
         playCameras = player.GetComponentsInChildren<Camera>().ToList<Camera>();
-        GameObject g = Instantiate(firearmPrefab, player.swayController.transform);
-        player.firearm = g.GetComponent<Firearm>();
-        player.transform.position = curInfilPoint.position;
+        player.firearm = Instantiate(curFirearm, player.swayController.transform).GetComponent<Firearm>(); 
+        //player.transform.position = curInfilPoint.position;
+        player.transform.rotation = curInfilPoint.rotation;
         player.Initialize();
         player.gameObject.SetActive(true);
 
@@ -99,7 +104,6 @@ public class GameManager : MonoBehaviour
         {
             e.Initialize();
             e.transform.parent = null;
-            
         }
     }
 

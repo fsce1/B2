@@ -138,7 +138,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 32f250bb2fce4cd4e938700378f15aaf, type: 3}
   - {fileID: 8300000, guid: 6f34759a84d59134d91e5f7c67d27ad0, type: 3}
   - {fileID: 8300000, guid: 4ec668622d4113241b46d4ea4e91edf3, type: 3}
-  reactionTime: {x: 1, y: 4}
+  reactionTime: {x: 0.5, y: 3}
   surprise: 0
   curReactionTime: 0
   viewCone: 80
