@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public Transform eyePos;
     public Transform firearmPos;
     public bool isMoving;
+	public Vector3 tempTgt;
     public Vector3 finalTgt;
 
     [Header("Gun")]
@@ -66,7 +67,7 @@ public class Enemy : MonoBehaviour
         Vector3 playerEyePos = GameManager.GM.player.transform.position;
         playerEyePos.y += 1.75f;
         Vector3 playerDir = playerEyePos - eyePos.position;
-        canSeePlayer = false;
+
         if (Physics.Raycast(eyePos.position, playerDir, out RaycastHit hit, Mathf.Infinity) && hit.collider.CompareTag("Player")) // less chance to spot if far away?
         {
             if (Vector3.Angle(eyePos.forward, playerDir) < viewCone)
@@ -85,6 +86,7 @@ public class Enemy : MonoBehaviour
                 //}
             }
         }
+		else         canSeePlayer = false;
 
         if (canSeePlayer)
         {
@@ -184,16 +186,16 @@ public class Enemy : MonoBehaviour
         Vector3 playerDir = playerEyePos - eyePos.position;
 
         surprise = Vector3.Angle(transform.forward, playerDir);
-        Debug.Log("Whiz");
     }
     void RunTowards()
     {
         Vector3 dir = (GameManager.GM.player.transform.position - transform.position).normalized;
-
+		FindCover(dir);
     }
     void RunAway()
     {
         Vector3 dir = -(GameManager.GM.player.transform.position - transform.position).normalized;
+		FindCover(dir);
     }
     void FindCover(Vector3 direction)
     {
@@ -229,11 +231,14 @@ public class Enemy : MonoBehaviour
                     }
                 }
             }
-
         }
-        finalTgt = bestCover;
-        isMoving = true;
+        tempTgt = bestCover;
+		Invoke(nameof(StartMovement), Random.Range(10,20));
     }
+	void StartMovement(Vector3 tgt){
+		finalTgt = tempTgt;
+		isMoving = true;
+	}
     public void Hit(int damage, Vector3 hitPoint)
     {
         health -= damage;

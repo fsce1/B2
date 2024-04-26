@@ -14,9 +14,17 @@
               "type": "markdown",
               "state": {
                 "file": "B2.md",
-                "mode": "source",
-                "source": false
+                "mode": "preview",
+                "source": true
               }
+            }
+          },
+          {
+            "id": "5565d3e49fc7e65d",
+            "type": "leaf",
+            "state": {
+              "type": "full-calendar-view",
+              "state": {}
             }
           }
         ]
@@ -144,42 +152,56 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false
+      "obsidian-excalidraw-plugin:Create new drawing": false,
+      "obsidian-full-calendar:Open Full Calendar": false
     }
   },
   "active": "34b356b9e9ccb882",
   "lastOpenFiles": [
+    "Testing and Feedback.md",
+    "B2.md",
+    "Evaluation.md",
+    "Powerpoint Reflection.md",
+    "Research.md",
+    "Project Management.md",
+    "Pasted image 20240426155651.png",
+    "Pasted image 20240426155634.png",
+    "Pasted image 20240426155551.png",
+    "B2/2024-04-09 AI + Bugfixing.md",
+    "B2/2024-04-02 AI + Map Creation.md",
+    "B2/2024-04-02 AI work + Map Creation.md",
+    "B2/2024-03-26 UI + Map Creation.md",
+    "B2/2024-03-19 Begin Map Creation + Infiltration System.md",
+    "B2/2024-03-12 Bullet Physics + New Weapons.md",
+    "B2/2024-03-05 Weapon Recoil + Reload.md",
+    "B2/2024-02-27 Weapon Sway + ADS.md",
+    "B2/2024-02-20 Character + Camera Movement .md",
+    "B2/2024-02-20 Character + Camera Movement.md",
+    "B2/2024-02-21 w.md",
+    "Untitled Kanban.md",
+    "Pasted image 20240426152538.png",
+    "Pasted image 20240426152417.png",
+    "SilentStrikeMoodboard.png",
+    "GDD.md",
+    "Ideation.md",
+    "Pasted image 20240426150231.png",
+    "Pasted image 20240426150214.png",
+    "Analysis of Brief.md",
     "Devlog.md",
     "Pasted image 20240425122221.png",
     "Pasted image 20240425121405.png",
-    "Evaluation.md",
-    "Ideation.md",
-    "GDD.md",
     "Excalidraw/Drawing 2024-04-09 13.28.28.excalidraw.md",
     "Excalidraw/Drawing 2024-04-09 15.06.55.excalidraw.md",
-    "Pasted Image 20240409135043_740.png",
-    "Pasted Image 20240409135344_752.png",
-    "Pasted Image 20240409140300_360.png",
-    "Pasted Image 20240409140420_735.png",
-    "Pasted Image 20240409140510_736.png",
-    "Pasted Image 20240409141332_191.png",
-    "Pasted Image 20240409145234_711.png",
-    "Pasted Image 20240409150756_704.png",
-    "B2.md",
     "2024-04-11 10-41-36.mkv",
     "2024-02-26 15-31-45.mkv",
     "2024-03-07 12-01-50.mkv",
     "B2/Assets/y4dm4rt5.z5m~",
     "B2/Assets/z0agy44u.xgk~",
     "~$Jamie Serlin B2 Pitch Presentation.pptx",
-    "Analysis of Brief.md",
-    "Powerpoint Reflection.md",
-    "Project Management.md",
     "B2/Temp/ADB-Refreshf52e6255b1f4ce641a66bc26846ed610",
     "B2/Temp/UnityTempFile-49c6409feaf82134cbd9489fcb75684d",
     "B2/Temp/UnityTempFile-88ba5672557f13c47bc9096416a7aa1d",
     "B2/Library/Artifacts/46/46d4915b67a5a4f8fcecd1747db64aa1",
-    "Testing and Feedback.md",
     "B2 1.md"
   ]
 }

@@ -42,7 +42,6 @@ The player's health system is similar, in the way that you can heal by putting y
 # HUD and Menus
 I want the UI to be minimal and clean, only showing information when it is necessary. For example, the ammo indicator will only show while you are shooting or reloading the gun. There will be a crosshair on screen, using a raycast from the barrel of the gun to determine its end position. This means that when weapon sway from walking, breathing, moving etc. is added, it also affects the position of the crosshair, so it is always accurate to where the bullet will go. This is the way I will add moving inaccuracy.
 I have also make a mockup of the Infiltration Screen and the UI for commanding friendly NPCs.
-
 # Audio
 I intend to add audio to my game, again making it as realistic as possible.
 I also want AI enemies to be able to hear you, and react even if you are on the other side of a wall.
