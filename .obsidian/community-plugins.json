@@ -1,5 +1,7 @@
 [
   "obsidian-kanban",
   "obsidian-excalidraw-plugin",
-  "obsidian-full-calendar"
+  "obsidian-full-calendar",
+  "obsidian-pandoc",
+  "better-export-pdf"
 ]
