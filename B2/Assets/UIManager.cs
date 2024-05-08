@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public Sprite fullAuto;
     public TMP_Text zoomText;
     public TMP_Text health;
+    public TMP_Text stamina;
     void Start()
     {
 
@@ -53,12 +54,13 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.GM.player.firearm.hasScope && GameManager.GM.player.swayController.isAiming)
         {
-            zoomText.text = (Mathf.Round(GameManager.GM.player.firearm.curZoom * 100f) / 100).ToString() + "x";
+            zoomText.text = (Mathf.Round(GameManager.GM.player.firearm.tgtZoom * 100f) / 100).ToString() + "x";
         }
         else { zoomText.text = ""; }
 
 
         health.text = GameManager.GM.player.health.ToString();
+        stamina.text = GameManager.GM.player.stamina.ToString();
 
 
         switch (GameManager.GM.player.firearm.curFireMode)

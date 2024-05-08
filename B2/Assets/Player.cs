@@ -10,14 +10,17 @@ public class Player : MonoBehaviour
 {
     public bool isDead;
     public float regenHealthSpeed;
+    public float regenStaminaSpeed;
     DefaultInput defaultInput;
     public Vector2 inputMovement;
     public Vector2 inputView;
     public Vector2 accumulatedInputView;
     public float inputLean;
     public float inputJump;
+    public bool inputSprint;
 
     public float health = 100;
+    public float stamina = 100;
 
 
     [Header("References")]
@@ -36,10 +39,12 @@ public class Player : MonoBehaviour
 
     [Header("Movement")]
     public bool isWalking;
+    public bool isSprinting;
     public Vector3 velocity;
     public float decel;
     public float accel;
     public float maxSpeed;
+    public float sprintSpeed;
     public float runSpeed;
     public float walkSpeed;
 
@@ -64,6 +69,20 @@ public class Player : MonoBehaviour
     {
         health++;
         if (health > 100) health = 100;
+
+
+    }
+    void RegenStamina()
+    {
+        if (isSprinting)
+        {
+            stamina -= 2;
+        }
+        else
+        {
+            stamina += 1;
+        }
+        if (stamina > 100) stamina = 100;
     }
     public void Initialize()
     {
@@ -82,6 +101,7 @@ public class Player : MonoBehaviour
         swayController.Initialize();
 
         InvokeRepeating(nameof(RegenHealth), 0, regenHealthSpeed);
+        InvokeRepeating(nameof(RegenStamina), 0, regenStaminaSpeed);
     }
     private void Update()
     {
@@ -90,18 +110,32 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         if (isDead) return;
-        
+
         //DoGroundCheck();
 
         CalculateLean();
 
-
-
         if (defaultInput.Character.Walk.ReadValue<float>() > 0.5f) isWalking = true;
         else isWalking = false;
+        if (defaultInput.Character.Sprint.ReadValue<float>() > 0.5f) inputSprint = !inputSprint;
 
+        maxSpeed = runSpeed;
         if (isWalking || swayController.isAiming) maxSpeed = walkSpeed;
-        else maxSpeed = runSpeed;
+        if (inputSprint && stamina > 0 && Input.GetKey(KeyCode.W))
+        {
+            isSprinting = true;
+            swayController.isAiming = false;
+            isWalking = false;
+
+            maxSpeed = sprintSpeed;
+        }
+        else
+        {
+            isSprinting = false;
+            inputSprint = false;
+        }
+
+
 
         if (!characterController.isGrounded)
         {
@@ -115,8 +149,8 @@ public class Player : MonoBehaviour
         }
 
 
-        if (inputJump >= 0.1f && characterController.isGrounded && !hasJumped) 
-        { 
+        if (inputJump >= 0.1f && characterController.isGrounded && !hasJumped)
+        {
             velocity.y += jumpForce / 4;
             hasJumped = true;
         }
@@ -125,8 +159,8 @@ public class Player : MonoBehaviour
             velocity.y -= gravity / 10;
             hasJumped = false;
         }
-        characterController.Move(velocity);
 
+        characterController.Move(velocity);
     }
     //void DoGroundCheck()
     //{

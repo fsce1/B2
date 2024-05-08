@@ -15094,7 +15094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &760349313
 AudioListener:
   m_ObjectHideFlags: 0
@@ -31943,7 +31943,7 @@ MonoBehaviour:
   - {fileID: 1871211377}
   - {fileID: 999419101}
   - {fileID: 274816275}
-  enemyCountBounds: {x: 30, y: 35}
+  enemyCountBounds: {x: 25, y: 30}
   enemies: []
 --- !u!82 &1544380668
 AudioSource:

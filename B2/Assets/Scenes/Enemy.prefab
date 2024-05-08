@@ -100,7 +100,7 @@ Transform:
   - {fileID: 7277212114129978371}
   - {fileID: 6173501425272692828}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2846050450381559054
 MonoBehaviour:
@@ -123,6 +123,7 @@ MonoBehaviour:
   eyePos: {fileID: 5602961579718173373}
   firearmPos: {fileID: 5332755622810733919}
   isMoving: 0
+  tempTgt: {x: 0, y: 0, z: 0}
   finalTgt: {x: 0, y: 0, z: 0}
   roundsLeftInBurst: 6
   cooldown: {x: 1, y: 3}
@@ -318,7 +319,7 @@ Transform:
   m_GameObject: {fileID: 5801177933615891603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.118, z: 0.023}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1785728, y: 1.1785728, z: 1.1785728}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4948095537994710069}

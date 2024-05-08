@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: DeagleInfo
   m_EditorClassIdentifier: 
   firearmName: 
+  firearmPrefab: {fileID: 0}
   roundsPerMinute: 1100
   magazineSize: 7
-  bulletDamage: 0
   restPos: {x: 0.117, y: -0.146, z: 0.37}
   aimPos: {x: -0.0142, y: -0.1008, z: 0.2379}
+  sprintPos: {x: 0.15, y: -0.14663395, z: 0.37}
+  sprintRot: {x: -43.75, y: 6.3200035, z: 0.008003641}
   sustainedRecoilAdd: 1
   sustainedAffectsVertical: 0
   verticalPerShot: {x: 10, y: 20}

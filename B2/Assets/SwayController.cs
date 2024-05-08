@@ -97,6 +97,7 @@ public class SwayController : MonoBehaviour
     public Vector2 stepSideAmount;
     public float stepRotScaling;
     public float walkMoveSmoothing;
+    public float walkCamMoveSmoothing;
     public float camWalkMoveAmount;
     public List<AudioClip> stepSounds;
 
@@ -109,6 +110,19 @@ public class SwayController : MonoBehaviour
     Vector3 camWalkMoveVelocity;
     Vector3 newCamWalkMove;
     Vector3 newCamWalkMoveVelocity;
+
+    [Header("Sprinting")]
+
+    public float sprintMoveSmoothing;
+
+    Vector3 sprintMove;
+    Vector3 sprintMoveVelocity;
+    Vector3 newSprintMove;
+    Vector3 newSprintMoveVelocity;
+    Vector3 sprintRotation;
+    Vector3 sprintRotationVelocity;
+    Vector3 newSprintRotation;
+    Vector3 newSprintRotationVelocity;
 
     [Header("Zeroing")]
     public int curZero = 0;
@@ -190,7 +204,16 @@ public class SwayController : MonoBehaviour
         }
 
         wpnPos = restPos;
+
         wpnRot = restRot;
+
+        //if (player.isSprinting)
+        //{
+        //    wpnPos.x = 0;
+        //    wpnPos.y = -0.25f;
+        //    wpnRot.y = -45;
+        //}
+        CalculateSprint();
         CalculateWeaponPos();
         CalculateWeaponRot();
         CalculateAim();
@@ -198,7 +221,8 @@ public class SwayController : MonoBehaviour
         transform.SetLocalPositionAndRotation(wpnPos, Quaternion.Euler(wpnRot));
 
         walkLifetimeScaler = 1;
-        if (player.isWalking) walkLifetimeScaler = 1.5f;
+        if (player.isWalking) walkLifetimeScaler = 1.25f;
+        if (player.isSprinting) walkLifetimeScaler = 0.6f;
 
         if (curWalkLifetime < walkLifetime * walkLifetimeScaler)
         {
@@ -208,8 +232,35 @@ public class SwayController : MonoBehaviour
         {
             curWalkLifetime = 0;
             rightFoot = !rightFoot;
-            audioSource.PlayOneShot(stepSounds[Random.Range(0,stepSounds.Count)]);
+
+            audioSource.PlayOneShot(stepSounds[Random.Range(0, stepSounds.Count)]);
         }
+    }
+    void CalculateSprint()
+    {
+        Vector3 PosTgt;
+        Vector3 RotTgt;
+
+        if (player.isSprinting)
+        {
+            PosTgt = player.firearm.info.sprintPos - restPos;
+            RotTgt = player.firearm.info.sprintRot - restRot;
+        }
+        else
+        {
+            PosTgt = sprintMove = Vector3.zero;
+            RotTgt = sprintRotation = Vector3.zero;
+        }
+
+        sprintMove = Vector3.SmoothDamp(PosTgt, Vector3.zero, ref sprintMoveVelocity, sprintMoveSmoothing);
+        newSprintMove = Vector3.SmoothDamp(newSprintMove, sprintMove, ref newSprintMoveVelocity, sprintMoveSmoothing);
+
+        sprintRotation = Vector3.SmoothDamp(RotTgt, Vector3.zero, ref sprintRotationVelocity, sprintMoveSmoothing);
+        newSprintRotation = Vector3.SmoothDamp(newSprintRotation, sprintRotation, ref newSprintRotationVelocity, sprintMoveSmoothing);
+
+        wpnPos += newSprintMove;
+        wpnRot += newSprintRotation;
+
     }
     void CalculateWeaponRot()
     {
@@ -261,7 +312,7 @@ public class SwayController : MonoBehaviour
         newBreathMove = Vector3.SmoothDamp(newBreathMove, breathMove, ref newBreathMoveVelocity, breathSmoothing);
 
         wpnPos += (newLeanMove * _leanScaler) + (newMovementMove * _moveScaler) + (newBreathMove * _breathScaler);
-        wpnRot += new Vector3(newBreathMove.y, newBreathMove.x, 0) * breathRotScaling * _breathScaler;
+        wpnRot += _breathScaler * breathRotScaling * new Vector3(newBreathMove.y, newBreathMove.x, 0);
     }
     void CalculateAim()
     {
@@ -282,7 +333,8 @@ public class SwayController : MonoBehaviour
         if (isAiming) _walkScaler = walkScaler;
 
         Vector3 target = Vector3.zero;
-        Vector3 camTarget = player.camHolder.position;
+        Vector3 camTarget = new(0, player.transform.position.y +1.75f, 0);
+
         camTarget.y += camWalkMoveAmount;
 
         float lateralVelocity = new Vector2(GameManager.GM.player.velocity.x, GameManager.GM.player.velocity.z).magnitude;
@@ -306,16 +358,19 @@ public class SwayController : MonoBehaviour
         }
 
 
-        //Debug.Log(camTarget);
-        //camWalkMove = Vector3.SmoothDamp(camWalkMove, camTarget, ref camWalkMoveVelocity, walkMoveSmoothing);
-        //newCamWalkMove = Vector3.SmoothDamp(newCamWalkMove, camWalkMove, ref newCamWalkMoveVelocity, walkMoveSmoothing);
+        Debug.Log(camTarget);
+        camWalkMove = Vector3.SmoothDamp(camWalkMove, camTarget, ref camWalkMoveVelocity, walkCamMoveSmoothing);
+        newCamWalkMove = Vector3.SmoothDamp(newCamWalkMove, camWalkMove, ref newCamWalkMoveVelocity, walkCamMoveSmoothing);
 
-        //player.camHolder.position = newCamWalkMove;
+
 
         walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
         newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);
-        wpnPos += newWalkMove * _walkScaler;
-        wpnRot += new Vector3(newWalkMove.y, newWalkMove.x, -newWalkMove.x * 1.5f) * stepRotScaling;
+
+        player.camHolder.position = new(player.camHolder.position.x, newCamWalkMove.y, player.camHolder.position.z);
+
+        wpnPos += newWalkMove * _walkScaler * lateralVelocity * 25;
+        wpnRot += new Vector3(newWalkMove.y, newWalkMove.x, -newWalkMove.x * 2f) * stepRotScaling * lateralVelocity * 25;
     }
 
 

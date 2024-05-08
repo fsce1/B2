@@ -51,7 +51,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""id"": ""bbde9f16-8bf2-4e5d-b780-49a25fbefef4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": ""Tap(duration=0.1)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -78,7 +78,16 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""id"": ""4d097877-393f-4501-93f2-f97c6ae2f783"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.2)"",
+                    ""interactions"": ""Hold(duration=0.4)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a97de12-7850-480b-b331-8a3915489c7f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap(duration=0.01)"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -196,7 +205,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b08c347c-e9b0-48e6-bc6e-5743e94db704"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -214,6 +223,17 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""action"": ""ArmaZoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1dcb9bd8-530c-4853-ab78-9f445a30fc95"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -227,7 +247,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""id"": ""124af0ac-4681-4218-95d4-f443c0884f00"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": ""Tap(duration=0.15)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -378,6 +398,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         m_Character_Lean = m_Character.FindAction("Lean", throwIfNotFound: true);
         m_Character_Walk = m_Character.FindAction("Walk", throwIfNotFound: true);
         m_Character_ArmaZoom = m_Character.FindAction("ArmaZoom", throwIfNotFound: true);
+        m_Character_Sprint = m_Character.FindAction("Sprint", throwIfNotFound: true);
         // Weapon
         m_Weapon = asset.FindActionMap("Weapon", throwIfNotFound: true);
         m_Weapon_AimPressed = m_Weapon.FindAction("AimPressed", throwIfNotFound: true);
@@ -453,6 +474,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Lean;
     private readonly InputAction m_Character_Walk;
     private readonly InputAction m_Character_ArmaZoom;
+    private readonly InputAction m_Character_Sprint;
     public struct CharacterActions
     {
         private @DefaultInput m_Wrapper;
@@ -463,6 +485,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         public InputAction @Lean => m_Wrapper.m_Character_Lean;
         public InputAction @Walk => m_Wrapper.m_Character_Walk;
         public InputAction @ArmaZoom => m_Wrapper.m_Character_ArmaZoom;
+        public InputAction @Sprint => m_Wrapper.m_Character_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -490,6 +513,9 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @ArmaZoom.started += instance.OnArmaZoom;
             @ArmaZoom.performed += instance.OnArmaZoom;
             @ArmaZoom.canceled += instance.OnArmaZoom;
+            @Sprint.started += instance.OnSprint;
+            @Sprint.performed += instance.OnSprint;
+            @Sprint.canceled += instance.OnSprint;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -512,6 +538,9 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @ArmaZoom.started -= instance.OnArmaZoom;
             @ArmaZoom.performed -= instance.OnArmaZoom;
             @ArmaZoom.canceled -= instance.OnArmaZoom;
+            @Sprint.started -= instance.OnSprint;
+            @Sprint.performed -= instance.OnSprint;
+            @Sprint.canceled -= instance.OnSprint;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -623,6 +652,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         void OnLean(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
         void OnArmaZoom(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
     public interface IWeaponActions
     {

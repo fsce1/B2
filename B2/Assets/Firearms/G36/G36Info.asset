@@ -18,6 +18,8 @@ MonoBehaviour:
   magazineSize: 30
   restPos: {x: 0.1165, y: -0.2394, z: 0.235}
   aimPos: {x: -0.0022, y: -0.255, z: 0.1568}
+  sprintPos: {x: 0.041, y: -0.289, z: 0.235}
+  sprintRot: {x: 16.065937, y: -31.3087, z: 3.2896643}
   sustainedRecoilAdd: 0.01
   sustainedAffectsVertical: 0
   verticalPerShot: {x: 2, y: 3}

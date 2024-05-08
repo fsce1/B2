@@ -36,7 +36,7 @@ public class Firearm : MonoBehaviour
     [Header("State")]
     public FireMode curFireMode = FireMode.singleFire;
     int curMode = 0;
-    
+
     public bool isReloading;
     public bool isSuppressed;
     public int roundsInMag;
@@ -53,7 +53,10 @@ public class Firearm : MonoBehaviour
     public bool hasScope;
     public bool firstFocalPlane;
     public float baseReticleScale;
+    public float tgtZoom;
     public float curZoom;
+    public float zoomSmoothing;
+    float curZoomVel;
     public Camera scopeCamera;
     public MeshRenderer scopeMesh;
     public Vector2 zoomBounds;
@@ -92,17 +95,20 @@ public class Firearm : MonoBehaviour
     {
         if (!hasScope) return;
 
-        curZoom += input * scrollSpeed;
-        curZoom = Mathf.Clamp(curZoom, zoomBounds.x, zoomBounds.y);
+        tgtZoom += input * scrollSpeed;
+        tgtZoom = Mathf.Clamp(tgtZoom, zoomBounds.x, zoomBounds.y);
 
-        scopeCamera.fieldOfView = baseFOV / curZoom;
-        if (firstFocalPlane)
-        {
-            scopeMesh.material.SetFloat("_ReticleScale", baseReticleScale * curZoom);
-        }
     }
     private void FixedUpdate()
     {
+        if (hasScope)
+        {
+            curZoom = Mathf.SmoothDamp(curZoom, tgtZoom, ref curZoomVel, zoomSmoothing);
+            scopeCamera.fieldOfView = baseFOV / curZoom;
+            if (firstFocalPlane) scopeMesh.material.SetFloat("_ReticleScale", baseReticleScale * curZoom);
+        }
+
+
         if (GameManager.GM.player.isDead) return;
         if (canShoot && fullAutoHeld && curFireMode == FireMode.fullAuto && !isReloading && roundsInMag > 0)
         {
@@ -143,8 +149,9 @@ public class Firearm : MonoBehaviour
 
     void Shoot()
     {
+        if (GameManager.GM.player.isSprinting) return;
         Vector3 shootDir = transform.rotation.eulerAngles;
-        shootDir += UnityEngine.Random.Range(-0.075f, 0.075f) * transform.right + UnityEngine.Random.Range(-0.075f, 0.075f) * transform.up;
+        shootDir += UnityEngine.Random.Range(-0.05f, 0.05f) * transform.right + UnityEngine.Random.Range(-0.075f, 0.075f) * transform.up;
 
 
         GameObject roundObj = Instantiate(roundPrefab, barrelPoint.position,
@@ -157,7 +164,7 @@ public class Firearm : MonoBehaviour
         roundsInMag -= 1;
         sustainedRecoilAdd += info.sustainedRecoilAdd;
 
-        if (isSuppressed) GameManager.GM.player.swayController.audioSource.volume = 0.2f;
+        if (isSuppressed) GameManager.GM.player.swayController.audioSource.volume = 0.1f;
         else GameManager.GM.player.swayController.audioSource.volume = 0.6f;
         GameManager.GM.player.swayController.audioSource.PlayOneShot(shotSounds[UnityEngine.Random.Range(0, shotSounds.Count)]);
 
@@ -222,6 +229,7 @@ public class Firearm : MonoBehaviour
 
         isReloading = true;
         canShoot = false;
+        GameManager.GM.player.swayController.isAiming = false;
         Invoke(nameof(EndReload), reloadTime);
     }
     void EndReload()
