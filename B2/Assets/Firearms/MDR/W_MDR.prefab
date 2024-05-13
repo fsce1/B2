@@ -156,7 +156,7 @@ MonoBehaviour:
   scopeCamera: {fileID: 6564872919915734339}
   scopeMesh: {fileID: 397187531418211010}
   zoomBounds: {x: 1, y: 8}
-  scrollSpeed: 0.1
+  scrollSpeed: 0.25
   shotSounds:
   - {fileID: 8300000, guid: 4a03cc03e89d3fa46be9876b47c3df10, type: 3}
   - {fileID: 8300000, guid: 448d8ddd3d5f7c544bcf8acede8b3bf2, type: 3}

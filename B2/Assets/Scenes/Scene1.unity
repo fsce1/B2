@@ -31943,7 +31943,7 @@ MonoBehaviour:
   - {fileID: 1871211377}
   - {fileID: 999419101}
   - {fileID: 274816275}
-  enemyCountBounds: {x: 25, y: 30}
+  enemyCountBounds: {x: 1, y: 1}
   enemies: []
 --- !u!82 &1544380668
 AudioSource:

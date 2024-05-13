@@ -7,3 +7,10 @@ My research into the Impact of AI was extremely useful in creating my own AI, as
 Additional movement options such as sprinting, crouching and going prone would be good to add as well, as it would improve the stealth mechanics and add the ability to snipe people with less weapon sway.
 I think the game loop was well thought out and I didn't have to modify the game mode at all.
 In my GDD, I explained that there would be different objectives around the map, and I think if I had more time then I would definitely add some simple objectives such as needing to pick up a laptop of intelligence, rescue a prisoner or clear a specific area of enemies. 
+
+# Resub
+
+All Merits
+- Research into other games (tarkov?)
+- Is difficulty balanced?
+- 

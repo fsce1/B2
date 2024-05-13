@@ -25,11 +25,11 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "bbde9f16-8bf2-4e5d-b780-49a25fbefef4",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "Tap(duration=0.1)",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -66,6 +66,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Tap(duration=0.01)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Freelook",
+                    "type": "Button",
+                    "id": "b293b59e-1eb7-4881-9971-cb4b68b56a58",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -210,6 +219,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "550471cc-ae45-45b4-8789-ad9fe274e391",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Freelook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

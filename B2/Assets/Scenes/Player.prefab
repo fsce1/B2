@@ -138,7 +138,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2762544598381177744}
-  m_Father: {fileID: 6805820415575642351}
+  m_Father: {fileID: 3211855277726273}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &3799305418541016939
@@ -222,7 +222,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6189515079083475655}
   m_Father: {fileID: 6805820415575642351}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -338,7 +339,6 @@ Transform:
   m_Children:
   - {fileID: 8471504354965980052}
   - {fileID: 3211855277726273}
-  - {fileID: 6189515079083475655}
   m_Father: {fileID: 2438820277550197675}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -908,7 +908,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5216774878898889581}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0092, y: -0.1656, z: 0.0864}
+  m_LocalPosition: {x: -0.0092, y: -0.16560006, z: 0.0864}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -937,18 +937,18 @@ MonoBehaviour:
   armaAimMult: 1
   armaAimAmount: 0.5
   movementRotScaler: 0.25
-  swayRotScaler: 0.5
-  leanScaler: 0.1
+  swayRotScaler: 0.2
+  leanScaler: 0
   moveScaler: 0.25
   breathScaler: 0.25
-  walkScaler: 0.1
+  walkScaler: 0.25
   wpnPos: {x: 0, y: 0, z: 0}
   wpnRot: {x: 0, y: 0, z: 0}
   swayAmount: 0.01
   swaySmoothing: 0.05
   swayResetSmoothing: 0.2
   movementSwayAmount: 5
-  movementSwaySmoothing: 0.1
+  movementSwaySmoothing: 0.35
   leanMoveAmount: 0.05
   leanMoveSmoothing: 0.2
   movementMoveAmount: 0.025
@@ -965,17 +965,17 @@ MonoBehaviour:
   rightFoot: 0
   walkLifetimeScaler: 0
   stepDownAmount: {x: 0.1, y: 0.3}
-  stepSideAmount: {x: 0.1, y: 0.2}
-  stepRotScaling: 50
+  stepSideAmount: {x: 0.05, y: 0.2}
+  stepRotScaling: 75
   walkMoveSmoothing: 0.2
-  walkCamMoveSmoothing: 0.1
-  camWalkMoveAmount: 0.25
+  walkCamMoveSmoothing: 0.08
+  camWalkMoveAmount: 0.1
   stepSounds:
   - {fileID: 8300000, guid: d075dc87c5731f84b9901c46989a8832, type: 3}
   - {fileID: 8300000, guid: 07d6c79ac5a1e3a4094f31a17377867e, type: 3}
   - {fileID: 8300000, guid: 0b5df60ae886e094e98121686439b7da, type: 3}
   - {fileID: 8300000, guid: 739a2cf7ef547fc409eb9346acf3fe14, type: 3}
-  sprintMoveSmoothing: 0.1
+  sprintMoveSmoothing: 0.25
   curZero: 0
   curZeroIndex: 0
   zeroes: 
@@ -1684,6 +1684,7 @@ MonoBehaviour:
   inputLean: 0
   inputJump: 0
   inputSprint: 0
+  inputFreelook: 0
   health: 100
   stamina: 100
   characterController: {fileID: 7335800060140005901}
@@ -1692,6 +1693,7 @@ MonoBehaviour:
   swayController: {fileID: 7769725216217436808}
   firearm: {fileID: 0}
   cameraAngles: {x: 0, y: 0}
+  freelookAngles: {x: 0, y: 0}
   sensitivity: 2
   baseSensitivity: 2
   FOV: 60
@@ -1703,8 +1705,8 @@ MonoBehaviour:
   accel: 4
   maxSpeed: 0
   sprintSpeed: 30
-  runSpeed: 15
-  walkSpeed: 8.5
+  runSpeed: 17.5
+  walkSpeed: 7.5
   leanHolder: {fileID: 2438820277550197675}
   leanAngle: 10
   leanSpeed: 35

@@ -25,8 +25,10 @@ public class Enemy : MonoBehaviour
     public Vector2 cooldown;
     public int magSize = 30;
     public int roundsInMag = 30;
+    public float reloadTime = 3;
     public bool canShoot;
     public bool onCooldown;
+    public bool isReloading;
     public float curRecoilInaccuracy;
     public GameObject bulletPrefab;
 
@@ -48,6 +50,7 @@ public class Enemy : MonoBehaviour
     public Vector3 lastPositionPlayerSeen;
     public Vector3 lastPositionPlayerHeard;
     public Vector2 timeToMove;
+    bool whiz;
 
     public void Initialize()
     {
@@ -73,7 +76,6 @@ public class Enemy : MonoBehaviour
             if (Vector3.Angle(eyePos.forward, playerDir) < viewCone)
             {
                 if (!canSeePlayer) SpotPlayer();
-                canSeePlayer = true;
                 lastPositionPlayerSeen = GameManager.GM.player.transform.position;
                 lastPositionPlayerSeen.y += 1.75f;
                 //if(GameManager.GM.player.leanHolder.localEulerAngles.z > 0)
@@ -111,8 +113,13 @@ public class Enemy : MonoBehaviour
                 Invoke(nameof(CooldownShot), Random.Range(cooldown.x, cooldown.y));
                 curRecoilInaccuracy = 0;
             }
+            if(roundsInMag <= 0)
+            {
+                isReloading = true;
+                Invoke(nameof(Reload), reloadTime);
+            }
 
-            if (!onCooldown && canShoot && roundsLeftInBurst > 0 && timeSincePlayerSeen > curReactionTime)
+            if (!isReloading && !onCooldown && canShoot && roundsLeftInBurst > 0 && timeSincePlayerSeen > curReactionTime)
             {
                 Instantiate(bulletPrefab, firearmPos.position, firearmPos.rotation);
                 canShoot = false;
@@ -129,6 +136,7 @@ public class Enemy : MonoBehaviour
 
 
             timeSincePlayerSeen += Time.fixedDeltaTime;
+
         }
         else timeSincePlayerSeen = 0;
 
@@ -146,18 +154,30 @@ public class Enemy : MonoBehaviour
     void SpotPlayer()
     {
         if(isMoving) return;
-        Debug.Log("Spotted");
+        canSeePlayer = true;
+
+
+        if(!whiz) surprise = Vector3.Angle(eyePos.forward, lastPositionPlayerSeen - eyePos.position);
+        whiz = false;
+
         float healthChance = Mathf.InverseLerp(0, 100, health);
         float magChance = Mathf.InverseLerp(0, magSize, roundsInMag);
-        float surpriseChance = Mathf.InverseLerp(0, 180, surprise);
+        float surpriseChance = Mathf.InverseLerp(180, 0, surprise);
 
 
         float chanceToPush = Mathf.InverseLerp(0, 3, healthChance + magChance + surpriseChance);
+        Debug.Log("health = " + healthChance);
+        Debug.Log("roundsInMag = " + magChance);
+        Debug.Log("surprise = " + surprise);
+        Debug.Log("surpriseChance = " + surpriseChance);
+
+        Debug.Log("chanceToPush = " + chanceToPush);
 
         float decision = Random.Range(0f, 1f);
-        if (decision < chanceToPush)
+        Debug.Log("decision = " + decision);
+        if (decision > chanceToPush)
         {
-            Invoke(nameof(RunAway), Random.Range(timeToMove.x, timeToMove.y));
+            Invoke(nameof(RunAway), Random.Range(timeToMove.x/5, timeToMove.y/5));
             Debug.Log("Running away");
         }
         else
@@ -167,35 +187,37 @@ public class Enemy : MonoBehaviour
         }
 
     }
+    
     void ResetShot() => canShoot = true;
     void CooldownShot()
     {
         float distFromPlayer = (lastPositionPlayerSeen - transform.position).magnitude;
-        distFromPlayer = Mathf.InverseLerp(0, 500, distFromPlayer);
+        distFromPlayer = Mathf.InverseLerp(0, 200, distFromPlayer);
         float maxShots = Mathf.Lerp(15, 1, distFromPlayer);
-        Debug.Log(maxShots);
         roundsLeftInBurst = (int)Random.Range(1, maxShots);
         onCooldown = false;
+    }
+    void Reload()
+    {
+        isReloading = false;
+        roundsInMag = magSize;
     }
     public void BulletWhiz()
     {
         finalTgt = transform.position + (GameManager.GM.player.transform.position - transform.position).normalized * 5;
-
-        Vector3 playerEyePos = GameManager.GM.player.transform.position;
-        playerEyePos.y += 1.75f;
-        Vector3 playerDir = playerEyePos - eyePos.position;
-
-        surprise = Vector3.Angle(transform.forward, playerDir);
+        surprise = Vector3.Angle(eyePos.forward, lastPositionPlayerSeen - eyePos.position);
+        whiz = true;
     }
     void RunTowards()
     {
-        Vector3 dir = (GameManager.GM.player.transform.position - transform.position).normalized;
+        Vector3 dir = (lastPositionPlayerSeen - transform.position).normalized;
 		FindCover(dir);
     }
     void RunAway()
     {
-        Vector3 dir = -(GameManager.GM.player.transform.position - transform.position).normalized;
-		FindCover(dir);
+        Vector3 dir = -(lastPositionPlayerSeen - transform.position).normalized;
+
+        FindCover(dir);
     }
     void FindCover(Vector3 direction)
     {
@@ -210,7 +232,6 @@ public class Enemy : MonoBehaviour
             searchDir = new(Random.Range(searchDir.x - 30, searchDir.x + 30), transform.position.y, Random.Range(searchDir.z - 5, searchDir.z + 5));
             Vector3 position = transform.position - searchDir;
             checkPositions.Add(position);
-            Debug.DrawLine(transform.position, position);
         }
 
         Vector3 bestCover = Vector3.positiveInfinity;
@@ -222,7 +243,7 @@ public class Enemy : MonoBehaviour
                 if (hit.transform.CompareTag("Player")) return;
                 else
                 {
-                    float dist = (GameManager.GM.player.transform.position - pos).magnitude;
+                    float dist = (lastPositionPlayerSeen - pos).magnitude;
                     if (dist < bestDist) return;
                     else
                     {
@@ -233,9 +254,10 @@ public class Enemy : MonoBehaviour
             }
         }
         tempTgt = bestCover;
+        Debug.Log(bestCover);
 		Invoke(nameof(StartMovement), Random.Range(10,20));
     }
-	void StartMovement(Vector3 tgt){
+	void StartMovement(){
 		finalTgt = tempTgt;
 		isMoving = true;
 	}

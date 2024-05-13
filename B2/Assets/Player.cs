@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float inputLean;
     public float inputJump;
     public bool inputSprint;
+    public float inputFreelook;
 
     public float health = 100;
     public float stamina = 100;
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
 
     [Header("Camera")]
     public Vector2 cameraAngles;
+    public Vector2 freelookAngles;
     public float sensitivity;
     public float baseSensitivity;
     public float FOV;
@@ -93,6 +95,8 @@ public class Player : MonoBehaviour
         defaultInput.Character.View.performed += e => accumulatedInputView += e.ReadValue<Vector2>();
         defaultInput.Character.Jump.performed += e => inputJump = e.ReadValue<float>();
         defaultInput.Character.Lean.performed += e => inputLean = e.ReadValue<float>();
+        defaultInput.Character.Freelook.performed += e => inputFreelook = e.ReadValue<float>();
+        defaultInput.Character.Freelook.canceled += e => inputFreelook = e.ReadValue<float>();
 
 
         defaultInput.Enable();
@@ -160,6 +164,9 @@ public class Player : MonoBehaviour
             hasJumped = false;
         }
 
+
+
+
         characterController.Move(velocity);
     }
     //void DoGroundCheck()
@@ -189,13 +196,35 @@ public class Player : MonoBehaviour
     {
         inputView *= sensitivity / 100;
         if (swayController.isAiming && firearm.hasScope) inputView /= firearm.curZoom;
-        cameraAngles += inputView;
-        cameraAngles.y = Mathf.Clamp(cameraAngles.y, -90, 90);
 
-        Quaternion camRot = Quaternion.AngleAxis(-cameraAngles.y, Vector3.right);
-        Quaternion playerRot = Quaternion.AngleAxis(cameraAngles.x, Vector3.up);
-        camHolder.localRotation = camRot;
-        transform.localRotation = playerRot;
+        if (inputFreelook > 0.5f)
+        {
+            freelookAngles += inputView * 2;
+            freelookAngles.x=Mathf.Clamp(freelookAngles.x, -65, 65);
+            freelookAngles.y=Mathf.Clamp(freelookAngles.y, -65, 65);
+
+            GameManager.GM.playCameras[0].transform.localRotation = Quaternion.Euler(-freelookAngles.y, freelookAngles.x, 0);
+
+        }
+        else
+        {
+            cameraAngles += inputView;
+            freelookAngles = Vector2.zero;
+
+            cameraAngles.y = Mathf.Clamp(cameraAngles.y, -90, 90);
+
+            Quaternion camRot = Quaternion.AngleAxis(-cameraAngles.y, Vector3.right);
+            Quaternion playerRot = Quaternion.AngleAxis(cameraAngles.x, Vector3.up);
+
+            camHolder.localRotation = camRot;
+            transform.localRotation = playerRot;
+
+            GameManager.GM.playCameras[0].transform.localRotation = Quaternion.identity;
+            GameManager.GM.playCameras[1].transform.localRotation = Quaternion.identity;
+        }
+
+
+
     }
     private void CalculateGroundMovement()
     {

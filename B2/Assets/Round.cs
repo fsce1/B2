@@ -109,7 +109,10 @@ public class Round : MonoBehaviour
                 {
 
                     Instantiate(bloodHit, hit.point, Quaternion.Euler(nextPoint - currentPoint));
-                    hit.collider.gameObject.GetComponent<Enemy>().Hit(Random.Range(damage.x, damage.y), hit.point);
+                    Enemy e;
+                    if (e = hit.collider.gameObject.GetComponent<Enemy>()){
+                        e.Hit(Random.Range(damage.x, damage.y), hit.point);
+                    }
                 }
                 if (hit.collider.CompareTag("EnemyHead"))
                 {

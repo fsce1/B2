@@ -207,6 +207,8 @@ public class SwayController : MonoBehaviour
 
         wpnRot = restRot;
 
+        //wpnRot += GameManager.GM.playCameras[1].transform.localEulerAngles;
+
         //if (player.isSprinting)
         //{
         //    wpnPos.x = 0;
@@ -222,7 +224,7 @@ public class SwayController : MonoBehaviour
 
         walkLifetimeScaler = 1;
         if (player.isWalking) walkLifetimeScaler = 1.25f;
-        if (player.isSprinting) walkLifetimeScaler = 0.6f;
+        if (player.isSprinting) walkLifetimeScaler = 0.75f;
 
         if (curWalkLifetime < walkLifetime * walkLifetimeScaler)
         {
@@ -331,12 +333,14 @@ public class SwayController : MonoBehaviour
     {
         float _walkScaler = 1;
         if (isAiming) _walkScaler = walkScaler;
-
+        else if (player.isSprinting) _walkScaler = 2f;
+ 
         Vector3 target = Vector3.zero;
-        Vector3 camTarget = new(0, player.transform.position.y +1.75f, 0);
-
-        camTarget.y += camWalkMoveAmount;
-
+        //Vector3 camTarget = new(0, player.transform.position.y +1.75f, 0);
+        Vector3 pos = player.transform.position;
+        pos.y += 1.75f;
+        player.camHolder.position = pos;
+        Vector3 camTarget;
         float lateralVelocity = new Vector2(GameManager.GM.player.velocity.x, GameManager.GM.player.velocity.z).magnitude;
 
         if (lateralVelocity > 0.01f)
@@ -349,28 +353,25 @@ public class SwayController : MonoBehaviour
                 if (rightFoot) target.x += sideAmount * lateralVelocity;
                 else target.x -= sideAmount * lateralVelocity;
 
-                camTarget.y -= camWalkMoveAmount;
+                camTarget = new(0,-camWalkMoveAmount,0);
             }
+            else camTarget = new(0, camWalkMoveAmount, 0);
         }
         else
         {
-            camTarget = player.camHolder.position;
+            camTarget = new(0, 0, 0);
+            curWalkLifetime = 0;
         }
-
-
-        Debug.Log(camTarget);
         camWalkMove = Vector3.SmoothDamp(camWalkMove, camTarget, ref camWalkMoveVelocity, walkCamMoveSmoothing);
         newCamWalkMove = Vector3.SmoothDamp(newCamWalkMove, camWalkMove, ref newCamWalkMoveVelocity, walkCamMoveSmoothing);
-
-
 
         walkMove = Vector3.SmoothDamp(walkMove, target, ref walkMoveVelocity, walkMoveSmoothing);
         newWalkMove = Vector3.SmoothDamp(newWalkMove, walkMove, ref newWalkMoveVelocity, walkMoveSmoothing);
 
-        player.camHolder.position = new(player.camHolder.position.x, newCamWalkMove.y, player.camHolder.position.z);
+        player.camHolder.position += newCamWalkMove;
 
         wpnPos += newWalkMove * _walkScaler * lateralVelocity * 25;
-        wpnRot += new Vector3(newWalkMove.y, newWalkMove.x, -newWalkMove.x * 2f) * stepRotScaling * lateralVelocity * 25;
+        wpnRot += new Vector3(newWalkMove.y, newWalkMove.x, newWalkMove.x * 0.75f) * stepRotScaling * lateralVelocity * 25;
     }
 
 

@@ -11,9 +11,11 @@
             "id": "5ea20d9cbfa812fa",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md"
+                "file": "Evaluation.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -83,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md",
+                "file": "Evaluation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md",
+                "file": "Evaluation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md"
+                "file": "Evaluation.md"
               }
             }
           }
@@ -148,6 +150,21 @@
   },
   "active": "5ea20d9cbfa812fa",
   "lastOpenFiles": [
+    "B2/Temp/UnityTempFile-ca8a4b2686c8a15429164c223de7041a",
+    "B2/Temp/Burst/burst-aot7ur8wtqy.qdn",
+    "B2/Temp/Burst/burst-aottn9nchyg.dcn",
+    "B2/Temp/Burst/burst-aotovtkih2l.rkl",
+    "B2/Temp/Burst/burst-aotfeowxo6a.wvm",
+    "B2/Temp/Burst/burst-aot8tjb480a.972",
+    "B2/Temp/Burst/burst-aot0hormmu0.g6v",
+    "B2/Temp/Burst/burst-aot5l481q2f.6cv",
+    "B2/Temp/Burst/burst-aotdsdapkq3.dsx",
+    "B2/Temp/Burst/burst-aotj5bjq387.0de",
+    "B2/Temp/Burst/burst-aotrpmzjzpo.8vv",
+    "B2.md",
+    "Devlog.md",
+    "Evaluation.md",
+    "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md",
     "Pasted Image 20240512171142_188.png",
     "Images/Single-grenade-isolated-on-transparent-background-PNG.png",
     "Pasted Image 20240512170020_195.png",
@@ -158,22 +175,13 @@
     "Pasted Image 20240512163019_203.png",
     "Images/pngimg.com - backpack_PNG6356.png",
     "Pasted Image 20240512162743_211.png",
-    "Images/molle-gilets-タクティカルベスト-improved-outer-tactical-vest-kamizelka-taktyczna-others-357f8fce688d633d0a588c773463ec47.png",
-    "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md",
     "Excalidraw/Drawing 2024-04-09 15.06.55.excalidraw.md",
     "Untitled Kanban.md",
     "Excalidraw/Drawing 2024-04-09 13.28.28.excalidraw.md",
-    "Evaluation.md",
     "GDD.md",
     "Testing and Feedback.md",
     "Skills Development.md",
     "Research.md",
-    "B2.md",
-    "Images",
-    "Devlog.md",
-    "Devlog.pdf",
-    "B2.docx",
-    "B2.html",
     "Powerpoint Reflection.md",
     "Project Management.md",
     "B2/2024-04-09 AI + Bugfixing.md",
@@ -187,12 +195,6 @@
     "B2/2024-02-20 Character + Camera Movement .md",
     "B2/2024-02-20 Character + Camera Movement.md",
     "B2/2024-02-21 w.md",
-    "Ideation.md",
-    "2024-04-11 10-41-36.mkv",
-    "2024-02-26 15-31-45.mkv",
-    "2024-03-07 12-01-50.mkv",
-    "B2/Assets/y4dm4rt5.z5m~",
-    "B2/Assets/z0agy44u.xgk~",
-    "~$Jamie Serlin B2 Pitch Presentation.pptx"
+    "Ideation.md"
   ]
 }

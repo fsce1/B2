@@ -47,11 +47,11 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""bbde9f16-8bf2-4e5d-b780-49a25fbefef4"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
-                    ""interactions"": ""Tap(duration=0.1)"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -88,6 +88,15 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Tap(duration=0.01)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Freelook"",
+                    ""type"": ""Button"",
+                    ""id"": ""b293b59e-1eb7-4881-9971-cb4b68b56a58"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -232,6 +241,17 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""550471cc-ae45-45b4-8789-ad9fe274e391"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Freelook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -399,6 +419,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         m_Character_Walk = m_Character.FindAction("Walk", throwIfNotFound: true);
         m_Character_ArmaZoom = m_Character.FindAction("ArmaZoom", throwIfNotFound: true);
         m_Character_Sprint = m_Character.FindAction("Sprint", throwIfNotFound: true);
+        m_Character_Freelook = m_Character.FindAction("Freelook", throwIfNotFound: true);
         // Weapon
         m_Weapon = asset.FindActionMap("Weapon", throwIfNotFound: true);
         m_Weapon_AimPressed = m_Weapon.FindAction("AimPressed", throwIfNotFound: true);
@@ -475,6 +496,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Walk;
     private readonly InputAction m_Character_ArmaZoom;
     private readonly InputAction m_Character_Sprint;
+    private readonly InputAction m_Character_Freelook;
     public struct CharacterActions
     {
         private @DefaultInput m_Wrapper;
@@ -486,6 +508,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         public InputAction @Walk => m_Wrapper.m_Character_Walk;
         public InputAction @ArmaZoom => m_Wrapper.m_Character_ArmaZoom;
         public InputAction @Sprint => m_Wrapper.m_Character_Sprint;
+        public InputAction @Freelook => m_Wrapper.m_Character_Freelook;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -516,6 +539,9 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @Freelook.started += instance.OnFreelook;
+            @Freelook.performed += instance.OnFreelook;
+            @Freelook.canceled += instance.OnFreelook;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -541,6 +567,9 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @Freelook.started -= instance.OnFreelook;
+            @Freelook.performed -= instance.OnFreelook;
+            @Freelook.canceled -= instance.OnFreelook;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -653,6 +682,7 @@ public partial class @DefaultInput: IInputActionCollection2, IDisposable
         void OnWalk(InputAction.CallbackContext context);
         void OnArmaZoom(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnFreelook(InputAction.CallbackContext context);
     }
     public interface IWeaponActions
     {
