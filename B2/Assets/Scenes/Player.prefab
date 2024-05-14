@@ -1676,7 +1676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
-  regenHealthSpeed: 1
+  regenHealthSpeed: 0.01
   regenStaminaSpeed: 1
   inputMovement: {x: 0, y: 0}
   inputView: {x: 0, y: 0}
@@ -1698,23 +1698,24 @@ MonoBehaviour:
   baseSensitivity: 2
   FOV: 60
   AimFOV: 40
+  camRecoil: {x: 0, y: 0, z: 0}
   isWalking: 0
   isSprinting: 0
   velocity: {x: 0, y: 0, z: 0}
   decel: 8
   accel: 4
   maxSpeed: 0
-  sprintSpeed: 30
+  sprintSpeed: 100
   runSpeed: 17.5
   walkSpeed: 7.5
   leanHolder: {fileID: 2438820277550197675}
   leanAngle: 10
   leanSpeed: 35
   hasJumped: 0
-  gravity: 0.1
-  jumpForce: 0.5
+  gravity: 0.2
+  jumpForce: 0.1
   bhopSpeedMult: 0.25
-  airAccel: 2
+  airAccel: 0.25
 --- !u!136 &5484992114736904846
 CapsuleCollider:
   m_ObjectHideFlags: 0

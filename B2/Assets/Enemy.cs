@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using Unity.VisualScripting;
+using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.ProBuilder.Shapes;
 
 public class Enemy : MonoBehaviour
 {
@@ -157,7 +159,7 @@ public class Enemy : MonoBehaviour
         canSeePlayer = true;
 
 
-        if(!whiz) surprise = Vector3.Angle(eyePos.forward, lastPositionPlayerSeen - eyePos.position);
+        if(whiz) surprise = Vector3.Angle(eyePos.forward, lastPositionPlayerSeen - eyePos.position);
         whiz = false;
 
         float healthChance = Mathf.InverseLerp(0, 100, health);
@@ -219,18 +221,23 @@ public class Enemy : MonoBehaviour
 
         FindCover(dir);
     }
+    public Vector3 search;
     void FindCover(Vector3 direction)
     {
         List<Vector3> checkPositions = new();
 
-        Vector3 searchDir = direction;
+        Vector3 searchDir = direction.normalized;
+
 
         Debug.DrawRay(transform.position, searchDir, Color.red);
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 20; i++)
         {
-            searchDir = new(Random.Range(searchDir.x - 30, searchDir.x + 30), transform.position.y, Random.Range(searchDir.z - 5, searchDir.z + 5));
+            searchDir = new(Random.Range(searchDir.x - 10, searchDir.x + 10), transform.position.y, Random.Range(searchDir.z - 5, searchDir.z + 5));
             Vector3 position = transform.position - searchDir;
+            position.y = transform.position.y + 1.75f;
+
+            //Debug.DrawRay(transform.position, search, Color.green);
             checkPositions.Add(position);
         }
 
@@ -238,12 +245,14 @@ public class Enemy : MonoBehaviour
         float bestDist = 0;
         foreach (Vector3 pos in checkPositions)
         {
+            search = pos;
             if (Physics.Raycast(pos, searchDir, out RaycastHit hit, Mathf.Infinity))
             {
                 if (hit.transform.CompareTag("Player")) return;
                 else
                 {
                     float dist = (lastPositionPlayerSeen - pos).magnitude;
+                    Debug.Log(dist);
                     if (dist < bestDist) return;
                     else
                     {
@@ -253,11 +262,15 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        tempTgt = bestCover;
-        Debug.Log(bestCover);
-		Invoke(nameof(StartMovement), Random.Range(10,20));
+        finalTgt = bestCover;
+		//Invoke(nameof(StartMovement), Random.Range(10,20));
     }
-	void StartMovement(){
+    private void OnDrawGizmos()
+    {
+        Gizmos.color =Color.green; 
+        Gizmos.DrawRay(transform.position, search);
+    }
+    void StartMovement(){
 		finalTgt = tempTgt;
 		isMoving = true;
 	}

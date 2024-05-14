@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Evaluation.md",
+                "file": "Project Management.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Evaluation.md",
+                "file": "Project Management.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Evaluation.md",
+                "file": "Project Management.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Evaluation.md"
+                "file": "Project Management.md"
               }
             }
           }
@@ -150,40 +150,42 @@
   },
   "active": "5ea20d9cbfa812fa",
   "lastOpenFiles": [
-    "B2/Temp/UnityTempFile-ca8a4b2686c8a15429164c223de7041a",
-    "B2/Temp/Burst/burst-aot7ur8wtqy.qdn",
-    "B2/Temp/Burst/burst-aottn9nchyg.dcn",
-    "B2/Temp/Burst/burst-aotovtkih2l.rkl",
-    "B2/Temp/Burst/burst-aotfeowxo6a.wvm",
-    "B2/Temp/Burst/burst-aot8tjb480a.972",
-    "B2/Temp/Burst/burst-aot0hormmu0.g6v",
-    "B2/Temp/Burst/burst-aot5l481q2f.6cv",
-    "B2/Temp/Burst/burst-aotdsdapkq3.dsx",
-    "B2/Temp/Burst/burst-aotj5bjq387.0de",
-    "B2/Temp/Burst/burst-aotrpmzjzpo.8vv",
+    "B2/Temp/UnityTempFile-de36c2ae072f3704b93de117a9164d67",
+    "B2/Temp/ADB-Refresh3b45631b21b502c4da6393fedd58640d",
+    "B2/Assets/zbjbkzxt.hsa~",
+    "B2/Assets/e3viomdq.ztm~",
+    "B2/Assets/vro0bzeo.pe5~",
+    "B2/Library/Search/propertyDatabase.db_0738613985d14c5791d03a052ed48b75_temp",
+    "B2/Temp/UnityTempFile-2c20936d4e1182a4dbd298b1803eb094",
+    "B2/Library/TempArtifacts/Extra/90bc15046ede410488accabdfae2dbd4.info",
+    "B2/Assets/4k4mj0hb.cxq~",
+    "B2/Assets/3tk52he1.cxh~",
+    "B2/Temp/UnityTempFile-54879d927ec8def4e85a51570fbe7554",
+    "B2/Assets/Scenes/Scene2/New folder (3)/model.jpg",
+    "B2/Assets/Scenes/Scene2/New folder/model.jpg",
+    "B2/Assets/Scenes/Scene2/New folder (2)/model.jpg",
+    "B2/Assets/Scenes/Scene2/model.jpg",
+    "SilentStrikeMoodboard.png",
+    "Skills Development.md",
+    "Testing and Feedback.md",
+    "Research.md",
     "B2.md",
-    "Devlog.md",
+    "Analysis of Brief.md",
+    "Project Management.md",
+    "Ideation.md",
+    "GDD.md",
     "Evaluation.md",
+    "Devlog.md",
     "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md",
     "Pasted Image 20240512171142_188.png",
     "Images/Single-grenade-isolated-on-transparent-background-PNG.png",
     "Pasted Image 20240512170020_195.png",
     "Pasted Image 20240512165918_197.png",
     "Pasted Image 20240512165643_189.png",
-    "Images/pngegg.png",
-    "Images/pngwing.com.png",
-    "Pasted Image 20240512163019_203.png",
-    "Images/pngimg.com - backpack_PNG6356.png",
-    "Pasted Image 20240512162743_211.png",
     "Excalidraw/Drawing 2024-04-09 15.06.55.excalidraw.md",
     "Untitled Kanban.md",
     "Excalidraw/Drawing 2024-04-09 13.28.28.excalidraw.md",
-    "GDD.md",
-    "Testing and Feedback.md",
-    "Skills Development.md",
-    "Research.md",
     "Powerpoint Reflection.md",
-    "Project Management.md",
     "B2/2024-04-09 AI + Bugfixing.md",
     "B2/2024-04-02 AI + Map Creation.md",
     "B2/2024-04-02 AI work + Map Creation.md",
@@ -193,8 +195,6 @@
     "B2/2024-03-05 Weapon Recoil + Reload.md",
     "B2/2024-02-27 Weapon Sway + ADS.md",
     "B2/2024-02-20 Character + Camera Movement .md",
-    "B2/2024-02-20 Character + Camera Movement.md",
-    "B2/2024-02-21 w.md",
-    "Ideation.md"
+    "B2/2024-02-20 Character + Camera Movement.md"
   ]
 }

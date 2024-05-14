@@ -3,5 +3,7 @@
   "obsidian-excalidraw-plugin",
   "obsidian-full-calendar",
   "obsidian-pandoc",
-  "better-export-pdf"
+  "better-export-pdf",
+  "highlightr-plugin",
+  "colored-text"
 ]

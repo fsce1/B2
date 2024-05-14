@@ -117,7 +117,7 @@ public class Firearm : MonoBehaviour
         CalculateRecoil();
 
         transform.SetLocalPositionAndRotation(recoilPos, Quaternion.Euler(recoilRot));
-        //cameraHolder.localEulerAngles += recoilCam;
+        GameManager.GM.player.camHolder.localEulerAngles += recoilCam;
         //Camera.main.transform.localRotation = Quaternion.Euler(recoilCam);
         //foreach (Camera c in GameManager.GM.playCameras) c.transform.localRotation = Quaternion.Euler(recoilCam);
         if (Vector3Int.RoundToInt(recoilRot) == Vector3.zero && Vector3Int.RoundToInt(recoilPos) == Vector3.zero && Vector3Int.RoundToInt(recoilCam) == Vector3.zero)
@@ -198,7 +198,6 @@ public class Firearm : MonoBehaviour
     }
     void CalculateRecoil()
     {
-
         tgtRecoilRot = Vector3.Lerp(tgtRecoilRot, Vector3.zero, Time.deltaTime * info.rotRecovery);
         recoilRot = Vector3.Slerp(recoilRot, tgtRecoilRot, Time.deltaTime * info.rotSnappiness);
 
@@ -207,9 +206,8 @@ public class Firearm : MonoBehaviour
 
         tgtRecoilCam = Vector3.Lerp(tgtRecoilCam, Vector3.zero, Time.deltaTime * info.camRecovery);
         recoilCam = Vector3.Slerp(recoilCam, tgtRecoilCam, Time.deltaTime * info.camSnappiness);
-        //recoilRot += Vector3.SmoothDamp(recoilRot, newRecoilRot, ref rotVelocity, Time.deltaTime * 0.1f);
 
-        //newRecoilRot += Vector3.SmoothDamp(newRecoilRot, Vector3.zero, ref resetVelocity, Time.deltaTime * info.verticalRecovery);
+        GameManager.GM.player.camRecoil = recoilCam;
     }
 
     void BeginReload()

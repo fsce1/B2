@@ -224,7 +224,7 @@ public class SwayController : MonoBehaviour
 
         walkLifetimeScaler = 1;
         if (player.isWalking) walkLifetimeScaler = 1.25f;
-        if (player.isSprinting) walkLifetimeScaler = 0.75f;
+        if (player.isSprinting) walkLifetimeScaler = 0.6f;
 
         if (curWalkLifetime < walkLifetime * walkLifetimeScaler)
         {
@@ -307,6 +307,9 @@ public class SwayController : MonoBehaviour
 
         movementMove.x = movementMoveAmount * GameManager.GM.player.velocity.z;
         movementMove.z = movementMoveAmount * GameManager.GM.player.velocity.x;
+        movementMove.y = 0;
+        if(GameManager.GM.player.velocity.y > 0) movementMove.y = -GameManager.GM.player.velocity.y;
+
         movementMove = Vector3.SmoothDamp(movementMove, Vector3.zero, ref movementMoveVelocity, movementMoveSmoothing);
         newMovementMove = Vector3.SmoothDamp(newMovementMove, movementMove, ref newMovementMoveVelocity, movementMoveSmoothing);
 
@@ -342,7 +345,6 @@ public class SwayController : MonoBehaviour
         player.camHolder.position = pos;
         Vector3 camTarget;
         float lateralVelocity = new Vector2(GameManager.GM.player.velocity.x, GameManager.GM.player.velocity.z).magnitude;
-
         if (lateralVelocity > 0.01f)
         {
 
@@ -371,7 +373,7 @@ public class SwayController : MonoBehaviour
         player.camHolder.position += newCamWalkMove;
 
         wpnPos += newWalkMove * _walkScaler * lateralVelocity * 25;
-        wpnRot += new Vector3(newWalkMove.y, newWalkMove.x, newWalkMove.x * 0.75f) * stepRotScaling * lateralVelocity * 25;
+        wpnRot += new Vector3(newWalkMove.y, newWalkMove.x, newWalkMove.x * 0.75f) * _walkScaler * stepRotScaling * lateralVelocity * 25;
     }
 
 

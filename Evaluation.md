@@ -1,4 +1,3 @@
-
 The feedback I got was extremely useful in balancing different aspects of my game, and even though I was not able to get every feature I planned in, I think the game has come out well and is quite fun to play. It has a functional AI system that can handle over 40 enemies in a single map and a smooth feeling character controller with realistic bullet physics and flawless hit detection. I am particularly proud of the weapon sway and movement, including procedural breathing and walking, as well as the enemy AI that feels like it is making tactical decisions.
 
 I think I may have been a bit too ambitious, especially with the AI system. I originally wanted to have a friendly teammate as well as the enemies, however by the time I was finished with the enemy AI, the hand-in date was too close. It required additional logic for the UI, as well as a more complex system that can take orders from the player (to suppress an area, cover your back, etc).

@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     public float baseSensitivity;
     public float FOV;
     public float AimFOV;
+    public Vector3 camRecoil;
 
     [Header("Movement")]
     public bool isWalking;
@@ -153,19 +154,18 @@ public class Player : MonoBehaviour
         }
 
 
-        if (inputJump >= 0.1f && characterController.isGrounded && !hasJumped)
+        if (inputJump >= 0.1f && characterController.isGrounded)
         {
-            velocity.y += jumpForce / 4;
+            velocity.y = jumpForce;
+            //velocity.y -= Mathf.Sqrt(jumpForce * -3.0f * gravity);
             hasJumped = true;
         }
         else
         {
-            velocity.y -= gravity / 10;
+            //velocity.y -= gravity;
             hasJumped = false;
         }
-
-
-
+        velocity.y -= gravity * Time.deltaTime;
 
         characterController.Move(velocity);
     }
@@ -199,7 +199,7 @@ public class Player : MonoBehaviour
 
         if (inputFreelook > 0.5f)
         {
-            freelookAngles += inputView * 2;
+            freelookAngles += inputView * 5;
             freelookAngles.x=Mathf.Clamp(freelookAngles.x, -65, 65);
             freelookAngles.y=Mathf.Clamp(freelookAngles.y, -65, 65);
 
@@ -216,7 +216,7 @@ public class Player : MonoBehaviour
             Quaternion camRot = Quaternion.AngleAxis(-cameraAngles.y, Vector3.right);
             Quaternion playerRot = Quaternion.AngleAxis(cameraAngles.x, Vector3.up);
 
-            camHolder.localRotation = camRot;
+            camHolder.localRotation = camRot * Quaternion.Euler(camRecoil);
             transform.localRotation = playerRot;
 
             GameManager.GM.playCameras[0].transform.localRotation = Quaternion.identity;
@@ -229,7 +229,6 @@ public class Player : MonoBehaviour
     private void CalculateGroundMovement()
     {
         Vector3 wishDir = Vector3.Normalize(inputMovement.y * transform.forward + inputMovement.x * transform.right);
-
         float wishSpeed = wishDir.magnitude * maxSpeed / 100;
 
         //Calculate how much speed to add this frame
