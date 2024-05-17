@@ -1,3 +1,4 @@
+# GDD
 # Overview
 Silent-Rush is a Single-Player or Co-op Realistic Tactical Shooter in which you play as part of an insurgent group, fighting against the Sujusterean Military in a fictional modern-day civil war.
 
@@ -10,10 +11,10 @@ Since the game is intended to be realistic, I want to approximate a real human's
 Additional controls such as crouching and laying prone are also planned, as it makes sniping much more viable as a tactic. 
 Taking inspiration from the ArmA series, I decided to add a feature where you can hold down the right click button to zoom the camera in by 1.5x. This is a fun game mechanic as it allows you to survey the area in much more detail than you could with a higher Field of View (FOV), and potentially spot enemies further away. However, I think it would be a bit too powerful if you could aim down sights as well as zoom, especially with a magnified optic, so you are only able to use the ArmA-style zoom if you are not aiming down the sights.
 # Theme/Setting
-Silent-Rush takes place in Sujusterea, a fictional country in Eastern Europe, in which a civil war has broken out. You are part of the insurgent group, and must attack the Sujusterean Military. 
+<span style="color:#FF0000">It is set in the fictional Eastern-European country of Sujusterea (located along the Baltic sea, neighbouring Latvia and Lithuania), in which the current government is starting to ally with Russia. Historically, during the USSR, Russia has oppressed Sujusterea, and the citizens now believe that the politicians at the top of the Sujusterean Government are accepting bribes from Russia. Picking up any weapons they can find, and quietly aided by NATO and the US, the Force of Operations Resistance Squad (FORS), led by Sebastianas Forsentaciuki will rise up against the Sujusterean Military Forces (SMF).</span>
+![[Pasted image 20240516190922.png]] 
 # Visuals
 I aim for the visuals to be as realistic as possible, however as this will just be a game prototype, I will use free assets I find online using platforms such as the Unity Asset Store and Sketchfab to fill out the game world. This means that the game will likely look quite simple and there will be many assets with a different art style. 
-
 # Game Loop
 Once you choose a map from the main menu screen, it shows the Infiltration Screen which includes the functionality to select where you are infiltrating from, selection for the guns that you want to bring in, selection of your teammates and the current objectives + objective locations. Once you have selected all of that, you can infiltrate. Then, you spawn in with your teammate(s) and begin attacking the objectives. Objectives may be things like clearing an area of enemies, picking up a piece of intelligence, 
 Once you have completed all the objectives that you want, you head to the exfiltration zone and exit the map.

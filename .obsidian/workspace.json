@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Project Management.md",
+                "file": "B2.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 299.5
+    "width": 304.5
   },
   "right": {
     "id": "4f8705506bf7e4ae",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Project Management.md",
+                "file": "B2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Project Management.md",
+                "file": "B2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Project Management.md"
+                "file": "B2.md"
               }
             }
           }
@@ -150,6 +150,21 @@
   },
   "active": "5ea20d9cbfa812fa",
   "lastOpenFiles": [
+    "Research.md",
+    "B2.md",
+    "Ideation.md",
+    "GDD.md",
+    "Analysis of Brief.md",
+    "Devlog.md",
+    "Evaluation.md",
+    "Project Management.md",
+    "Testing and Feedback.md",
+    "B2.odt",
+    "Images/Pasted image 20240516190922.png",
+    "Images/Sususterja_Flag.webp",
+    "Images/Pasted Image 20240512155531_630.png",
+    "Powerpoint Reflection.md",
+    "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md",
     "B2/Temp/UnityTempFile-de36c2ae072f3704b93de117a9164d67",
     "B2/Temp/ADB-Refresh3b45631b21b502c4da6393fedd58640d",
     "B2/Assets/zbjbkzxt.hsa~",
@@ -159,33 +174,17 @@
     "B2/Temp/UnityTempFile-2c20936d4e1182a4dbd298b1803eb094",
     "B2/Library/TempArtifacts/Extra/90bc15046ede410488accabdfae2dbd4.info",
     "B2/Assets/4k4mj0hb.cxq~",
-    "B2/Assets/3tk52he1.cxh~",
-    "B2/Temp/UnityTempFile-54879d927ec8def4e85a51570fbe7554",
     "B2/Assets/Scenes/Scene2/New folder (3)/model.jpg",
     "B2/Assets/Scenes/Scene2/New folder/model.jpg",
     "B2/Assets/Scenes/Scene2/New folder (2)/model.jpg",
     "B2/Assets/Scenes/Scene2/model.jpg",
     "SilentStrikeMoodboard.png",
     "Skills Development.md",
-    "Testing and Feedback.md",
-    "Research.md",
-    "B2.md",
-    "Analysis of Brief.md",
-    "Project Management.md",
-    "Ideation.md",
-    "GDD.md",
-    "Evaluation.md",
-    "Devlog.md",
-    "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md",
-    "Pasted Image 20240512171142_188.png",
+    "Images/Pasted Image 20240512171142_188.png",
     "Images/Single-grenade-isolated-on-transparent-background-PNG.png",
-    "Pasted Image 20240512170020_195.png",
-    "Pasted Image 20240512165918_197.png",
-    "Pasted Image 20240512165643_189.png",
     "Excalidraw/Drawing 2024-04-09 15.06.55.excalidraw.md",
     "Untitled Kanban.md",
     "Excalidraw/Drawing 2024-04-09 13.28.28.excalidraw.md",
-    "Powerpoint Reflection.md",
     "B2/2024-04-09 AI + Bugfixing.md",
     "B2/2024-04-02 AI + Map Creation.md",
     "B2/2024-04-02 AI work + Map Creation.md",
