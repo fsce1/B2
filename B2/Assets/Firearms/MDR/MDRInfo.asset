@@ -24,7 +24,7 @@ MonoBehaviour:
   sustainedAffectsVertical: 0
   verticalPerShot: {x: 1, y: 2}
   sustainedAffectsHorizontal: 1
-  horizontalPerShot: {x: -2, y: 2}
+  horizontalPerShot: {x: -1, y: 1}
   rotRecovery: 5
   rotSnappiness: 10
   sustainedAffectsLateral: 0

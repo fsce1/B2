@@ -941,7 +941,7 @@ MonoBehaviour:
   leanScaler: 0
   moveScaler: 0.25
   breathScaler: 0.25
-  walkScaler: 0.25
+  walkScaler: 0.75
   wpnPos: {x: 0, y: 0, z: 0}
   wpnRot: {x: 0, y: 0, z: 0}
   swayAmount: 0.01
@@ -1705,7 +1705,7 @@ MonoBehaviour:
   decel: 8
   accel: 4
   maxSpeed: 0
-  sprintSpeed: 100
+  sprintSpeed: 30
   runSpeed: 17.5
   walkSpeed: 7.5
   leanHolder: {fileID: 2438820277550197675}
