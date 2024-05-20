@@ -12,11 +12,7 @@ This adds a sense of realism to all the fights, as the enemies are unpredictable
 ## Goal Oriented Action Planning (GOAP)
 
 <span style="color:#FF0000">
-GOAP is an AI system that was first used in F.E.A.R. and has been used in many games since. It is a very robust and "smart" system, meaning that there is a lot of nuance in the ways that NPCs can act in response to the player, and they can even do things proactively, without any input from the player.<p>
-
-GOAP works by setting a final goal for the NPC to complete, such as Kill Player or Gain Money. Then, the system can choose from multiple different Actions that it can take such as Reload Weapon, Move Towards Player, Shoot at Target, etc. <p>
-Each Action has a set of variables called pre-conditions, which are conditions that need to be met in order to perform the action, as well as Effects, which are variables that change when the Action is complete. 
-For example, an NPC can only reload a weapon if it has spare ammo in its inventory, and once it has reloaded, it is able to shoot.
+GOAP is an AI system that was first used in F.E.A.R. and has been used in many games since. It is a very robust and "smart" system, meaning that there is a lot of nuance in the ways that NPCs can act in response to the player, and they can even do things proactively, without any input from the player.
 </span>
 ![[Pasted image 20240426152417.png]]
 ## Finite State Machines (FSM)

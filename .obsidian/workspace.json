@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Research.md",
+                "file": "B2.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Research.md",
+                "file": "B2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Research.md",
+                "file": "B2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Research.md"
+                "file": "B2.md"
               }
             }
           }
@@ -150,31 +150,30 @@
   },
   "active": "5ea20d9cbfa812fa",
   "lastOpenFiles": [
-    "B2/Temp/UnityTempFile-3c774de11355c4c409f16ada6def3a27",
-    "B2/Library/ShaderCache/shadergraph/New Shader Graph24e1/02/fc21a26813fa106ddd2a7bf24901c622.bin",
-    "B2/Library/ShaderCache/shadergraph/New Shader Graph24e1/02/181b23e3706fbd29d108bd7f51937a8c.bin",
-    "B2/Library/ShaderCache/shadergraph/New Shader Graph24e1/02",
-    "B2/Library/Artifacts/8f/8f30377d3e762a8b9f26c1b106b2b638",
-    "B2/Temp/ADB-Refresh575af55349439a843a33000298e2876d",
-    "B2/Temp/ADB-Refresh3eb5788fd0f676e43b3f5a46b3a96776",
-    "B2/Temp/UnityTempFile-806e5876a408c114f9027b0545269468",
-    "B2/Assets/Shaders/New Shader Graph.asset.meta",
-    "B2/Assets/Shaders/New Shader Graph.asset",
-    "B2/Library/ShaderCache/shadergraph/New Shader Graph24e1/01/181b23e3706fbd29d108bd7f51937a8c.bin",
-    "GDD.md",
-    "B2.md",
     "Research.md",
+    "B2.md",
     "Ideation.md",
+    "GDD.md",
     "Analysis of Brief.md",
     "Devlog.md",
     "Evaluation.md",
     "Project Management.md",
     "Testing and Feedback.md",
+    "B2.odt",
     "Images/Pasted image 20240516190922.png",
     "Images/Sususterja_Flag.webp",
     "Images/Pasted Image 20240512155531_630.png",
     "Powerpoint Reflection.md",
     "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md",
+    "B2/Temp/UnityTempFile-de36c2ae072f3704b93de117a9164d67",
+    "B2/Temp/ADB-Refresh3b45631b21b502c4da6393fedd58640d",
+    "B2/Assets/zbjbkzxt.hsa~",
+    "B2/Assets/e3viomdq.ztm~",
+    "B2/Assets/vro0bzeo.pe5~",
+    "B2/Library/Search/propertyDatabase.db_0738613985d14c5791d03a052ed48b75_temp",
+    "B2/Temp/UnityTempFile-2c20936d4e1182a4dbd298b1803eb094",
+    "B2/Library/TempArtifacts/Extra/90bc15046ede410488accabdfae2dbd4.info",
+    "B2/Assets/4k4mj0hb.cxq~",
     "B2/Assets/Scenes/Scene2/New folder (3)/model.jpg",
     "B2/Assets/Scenes/Scene2/New folder/model.jpg",
     "B2/Assets/Scenes/Scene2/New folder (2)/model.jpg",
