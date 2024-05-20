@@ -8,6 +8,7 @@ using UnityEngine.ProBuilder.Shapes;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Setup")]
     public bool isInitialised = false;
     public NavMeshAgent agent;
     public NavMeshSurface surface;

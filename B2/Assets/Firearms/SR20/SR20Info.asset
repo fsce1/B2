@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1707a1083064fd743a65c03f7e4e0cbb, type: 3}
+  m_Name: SR20Info
+  m_EditorClassIdentifier: 
+  firearmName: SR20
+  firearmPrefab: {fileID: 655295743907360207, guid: ff18ad6306b8b99498c16e3da017d3e4, type: 3}
+  roundsPerMinute: 500
+  magazineSize: 20
+  restPos: {x: 0.11, y: -0.66, z: 0.47}
+  aimPos: {x: -0.01, y: -0.625, z: 0.36}
+  sprintPos: {x: 0.11, y: -0.73, z: 0.40000096}
+  sprintRot: {x: 9.130004, y: -12.57, z: 4.479997}
+  sustainedRecoilAdd: 0.075
+  sustainedAffectsVertical: 1
+  verticalPerShot: {x: 5, y: 7.5}
+  sustainedAffectsHorizontal: 1
+  horizontalPerShot: {x: -1, y: 1}
+  rotRecovery: 10
+  rotSnappiness: 5
+  sustainedAffectsLateral: 0
+  lateralPerShot: {x: 0.05, y: 0.075}
+  lateralRecovery: 15
+  lateralSnappiness: 20
+  sustainedAffectsCam: 0
+  camPerShot: {x: 3, y: 4}
+  camRecovery: 15
+  camSnappiness: 10
+  fireModes: 00000000

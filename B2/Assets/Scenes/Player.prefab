@@ -947,8 +947,8 @@ MonoBehaviour:
   swayAmount: 0.01
   swaySmoothing: 0.05
   swayResetSmoothing: 0.2
-  movementSwayAmount: 5
-  movementSwaySmoothing: 0.35
+  movementSwayAmount: -4
+  movementSwaySmoothing: 0.375
   leanMoveAmount: 0.05
   leanMoveSmoothing: 0.2
   movementMoveAmount: 0.025
