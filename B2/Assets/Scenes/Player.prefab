@@ -937,21 +937,21 @@ MonoBehaviour:
   armaAimMult: 1
   armaAimAmount: 0.5
   movementRotScaler: 0.25
-  swayRotScaler: 0.2
+  swayRotScaler: 0.25
   leanScaler: 0
-  moveScaler: 0.25
+  moveScaler: 1
   breathScaler: 0.25
-  walkScaler: 0.75
+  walkScaler: 1
   wpnPos: {x: 0, y: 0, z: 0}
   wpnRot: {x: 0, y: 0, z: 0}
   swayAmount: 0.01
   swaySmoothing: 0.05
   swayResetSmoothing: 0.2
-  movementSwayAmount: -4
+  movementSwayAmount: -2.5
   movementSwaySmoothing: 0.375
   leanMoveAmount: 0.05
   leanMoveSmoothing: 0.2
-  movementMoveAmount: 0.025
+  movementMoveAmount: -0.025
   movementMoveSmoothing: 0.1
   breathingIn: 0
   breathTime: 2

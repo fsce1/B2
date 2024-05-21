@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Target
   - EnemyHead
+  - Whizz
   layers:
   - Default
   - TransparentFX

@@ -249,10 +249,9 @@ public class EnemyStateMachine : MonoBehaviour
         }
     }
 
-    public void BulletWhiz()
+    public void BulletWhizz()
     {
-        EnterAttack();
-        if (!GameManager.GM.player.firearm.isSuppressed) lookPos.LookAt(GameManager.GM.player.transform.position);
+        if (!GameManager.GM.player.firearm.isSuppressed) lastPositionPlayerSpotted = GameManager.GM.player.transform.position;
         surprise = Vector3.Angle(eyePos.forward, GameManager.GM.player.transform.position - eyePos.position);
     }
     public void Hit(int damage, Vector3 hitPoint)
@@ -267,5 +266,13 @@ public class EnemyStateMachine : MonoBehaviour
         g.GetComponent<Rigidbody>().AddForceAtPosition(-Vector3.forward * 100, hitPoint);
 
         Destroy(gameObject);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Round"))
+        {
+            Debug.Log("Whizz");
+            BulletWhizz();
+        }
     }
 }

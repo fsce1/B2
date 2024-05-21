@@ -60,7 +60,7 @@ public class Round : MonoBehaviour
     Vector3 PointOnParabola(float time)
     {
         Vector3 pos = startPosition + (muzzleVelocity * time * startDir);
-        Vector3 gravityVector = Vector3.down *(gravity * time * time);
+        Vector3 gravityVector = Vector3.down * (gravity * time * time);
         return pos + gravityVector;
     }
     bool RayBetweenPoints(Vector3 startPoint, Vector3 endPoint, out RaycastHit hit)
@@ -97,30 +97,37 @@ public class Round : MonoBehaviour
 
         if (RayBetweenPoints(currentPoint, nextPoint, out hit))
         {
-            if (!hit.collider.CompareTag("Round"))
+            switch (hit.collider.tag)
             {
-                if (hit.collider.CompareTag("Ground"))
-                {
+                case "Ground":
                     GameObject g = Instantiate(concreteHit, hit.point, Quaternion.Euler(nextPoint - currentPoint));
                     g.transform.parent = null;
-                }
+                    break;
 
-                if (hit.collider.CompareTag("Enemy"))
-                {
+                case "Enemy":
 
                     Instantiate(bloodHit, hit.point, Quaternion.Euler(nextPoint - currentPoint));
                     EnemyStateMachine e;
-                    if (e = hit.collider.gameObject.GetComponent<EnemyStateMachine>()){
+                    if (e = hit.collider.gameObject.GetComponent<EnemyStateMachine>())
+                    {
                         e.Hit(Random.Range(damage.x, damage.y), hit.point);
                     }
-                }
-                if (hit.collider.CompareTag("EnemyHead"))
-                {
-                    hit.collider.gameObject.GetComponent<Head>().Hit();
+                    break;
 
-                }
-                if (hit.collider.CompareTag("Player"))
-                {
+                case "EnemyHead":
+                    hit.collider.gameObject.GetComponent<Head>().Hit();
+                    break;
+
+                //case "Whizz":
+                //    EnemyStateMachine ee = hit.collider.gameObject.GetComponentInParent<EnemyStateMachine>();
+                //    if (ee !=null)
+                //    {
+                //        ee.BulletWhizz();
+                //    }
+                //    break;
+
+                case "Player":
+
                     Transform player = GameManager.GM.player.transform;
                     Vector3 hitPoint = player.position;
                     hitPoint.y += 1.75f;
@@ -128,17 +135,16 @@ public class Round : MonoBehaviour
                     Instantiate(bloodHit, hitPoint, Quaternion.Euler(nextPoint - currentPoint));
 
                     hit.collider.gameObject.GetComponent<Player>().Hit(Random.Range(damage.x, damage.y));
-                }
-                if (hit.collider.CompareTag("Target"))
-                {
-                    AudioSource g = hit.collider.gameObject.GetComponent<AudioSource>();
-                    g.PlayOneShot(g.clip);
-                }
-                Destroy(gameObject);
-                //Debug.Log(hit.collider.gameObject.name);
-            }
-        }
+                    break;
 
+                case "Target":
+                    AudioSource a = hit.collider.gameObject.GetComponent<AudioSource>();
+                    a.PlayOneShot(a.clip);
+                    break;
+            }
+
+            if (!hit.collider.CompareTag("Round")) Destroy(gameObject);
+        }
         //Vector3 tgt = new()
         //{
         //    z = distFromOrigin + muzzleVelocity,
@@ -178,7 +184,6 @@ public class Round : MonoBehaviour
 
         if (distFromOrigin > despawnDist)
         {
-            //Debug.Log(distFromOrigin);
             Destroy(gameObject);
         }
 

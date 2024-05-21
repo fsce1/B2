@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firearmName: SR20
   firearmPrefab: {fileID: 4418203953646497937, guid: ff18ad6306b8b99498c16e3da017d3e4, type: 3}
-  roundsPerMinute: 500
+  roundsPerMinute: 1500
   magazineSize: 20
   restPos: {x: 0.11, y: -0.66, z: 0.47}
   aimPos: {x: -0.01, y: -0.625, z: 0.36}

@@ -310,6 +310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8621786343690556841}
   - {fileID: 7277212114129978371}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -350,8 +351,12 @@ MonoBehaviour:
   isReloading: 0
   roundsLeftInBurst: 0
   surprise: 0
-  source: {fileID: 0}
-  shotSounds: []
+  source: {fileID: 4803782171029059071}
+  shotSounds:
+  - {fileID: 8300000, guid: 825214c70bc517441a7342e9aab3b18e, type: 3}
+  - {fileID: 8300000, guid: 32f250bb2fce4cd4e938700378f15aaf, type: 3}
+  - {fileID: 8300000, guid: 6f34759a84d59134d91e5f7c67d27ad0, type: 3}
+  - {fileID: 8300000, guid: 4ec668622d4113241b46d4ea4e91edf3, type: 3}
   canSeePlayer: 0
   canHearPlayer: 0
   lastPositionPlayerSpotted: {x: 0, y: 0, z: 0}
@@ -603,6 +608,59 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &5027107189805359811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8621786343690556841}
+  - component: {fileID: 4110913680274020638}
+  m_Layer: 6
+  m_Name: Whizz
+  m_TagString: Whizz
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8621786343690556841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5027107189805359811}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4948095537994710069}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4110913680274020638
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5027107189805359811}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5801177933615891603
 GameObject:
   m_ObjectHideFlags: 0
