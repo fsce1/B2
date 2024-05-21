@@ -2,7 +2,7 @@
     Properties{
         [NoScaleOffset]
         _MainTex("Camera Render Texture", 2D) = "white" {}
-        _VignetteRadius("Vignette Radius", Range(0, 25)) = 1
+        _VignetteRadius("Vignette Radius", Range(0, 50)) = 1
         _VignetteSmoothness("Vignette Smoothness", Range(0, 1)) = 0.25
         [Toggle(SECONDARY_VIGNETTE)] 
         _SecondaryVignetteBool("Has secondary Vignette? ", Float) = 0
