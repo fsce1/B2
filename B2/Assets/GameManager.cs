@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyPrefab;
     public List<Transform> enemySpawns;
     public Vector2Int enemyCountBounds;
-    public List<Enemy> enemies;
+    public List<EnemyStateMachine> enemies;
 
     void Awake()
     {
@@ -95,12 +95,12 @@ public class GameManager : MonoBehaviour
         {
             int spawnPos = Random.Range(0, enemySpawns.Count - 1);
 
-            Enemy e = Instantiate(enemyPrefab, enemySpawns[spawnPos]).GetComponent<Enemy>();
+            EnemyStateMachine e = Instantiate(enemyPrefab, enemySpawns[spawnPos]).GetComponent<EnemyStateMachine>();
             enemySpawns.Remove(enemySpawns[spawnPos]);
             enemies.Add(e);
         }
 
-        foreach (Enemy e in enemies)
+        foreach (EnemyStateMachine e in enemies)
         {
             e.Initialize();
             e.transform.parent = null;

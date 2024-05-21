@@ -109,8 +109,8 @@ public class Round : MonoBehaviour
                 {
 
                     Instantiate(bloodHit, hit.point, Quaternion.Euler(nextPoint - currentPoint));
-                    Enemy e;
-                    if (e = hit.collider.gameObject.GetComponent<Enemy>()){
+                    EnemyStateMachine e;
+                    if (e = hit.collider.gameObject.GetComponent<EnemyStateMachine>()){
                         e.Hit(Random.Range(damage.x, damage.y), hit.point);
                     }
                 }
@@ -194,7 +194,8 @@ public class Round : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+
+        if (other.CompareTag("Enemy") && other.GetComponent<Enemy>() != null)
         {
             other.GetComponent<Enemy>().BulletWhiz();
         }

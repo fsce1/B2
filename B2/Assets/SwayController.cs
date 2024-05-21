@@ -373,7 +373,6 @@ public class SwayController : MonoBehaviour
         player.camHolder.position += newCamWalkMove;
 
         wpnPos += _walkScaler * 25 * lateralVelocity * newWalkMove;
-        Debug.Log(_walkScaler);
         wpnRot += _walkScaler * 25 * lateralVelocity * stepRotScaling * new Vector3(newWalkMove.y, newWalkMove.x, newWalkMove.x * 0.75f);
     }
 

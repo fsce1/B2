@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Head : MonoBehaviour
 {
-    public Enemy enemy;
+    public EnemyStateMachine enemy;
     public void Hit()
     {
         enemy.Hit(100, enemy.transform.position);
