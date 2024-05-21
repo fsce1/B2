@@ -16,10 +16,10 @@ MonoBehaviour:
   firearmPrefab: {fileID: 4418203953646497937, guid: ff18ad6306b8b99498c16e3da017d3e4, type: 3}
   roundsPerMinute: 600
   magazineSize: 20
-  restPos: {x: 0.11, y: -0.66, z: 0.47}
-  aimPos: {x: -0.01, y: -0.625, z: 0.36}
-  sprintPos: {x: 0.11, y: -0.73, z: 0.40000096}
-  sprintRot: {x: 9.130004, y: -12.57, z: 4.479997}
+  restPos: {x: 0.12, y: -0.39, z: 0.12}
+  aimPos: {x: -0.0075, y: -0.315, z: -0.02}
+  sprintPos: {x: -0.01, y: -0.625, z: 0.36}
+  sprintRot: {x: -4.79, y: -9.44, z: 0.1999962}
   sustainedRecoilAdd: 0.025
   sustainedAffectsVertical: 1
   verticalPerShot: {x: 2, y: 5}

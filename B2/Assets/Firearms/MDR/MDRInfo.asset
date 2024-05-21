@@ -25,14 +25,14 @@ MonoBehaviour:
   verticalPerShot: {x: 1, y: 2}
   sustainedAffectsHorizontal: 1
   horizontalPerShot: {x: -1, y: 1}
-  rotRecovery: 5
-  rotSnappiness: 10
+  rotRecovery: 15
+  rotSnappiness: 15
   sustainedAffectsLateral: 0
   lateralPerShot: {x: 0.025, y: 0.05}
   lateralRecovery: 10
   lateralSnappiness: 10
   sustainedAffectsCam: 0
   camPerShot: {x: 5, y: 7.5}
-  camRecovery: 10
-  camSnappiness: 5
+  camRecovery: 15
+  camSnappiness: 15
   fireModes: 0000000001000000

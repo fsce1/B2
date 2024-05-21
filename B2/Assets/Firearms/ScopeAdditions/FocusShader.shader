@@ -76,6 +76,8 @@ Shader "Unlit/FocusShader"
              
                 float distance = sqrt( pow((_XPos - i.uv.x), 2) + pow((_YPos - i.uv.y), 2));
 
+
+
                 float ammount = lerp(_Max, _Min, _Mult);
                     
                 return fixed4(0, 0, 0, distance / ammount);

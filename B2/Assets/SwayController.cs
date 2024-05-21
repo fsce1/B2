@@ -141,6 +141,7 @@ public class SwayController : MonoBehaviour
             breathTgt.y = -breathTgt.y;
             breathTgt.x = 0;
         }
+
     }
 
     //void SwitchWalk() => rightFoot = !rightFoot;

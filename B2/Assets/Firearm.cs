@@ -62,6 +62,8 @@ public class Firearm : MonoBehaviour
     public Vector2 zoomBounds;
     public float scrollSpeed;
     float baseFOV;
+    public ScopeEyeRelief eyeRelief;
+    public Vector2 eyeReliefBounds;
 
     [Header("Audio")]
     public List<AudioClip> shotSounds;
@@ -106,6 +108,8 @@ public class Firearm : MonoBehaviour
             curZoom = Mathf.SmoothDamp(curZoom, tgtZoom, ref curZoomVel, zoomSmoothing);
             scopeCamera.fieldOfView = baseFOV / curZoom;
             if (firstFocalPlane) scopeMesh.material.SetFloat("_ReticleScale", baseReticleScale * curZoom);
+            eyeRelief.maxAngle = Mathf.Lerp(eyeReliefBounds.y, eyeReliefBounds.x, Mathf.InverseLerp(1, zoomBounds.y, curZoom));
+
         }
 
 
