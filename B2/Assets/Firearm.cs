@@ -51,8 +51,9 @@ public class Firearm : MonoBehaviour
 
     [Header("Scope")]
     public bool hasScope;
+    public Transform crosshair;
     public bool firstFocalPlane;
-    public float baseReticleScale;
+    public Vector3 baseReticleScale;
     public float tgtZoom;
     public float curZoom;
     public float zoomSmoothing;
@@ -89,7 +90,7 @@ public class Firearm : MonoBehaviour
         if (hasScope)
         {
             baseFOV = scopeCamera.fieldOfView;
-            baseReticleScale = scopeMesh.material.GetFloat("_ReticleScale");
+            baseReticleScale = crosshair.localScale;
         }
         //controller = animator.runtimeAnimatorController;
     }
@@ -107,7 +108,7 @@ public class Firearm : MonoBehaviour
         {
             curZoom = Mathf.SmoothDamp(curZoom, tgtZoom, ref curZoomVel, zoomSmoothing);
             scopeCamera.fieldOfView = baseFOV / curZoom;
-            if (firstFocalPlane) scopeMesh.material.SetFloat("_ReticleScale", baseReticleScale * curZoom);
+            if (firstFocalPlane) crosshair.localScale = baseReticleScale* curZoom;
             eyeRelief.maxAngle = Mathf.Lerp(eyeReliefBounds.y, eyeReliefBounds.x, Mathf.InverseLerp(1, zoomBounds.y, curZoom));
 
         }

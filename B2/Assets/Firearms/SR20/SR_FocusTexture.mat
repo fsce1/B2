@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MDR_FocusShader
+  m_Name: SR_FocusTexture
   m_Shader: {fileID: 4800000, guid: 0699bff5b86692c4cb5c322b1c7526cf, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -70,20 +70,20 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Max: 5.78
+    - _Max: 5.26
     - _MaxChromatic: 5
     - _Metallic: 0
     - _Min: 1.73
     - _Mode: 0
-    - _Mult: 1
+    - _Mult: 0.25
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _XPos: 0.50845605
-    - _YPos: 0.46275562
+    - _XPos: 0.44593352
+    - _YPos: 0.41510934
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScopeEyeRelief : MonoBehaviour
 {
+    public MeshRenderer focus;
     public Material focusMat;
     public Transform eye;
     public Transform eyeDistPos;
@@ -27,6 +28,7 @@ public class ScopeEyeRelief : MonoBehaviour
         Vector3 localEyeToScope = transform.InverseTransformDirection(eyeToScope);
         posInput = (Vector2)localEyeToScope.normalized * centerCircleMovement / 2;
 
+        focusMat = focus.material;
         focusMat.SetFloat("_Mult", mult);
         focusMat.SetFloat("_XPos", 0.5f + posInput.x);
         focusMat.SetFloat("_YPos", 0.5f + posInput.y);

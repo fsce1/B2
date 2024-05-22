@@ -5,7 +5,6 @@ using TMPro;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.PlayerSettings;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public enum EnemyState

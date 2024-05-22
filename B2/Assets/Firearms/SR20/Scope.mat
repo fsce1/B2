@@ -85,14 +85,14 @@ Material:
     - _ReticleOffsetY: 0
     - _ReticleScale: 1.5000002
     - _SecondaryVignetteBool: 1
-    - _SecondaryVignetteRadius: 1.19
-    - _SecondaryVignetteSmoothness: 0.706
+    - _SecondaryVignetteRadius: 1.3
+    - _SecondaryVignetteSmoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _VignetteRadius: 33.2
-    - _VignetteSmoothness: 0
+    - _VignetteRadius: 23.5
+    - _VignetteSmoothness: 0.772
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
