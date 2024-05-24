@@ -339,167 +339,185 @@ The crosshair uses a raycast directly from the barrel and displays the crosshair
 # AI - Apr 11th - Apr 26th
 
 AI was the feature that I expected would be one of the hardest features to implement, however once I started it was more intuitive than I thought. 
-Unity's Navmesh system is very high quality, and I was able to bake a navmesh (a mesh with every area that an enemy is able to walk to), and then I am instantly able to give the enemy a point, and it will automatically pathfind to that location with smooth movement.
+Unity's Navmesh system is very high quality, and I was able to bake a navmesh (a mesh with every area that an enemy is able to walk to) with minimal effort. Then I am able to give the enemy a point, and it will automatically pathfind to that location with smooth movement.
+<span style="color:#FF0000">
+In order to implement the Finite State Machine, I created an enum, which is essentially a global variable type that pairs an integer up with a string.
+</span>
+```cs
+public enum EnemyState
+{
+    Idle,
+    Attack,
+    Move
+}```
+<span style="color:#FF0000">
+Then, I needed to create the methods that hold the rest of the code. Each state has 3 methods: Enter, Update and Exit. In the FixedUpdate(), there is a switch statement that changes which Update method gets called depending on the current state.
+</span>
+```cs
+switch (state)
+        {
+            case EnemyState.Idle: UpdateIdle(); break;
+            case EnemyState.Attack: UpdateAttack(); break;
+            case EnemyState.Move: UpdateMove(); break;
+        }```
+<span style="color:#FF0000">
+The Enter and Exit methods are fairly simple and now we have 3 states that we can switch between and a seperate Update method for each state.
+</span>
+```cs
+    void EnterMove()
+    {
+        state = EnemyState.Move;
+        Vector3 pos = transform.position;
+        pos.x += Random.Range(0, 10);
+        pos.z += Random.Range(0, 10);
+        agent.SetDestination(pos);
+    }
+```
+
+```cs
+    void ExitAttack(EnemyState nextState)
+    {
+        switch (nextState)
+        {
+            case EnemyState.Idle: EnterIdle(); break;
+            case EnemyState.Move: EnterMove(); break;
+        }
+    }
+```
+To begin with, the enemies are all in the Idle state, in which they will look towards the last position that the player was seen (or in the default rotation if they have never seen the player).
 Before I wrote the code to tell the enemies where to go, I decided they should be able to shoot back. To do this, I needed to check if the enemy could see the player, which was as simple as measuring the angle of the raycast between the enemy and the player, and if it was inside the "view cone" bounds, then the enemy could see you.
 ```cs
-Vector3 playerDir = playerEyePos - eyePos.position;
-        canSeePlayer = false;
-        if (Physics.Raycast(eyePos.position, playerDir, out RaycastHit hit, Mathf.Infinity) && hit.collider.CompareTag("Player")) // TODO: less chance to spot if far away
-        {
-            if (Vector3.Angle(eyePos.forward, playerDir) < viewCone)
-            {
-                if (!canSeePlayer) SpotPlayer();
-                canSeePlayer = true;
-                lastPositionPlayerSeen = GameManager.GM.player.transform.position;
-                //player position is the feet position, so we need to add on the Y axis to bring it to eye level
-                lastPositionPlayerSeen.y += 1.75f;
-            }
-        }
-```
-Once that check was in place, the enemy will now rotate to face you if it spots you, then after a randomised "reaction time" (0.5s - 3s depending on distance from player), they will start firing in bursts at you. If they are a long distance away, they will fire in bursts of 1 or 2 shots, however if they are closer they may use full-auto fire. This was because I noticed enemies very far away would be able to shoot extremely accurate full-auto bursts at an unrealistically long range. There is also a short, randomised cooldown between burst shots.
-```cs
-void FixedUpdate(){
-        if (canSeePlayer)
-        {
-			
-            lookPos.forward = lastPositionPlayerSeen - lookPos.position;
-            lookPos.localEulerAngles = new(0, lookPos.localEulerAngles.y, 0);
-            firearmPos.forward = lastPositionPlayerSeen - firearmPos.position;
-            //randomise bullet trajectory for innacuracy
-            firearmPos.localEulerAngles += Random.Range(-0.5f, 0.5f) * transform.up;
-            firearmPos.localEulerAngles += Random.Range(-0.5f, 0.5f) * transform.right;
-            
-            if (timeSincePlayerSeen == 0)
-            {
-                curReactionTime = Random.Range(reactionTime.x, reactionTime.y);
-                onCooldown = true;
-                CooldownShot();
-                //roundsLeftInBurst = 1;
-                ResetShot();
-            }
-            else if (!onCooldown && roundsLeftInBurst <= 0)
-            {
-                onCooldown = true;
-                Invoke(nameof(CooldownShot), Random.Range(cooldown.x, cooldown.y));
-                curRecoilInaccuracy = 0;
-            }
-            if (!onCooldown && canShoot && roundsLeftInBurst > 0 && timeSincePlayerSeen > curReactionTime)
-            {
-                Instantiate(bulletPrefab, firearmPos.position, firearmPos.rotation);
-                
-                canShoot = false;
-                roundsLeftInBurst -= 1;
-                roundsInMag -= 1;
-                Invoke(nameof(ResetShot), 0.1f);
-                
-                anim.Play("Base Layer.demo_combat_shoot");
-                source.PlayOneShot(shotSounds[Random.Range(0, shotSounds.Count)]);
-            }
-        }
-        else timeSincePlayerSeen = 0;
-    }
-}
-void ResetShot() => canShoot = true;
-void CooldownShot()
+if (Physics.Raycast(eyePos.position, GameManager.GM.player.transform.position - eyePos.position, out RaycastHit hit, Mathf.Infinity))
 {
-    float distFromPlayer = (lastPositionPlayerSeen - transform.position).magnitude;
-    distFromPlayer = Mathf.InverseLerp(0, 500, distFromPlayer);
-    float maxShots = Mathf.Lerp(15, 1, distFromPlayer);
-    Debug.Log(maxShots);
-    roundsLeftInBurst = (int)Random.Range(1, maxShots);
-    onCooldown = false;
+    if (hit.transform.CompareTag("Player") && Vector3.Angle(lookPos.forward, GameManager.GM.player.transform.position - lookPos.position) < viewCone)
+    {
+        canSeePlayer = true;
+        lastPositionPlayerSpotted = GameManager.GM.player.transform.position;
+        timeSincePlayerSeen += Time.fixedDeltaTime;
+    }
+    else
+    {
+        canSeePlayer = false;
+        timeSincePlayerSeen = 0;
+    }
 }
 ```
+Once that check was in place, the enemy will now transition into its `Attack` State if it spots you, then after a randomised "reaction time" (0.2s - 2s depending on distance from player), they will start firing in bursts at you. If they are a long distance away, they will fire in bursts of 1 or 2 shots, however if they are closer they may use full-auto fire. This was because I noticed enemies very far away would be able to shoot extremely accurate full-auto bursts at an unrealistically long range. There is also a short, randomised cooldown between burst shots.
 Now that the enemies can shoot back in a realistic manner depending on the distance from the player, I added a simple "whizz" mechanic where the enemy can detect if a bullet has barely missed them, and turn in the direction of where the shot came from.
-Then it was time to add the movement to the AI enemies. This was one of the hardest parts, as I used weighted chance to decide what the AI should do. On the first frame that the player is spotted, it will decide whether to fall back, or to push forward after a random amount of time. This means that they may initially stand in place and shoot back, but then reposition after 10-20 seconds. 
-This is the method for calculating weighted chance. It takes into account the current health, if any enemies are nearby, the current number of rounds in the enemies mag, and a variable called "surprise."
-```cs
-void SpotPlayer()
-    {
-        if(isMoving) return;
-        Debug.Log("Spotted");
-        float healthChance = Mathf.InverseLerp(0, 100, health);
-        float magChance = Mathf.InverseLerp(0, magSize, roundsInMag);
-        float surpriseChance = Mathf.InverseLerp(0, 180, surprise);
-		float friendsChance = Mathf.InverseLerp(0, 4, nearbyFriends);
-		//generate number from 0 to 1 based on the chances
-        float chanceToPush = Mathf.InverseLerp(0, 4, healthChance + magChance + surpriseChance + friendsChance);
-
-        float decision = Random.Range(0f, 1f);
-        //chanceToPush is a float between 0 and 1 that defines the threshold of running away vs puhing
-        if (decision < chanceToPush)
-        {
-            Invoke(nameof(RunAway), Random.Range(timeToMove.x, timeToMove.y));
-            Debug.Log("Running away");
-        }
-        else
-        {
-            Invoke(nameof(RunTowards), Random.Range(timeToMove.x, timeToMove.y));
-            Debug.Log("Pushing");
-        }
-
-    }
-```
+Then it was time to add the movement to the AI enemies. This was one of the hardest parts, as I used weighted chance to decide what the AI should do. Between each burst of shots, it will decide whether or not to change its state to Move. This means that they may initially stand in place and shoot back, but then reposition after certain variables change.
+The method for calculating weighted chance takes into account the current health, if any teammates are nearby, the current number of rounds in the enemies mag, and a variable called "`surprise`." `surprise`<span style="color:#FF0000"> is the angle between the enemy's look direction and the direction toward the player. This means that if you fire a shot at the enemy when they are looking the opposite direction, they are more likely to transition to the Move state and run away from you instead of staying put.</span>
 
 ```cs
-    void RunTowards()
+void UpdateAttack()
+{
+    if (canSeePlayer)
     {
-    //direction to search is towards player
-        Vector3 dir = (GameManager.GM.player.transform.position - transform.position).normalized;
-		FindCover(dir);
-    }
-    void RunAway()
-    {
-    //direction to search is away from player
-        Vector3 dir = -(GameManager.GM.player.transform.position - transform.position).normalized;
-		FindCover(dir);
-    }
-    void FindCover(Vector3 direction)
-    {
-        List<Vector3> checkPositions = new();
+        firearmPos.LookAt(lastPositionPlayerSpotted);
+        firearmPos.localEulerAngles += Random.Range(-0.5f, 0.5f) * transform.up;
+        firearmPos.localEulerAngles += Random.Range(-0.5f, 0.5f) * transform.right;
 
-        Vector3 searchDir = direction;
-
-        Debug.DrawRay(transform.position, searchDir, Color.red);
-		//loop through 10 different possible positions
-        for (int i = 0; i < 10; i++)
+        if (timeSincePlayerSeen == 0)
         {
-            searchDir = new(Random.Range(searchDir.x - 30, searchDir.x + 30), transform.position.y, Random.Range(searchDir.z - 5, searchDir.z + 5));
-            Vector3 position = transform.position - searchDir;
-            checkPositions.Add(position);
-            Debug.DrawLine(transform.position, position);
+            curReactionTime = Random.Range(reactionTime.x, reactionTime.y);
+            onCooldown = true;
+            CooldownShot();
+            //roundsLeftInBurst = 1;
+            ResetShot();
+        }
+        else if (!onCooldown && roundsLeftInBurst <= 0)
+        {
+            onCooldown = true;
+            Invoke(nameof(CooldownShot), Random.Range(cooldown.x, cooldown.y));
+        }
+        if (roundsInMag <= 0)
+        {
+            isReloading = true;
+            Invoke(nameof(Reload), reloadTime);
         }
 
-        Vector3 bestCover = Vector3.positiveInfinity;
-        float bestDist = 0;
-        foreach (Vector3 pos in checkPositions)
+        if (!isReloading && !onCooldown && canShoot && roundsLeftInBurst > 0 && timeSincePlayerSeen > curReactionTime)
         {
-	        //check if you can see the player from these positions
-            if (Physics.Raycast(pos, searchDir, out RaycastHit hit, Mathf.Infinity))
-            {
-                if (hit.transform.CompareTag("Player")) return;
-                else
-                {
-	                //if you cannot see the player, check how far away that point is from the player.
-                    float dist = (GameManager.GM.player.transform.position - pos).magnitude;
-                    //save the point that is closest to the player
-                    if (dist < bestDist) return;
-                    else
-                    {
-                        bestDist = dist;
-                        bestCover = pos;
-                    }
-                }
-            }
+            Instantiate(bulletPrefab, firearmPos.position, firearmPos.rotation);
+            canShoot = false;
+            roundsLeftInBurst -= 1;
+            roundsInMag -= 1;
+
+            Invoke(nameof(ResetShot), 0.1f);
+
+            anim.Play("Base Layer.demo_combat_shoot");
+            source.PlayOneShot(shotSounds[Random.Range(0, shotSounds.Count)]);
         }
-        tempTgt = bestCover;
-        //Start movement after random time between 10 and 20 seconds
-		Invoke(nameof(StartMovement), Random.Range(10,20));
     }
-	void StartMovement(Vector3 tgt){
-		finalTgt = tempTgt;
-		isMoving = true;
-	}
+}
+ void ResetShot() => canShoot = true;
+ void CooldownShot()
+ {
+     float healthChance = Mathf.InverseLerp(0, 100, health);
+     float teamChance = Mathf.InverseLerp(0, 4, nearbyTeam.Count);
+     float magChance = Mathf.InverseLerp(0, 10, roundsInMag);
+     float surpriseChance = Mathf.InverseLerp(180, 0, surprise);
+	
+     float chanceToMove = Mathf.InverseLerp(0, 3, healthChance + magChance + surpriseChance + teamChance);
+	
+     float decision = Random.Range(0f, 1f);
+     
+     ExitAttack(EnemyState.Move);
+	
+     float maxShots = Mathf.Lerp(10, 1, distFromPlayer);
+     roundsLeftInBurst = (int)Random.Range(1, maxShots);
+     onCooldown = false;
+ }
 ```
+
 This makes the AI feel much more reactive and like they are actually thinking, which helps immersion greatly. If you catch the enemy by surprise, they will be more scared and run away, but if they are expecting you and have many friends nearby, they may be more aggressive and push you. I am very happy with how this AI has come out and it feels like a thinking agent that can execute different tactics very well.
-I added blood effects to the enemy, so it was obvious when you hit them, as well as a seperate head hitbox that would instantly kill them if you hit a headshot. Finally, I also added ragdolls when they die, so they fall to the ground in a realistic manner.
+I added blood effects to the enemy, so it was obvious when you hit them, as well as a separate head hitbox that would instantly kill them if you hit a headshot. Finally, I also added ragdolls when they die, so they fall to the ground in a realistic manner.
+<span style="color:#FF0000">
+I also added a debug menu that shows current state, health, if they can see the player and magazine count.
+</span>
+![[Pasted image 20240524161016.png]]
+<span style="color:#FF0000">After gathering some feedback, I decided that a sprint feature would be very useful, and used some of my resubmission time to implement this. It was fairly simple, however I needed to edit the FirearmInfo class in order to add 2 new Vector3's: sprintPos and sprintRot, as well as adding a stamina stat. 
+I also added a freelook feature, allowing you to look to the side as you sprint or walk around without disrupting your movement.</span>
+
+```cs
+if (inputSprint && stamina > 0 && Input.GetKey(KeyCode.W))
+{
+    isSprinting = true;
+    swayController.isAiming = false;
+    isWalking = false;
+
+    maxSpeed = sprintSpeed;
+}
+else
+{
+    isSprinting = false;
+    inputSprint = false;
+}
+```
+
+```cs
+if (inputFreelook > 0.5f)
+{
+    freelookAngles += inputView * 5;
+    freelookAngles.x=Mathf.Clamp(freelookAngles.x, -65, 65);
+    freelookAngles.y=Mathf.Clamp(freelookAngles.y, -65, 65);
+
+    GameManager.GM.playCameras[0].transform.localRotation = Quaternion.Euler(-freelookAngles.y, freelookAngles.x, 0);
+
+}
+else
+{
+    cameraAngles += inputView;
+    freelookAngles = Vector2.zero;
+
+    cameraAngles.y = Mathf.Clamp(cameraAngles.y, -90, 90);
+
+    Quaternion camRot = Quaternion.AngleAxis(-cameraAngles.y, Vector3.right);
+    Quaternion playerRot = Quaternion.AngleAxis(cameraAngles.x, Vector3.up);
+
+    camHolder.localRotation = camRot * Quaternion.Euler(camRecoil);
+    transform.localRotation = playerRot;
+
+    GameManager.GM.playCameras[0].transform.localRotation = Quaternion.identity;
+    GameManager.GM.playCameras[1].transform.localRotation = Quaternion.identity;
+}
+```

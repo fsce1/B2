@@ -1721,7 +1721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
-  regenHealthSpeed: 1
+  regenHealthSpeed: 0.02
   regenStaminaSpeed: 1
   inputMovement: {x: 0, y: 0}
   inputView: {x: 0, y: 0}
