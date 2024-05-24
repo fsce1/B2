@@ -20,17 +20,17 @@ MonoBehaviour:
   aimPos: {x: 0, y: -0.1473, z: 0.1838}
   sprintPos: {x: -0.04, y: -0.23, z: 0.3208}
   sprintRot: {x: 14.96, y: -29.69, z: 0}
-  sustainedRecoilAdd: 0.01
-  sustainedAffectsVertical: 1
-  verticalPerShot: {x: 4, y: 5}
-  sustainedAffectsHorizontal: 0
+  sustainedRecoilAdd: 0.015
+  sustainedAffectsVertical: 0
+  verticalPerShot: {x: 0.5, y: 1}
+  sustainedAffectsHorizontal: 1
   horizontalPerShot: {x: -1, y: 1}
-  rotRecovery: 15
-  rotSnappiness: 10
+  rotRecovery: 10
+  rotSnappiness: 15
   sustainedAffectsLateral: 0
-  lateralPerShot: {x: 0.025, y: 0.05}
+  lateralPerShot: {x: 0.025, y: 0.03}
   lateralRecovery: 10
-  lateralSnappiness: 20
+  lateralSnappiness: 5
   sustainedAffectsCam: 0
   camPerShot: {x: 2, y: 5}
   camRecovery: 15

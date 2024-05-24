@@ -5,6 +5,7 @@ using TMPro;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public enum EnemyState
@@ -78,7 +79,7 @@ public class EnemyStateMachine : MonoBehaviour
 
 
         distFromPlayer = (lastPositionPlayerSpotted - transform.position).magnitude;
-        distFromPlayer = Mathf.InverseLerp(0, 200, distFromPlayer);
+        distFromPlayer = Mathf.InverseLerp(0, 150, distFromPlayer);
 
 
         nearbyTeam.Clear();
@@ -88,23 +89,24 @@ public class EnemyStateMachine : MonoBehaviour
             EnemyStateMachine e = collider.GetComponent<EnemyStateMachine>();
             if (e != null) nearbyTeam.Add(e);
         }
-
-        if (Physics.Raycast(eyePos.position, GameManager.GM.player.transform.position - eyePos.position, out RaycastHit hit, Mathf.Infinity))
+        Vector3 playerEyePos =  GameManager.GM.player.transform.position;
+        playerEyePos.y += 1.75f;
+        if (Physics.Raycast(eyePos.position, playerEyePos - eyePos.position, out RaycastHit hit, Mathf.Infinity))
         {
             if (hit.transform.CompareTag("Player") && Vector3.Angle(lookPos.forward, GameManager.GM.player.transform.position - lookPos.position) < viewCone)
             {
                 canSeePlayer = true;
-                lastPositionPlayerSpotted = GameManager.GM.player.transform.position;
+                lastPositionPlayerSpotted = playerEyePos;
                 timeSincePlayerSeen += Time.fixedDeltaTime;
             }
             else
             {
                 canSeePlayer = false;
-                timeSincePlayerSeen = 0;
+                timeSincePlayerSeen = -Time.fixedDeltaTime;
             }
         }
-
-        lookPos.LookAt(lastPositionPlayerSpotted);
+        lookPos.forward = Vector3.RotateTowards(lookPos.forward, playerEyePos- lookPos.position, 25, 25);
+        //lookPos.LookAt(lastPositionPlayerSpotted);
         lookPos.transform.localEulerAngles = new(0, lookPos.transform.localEulerAngles.y, 0);
 
         if (text != null)
@@ -146,15 +148,18 @@ public class EnemyStateMachine : MonoBehaviour
     }
     void UpdateAttack()
     {
+
         if (canSeePlayer)
         {
             firearmPos.LookAt(lastPositionPlayerSpotted);
-            firearmPos.localEulerAngles += Random.Range(-0.5f, 0.5f) * transform.up;
-            firearmPos.localEulerAngles += Random.Range(-0.5f, 0.5f) * transform.right;
+            firearmPos.localEulerAngles += Random.Range(-0.25f, 0.25f) * transform.up;
+            firearmPos.localEulerAngles += Random.Range(-0.25f, 0.25f) * transform.right;
 
             if (timeSincePlayerSeen == 0)
             {
-                curReactionTime = Random.Range(reactionTime.x, reactionTime.y);
+                curReactionTime = Mathf.Lerp(reactionTime.x, reactionTime.y, distFromPlayer);
+                //Debug.Log("curReactionTime " + curReactionTime);
+                //curReactionTime = Random.Range(reactionTime.x, reactionTime.y);
                 onCooldown = true;
                 CooldownShot();
                 //roundsLeftInBurst = 1;
@@ -183,10 +188,8 @@ public class EnemyStateMachine : MonoBehaviour
                 anim.Play("Base Layer.demo_combat_shoot");
                 source.PlayOneShot(shotSounds[Random.Range(0, shotSounds.Count)]);
             }
-
-
-
         }
+        else ExitAttack(EnemyState.Idle);
     }
     void ResetShot() => canShoot = true;
     void CooldownShot()
@@ -195,16 +198,22 @@ public class EnemyStateMachine : MonoBehaviour
         float teamChance = Mathf.InverseLerp(0, 4, nearbyTeam.Count);
         float magChance = Mathf.InverseLerp(0, 10, roundsInMag);
         float surpriseChance = Mathf.InverseLerp(180, 0, surprise);
+        Debug.Log("healthChance " + healthChance);
+        Debug.Log("teamChance " + teamChance);
+        Debug.Log("magChance " + magChance);
+        Debug.Log("surpriseChance " + surpriseChance);
 
         float chanceToMove = Mathf.InverseLerp(0, 3, healthChance + magChance + surpriseChance + teamChance);
 
         float decision = Random.Range(0f, 1f);
 
-        //if (decision < chanceToMove)
-        //{
-        //    ExitAttack(EnemyState.Move);
-        //}
-        ExitAttack(EnemyState.Move);
+        Debug.Log("chanceToMove " + chanceToMove);
+        Debug.Log("decision " + decision);
+        if (decision > chanceToMove)
+        {
+            ExitAttack(EnemyState.Move);
+        }
+
 
         float maxShots = Mathf.Lerp(10, 1, distFromPlayer);
         roundsLeftInBurst = (int)Random.Range(1, maxShots);
@@ -228,9 +237,11 @@ public class EnemyStateMachine : MonoBehaviour
         state = EnemyState.Move;
 
         Vector3 pos = transform.position;
-        pos.x += Random.Range(0, 10);
-        pos.z += Random.Range(0, 10);
+        pos.x -= Random.Range(0, 25);
+        pos.z -= Random.Range(0, 25);
         agent.SetDestination(pos);
+
+        anim.Play("Base Layer.demo_combat_move");
     }
     void UpdateMove()
     {
@@ -248,9 +259,9 @@ public class EnemyStateMachine : MonoBehaviour
         }
     }
 
-    public void BulletWhizz()
+    public void BulletWhizz(Transform round)
     {
-        if (!GameManager.GM.player.firearm.isSuppressed) lastPositionPlayerSpotted = GameManager.GM.player.transform.position;
+        lastPositionPlayerSpotted = GameManager.GM.player.transform.position;
         surprise = Vector3.Angle(eyePos.forward, GameManager.GM.player.transform.position - eyePos.position);
     }
     public void Hit(int damage, Vector3 hitPoint)
@@ -271,7 +282,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (other.CompareTag("Round"))
         {
             Debug.Log("Whizz");
-            BulletWhizz();
+            BulletWhizz(other.transform);
         }
     }
 }

@@ -32412,7 +32412,7 @@ MonoBehaviour:
   - {fileID: 1871211377}
   - {fileID: 999419101}
   - {fileID: 274816275}
-  enemyCountBounds: {x: 20, y: 20}
+  enemyCountBounds: {x: 20, y: 25}
   enemies: []
 --- !u!82 &1544380668
 AudioSource:

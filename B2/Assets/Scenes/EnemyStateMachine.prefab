@@ -337,11 +337,11 @@ MonoBehaviour:
   firearmPos: {fileID: 5332755622810733919}
   state: 0
   health: 100
-  viewCone: 75
+  viewCone: 50
   nearbyTeam: []
-  reactionTime: {x: 0.5, y: 1}
+  reactionTime: {x: 0.15, y: 0.75}
   curReactionTime: 0
-  cooldown: {x: 1, y: 1}
+  cooldown: {x: 0.5, y: 1}
   bulletPrefab: {fileID: 6992067972337017737, guid: 01785b2bfadd2594383d2b6a8ace680b, type: 3}
   magSize: 30
   roundsInMag: 30

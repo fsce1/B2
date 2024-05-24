@@ -102,6 +102,13 @@ public class Firearm : MonoBehaviour
         tgtZoom = Mathf.Clamp(tgtZoom, zoomBounds.x, zoomBounds.y);
 
     }
+    private void Update()
+    {
+        if (canShoot && fullAutoHeld && curFireMode == FireMode.fullAuto && !isReloading && roundsInMag > 0)
+        {
+            Shoot();
+        }
+    }
     private void FixedUpdate()
     {
         if (hasScope)
@@ -115,10 +122,10 @@ public class Firearm : MonoBehaviour
 
 
         if (GameManager.GM.player.isDead) return;
-        if (canShoot && fullAutoHeld && curFireMode == FireMode.fullAuto && !isReloading && roundsInMag > 0)
-        {
-            Shoot();
-        }
+        //if (canShoot && fullAutoHeld && curFireMode == FireMode.fullAuto && !isReloading && roundsInMag > 0)
+        //{
+        //    Shoot();
+        //}
         CalculateRecoil();
 
         transform.SetLocalPositionAndRotation(recoilPos, Quaternion.Euler(recoilRot));
@@ -182,6 +189,7 @@ public class Firearm : MonoBehaviour
 
         if (roundsInMag >= 0)
         {
+            //Application.targetFrameRate = 30;
             //Invoke(nameof(ResetShot), 50 / info.roundsPerMinute);
             Invoke(nameof(ResetShot), 1 / (info.roundsPerMinute / 60));
         }
