@@ -6458,6 +6458,7 @@ MonoBehaviour:
   animator: {fileID: 1093750528052043264}
   recoilRot: {x: 0, y: 0, z: 0}
   tgtRecoilRot: {x: 0, y: 0, z: 0}
+  tgtImpulseRot: {x: 0, y: 0, z: 0}
   recoilPos: {x: 0, y: 0, z: 0}
   tgtRecoilPos: {x: 0, y: 0, z: 0}
   recoilCam: {x: 0, y: 0, z: 0}
@@ -6484,7 +6485,7 @@ MonoBehaviour:
   zoomBounds: {x: 1, y: 6}
   scrollSpeed: 0.25
   eyeRelief: {fileID: 7655552811632761118}
-  eyeReliefBounds: {x: 0.025, y: 0.075}
+  eyeReliefBounds: {x: 0.035, y: 0.65}
   shotSounds:
   - {fileID: 8300000, guid: 825214c70bc517441a7342e9aab3b18e, type: 3}
   - {fileID: 8300000, guid: 32f250bb2fce4cd4e938700378f15aaf, type: 3}
@@ -12097,7 +12098,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7030331490328038262}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0737, z: -0.2489}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

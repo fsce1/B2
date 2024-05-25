@@ -330,7 +330,7 @@ MonoBehaviour:
   isInitialised: 0
   agent: {fileID: 2493145659054569558}
   surface: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 7621585895640202680}
   ragdoll: {fileID: 583890623788364990, guid: afda9c33cc6ded147a96ffbf727cd98f, type: 3}
   lookPos: {fileID: 7277212114129978371}
   eyePos: {fileID: 5602961579718173373}
@@ -339,7 +339,7 @@ MonoBehaviour:
   health: 100
   viewCone: 50
   nearbyTeam: []
-  reactionTime: {x: 0.15, y: 0.75}
+  reactionTime: {x: 0.35, y: 2}
   curReactionTime: 0
   cooldown: {x: 0.5, y: 1}
   bulletPrefab: {fileID: 6992067972337017737, guid: 01785b2bfadd2594383d2b6a8ace680b, type: 3}
@@ -522,7 +522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5953967814171882699
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1268,5 +1268,10 @@ Transform:
 --- !u!4 &7621585895632933476 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400060, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
+  m_PrefabInstance: {fileID: 7621585895632799960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7621585895640202680 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
   m_PrefabInstance: {fileID: 7621585895632799960}
   m_PrefabAsset: {fileID: 0}
