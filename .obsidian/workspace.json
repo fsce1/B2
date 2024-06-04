@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "52a5fc5890036af0",
+        "id": "05c9da5823b6aa91",
         "type": "tabs",
         "children": [
           {
-            "id": "5ea20d9cbfa812fa",
+            "id": "fef1a501c05a4514",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -18,19 +18,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "86cd92183011b007",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2024-05-25 22.28.02.excalidraw.md"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -80,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 304.5
+    "width": 395.5
   },
   "right": {
     "id": "4f8705506bf7e4ae",
@@ -96,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Excalidraw/Drawing 2024-05-25 22.28.02.excalidraw.md",
+                "file": "B2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Excalidraw/Drawing 2024-05-25 22.28.02.excalidraw.md",
+                "file": "B2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,16 +125,24 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2024-05-25 22.28.02.excalidraw.md"
+                "file": "B2.md"
               }
             }
+          },
+          {
+            "id": "c22a51e1fdb1a382",
+            "type": "leaf",
+            "state": {
+              "type": "ReferenceListView",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 416.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -159,41 +156,41 @@
       "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "86cd92183011b007",
+  "active": "fef1a501c05a4514",
   "lastOpenFiles": [
-    "B2/Temp/ADB-Refresh6409c6d83702ab449b5c535f46223c2f",
-    "B2/Library/Search/propertyDatabase.db_b9c20353f9d3429481e59f30718500de_temp",
-    "B2/Library/TempArtifacts/Primary/3b81d5bb7e71c484d8428d8018456b07",
-    "B2/Library/TempArtifacts/Primary/5933ac81a3584cc4d8985c14bfd4e121",
-    "B2/Library/TempArtifacts/Primary/06490c2da1b703049ad29efd26b4b36a",
-    "B2/Library/TempArtifacts/Primary/546ee09b762d1ac43bab6f95a25b1eb0",
-    "B2/Library/TempArtifacts/Primary/047f678fe8ed89845a65234f4a93bdc0",
-    "B2/Library/TempArtifacts/Primary/03d3930d3243f2644a56a477d5e1dfa3",
-    "B2/Library/TempArtifacts/Primary/62ce9ef3e23d0e24ba26a98bc9df6cab",
-    "B2/Temp/ADB-Refresha14e545c4b89a544090e69f3d29ac9bd",
-    "B2/Temp/UnityTempFile-c9a5265f9887bd54f80a1155f5463a45",
-    "B2/Assets/Quixel/Scripts/Images/Text_Background.png",
-    "B2/Assets/Quixel/Scripts/Images/Popup_Background.png",
-    "B2/Assets/Quixel/Scripts/Images/Popup_Arrow.png",
-    "B2/Assets/Quixel/Scripts/Images/M.png",
-    "B2/Assets/Quixel/Scripts/Images/Help.png",
-    "B2/Assets/Quixel/Scripts/Images/Field_Background.png",
-    "B2/Assets/Quixel/Scripts/Images/CheckBoxOn.png",
-    "B2/Assets/Quixel/Scripts/Images/CheckBoxOff.png",
-    "B2/Assets/Quixel/Scripts/Images/CheckBoxHover.png",
-    "B2/Assets/Quixel/Scripts/Images/Background.png",
-    "B2.md",
-    "Excalidraw/Drawing 2024-05-25 22.28.02.excalidraw.md",
-    "Research.md",
-    "Ideation.md",
-    "GDD.md",
+    "B2/Library/ShaderCache/shader/TerrainLit69c1/00/799fffb2a6eff4af478bb09911bf2d6d.bin",
+    "B2/Library/ShaderCache/shader/TerrainLit69c1/00/65bf6b53f5c7df0949af9105ee7dbff5.bin",
+    "B2/Library/ShaderCache/shader/TerrainLit69c1/00/ee9b59bd1aaa4d12b47eb6b7ad5f10d2.bin",
+    "B2/Library/ShaderCache/shader/TerrainLit69c1/00/67842f6986e893e5128fb7e1d4657acc.bin",
+    "B2/Library/ShaderCache/shader/TerrainLit69c1/00/f00b0dc7fba9ba387b9f56119b595c28.bin",
+    "B2/Library/ShaderCache/shader/TerrainLit69c1/00/64ce4928d657a89a8881a03c3284bf05.bin",
+    "B2/Library/ShaderCache/shader/TerrainLit69c1/00/09cb039171ce96599d1b7e5b9d29ab7b.bin",
+    "B2/Library/ShaderCache/shader/TerrainLit69c1/00/58e8078450ca59173b9ef3a21abe088b.bin",
+    "B2/Library/ShaderCache/shader/TerrainLit69c1/00/f14dbb9c57f64549ec5d17aa36961b59.bin",
+    "B2/Library/ShaderCache/shader/TerrainLit69c1/00/a2a9813bb99a2334d22ae5889c8d6bd5.bin",
+    "B2/Library/ShaderCache/shader/TerrainLit69c1/00/f658cbbbce321ba9eca93675201a18a5.bin",
     "Analysis of Brief.md",
-    "Devlog.md",
+    "B2.md",
+    "Game Design Document.md",
     "Evaluation.md",
+    "Devlog.md",
+    "Images/Pasted image 20240524161012.png",
+    "Images/Pasted image 20240524161016.png",
+    "Ideation.md",
+    "Research.md",
+    "Bibliography.md",
+    "Powerpoint Reflection.md",
     "Project Management.md",
     "Testing and Feedback.md",
-    "Powerpoint Reflection.md",
+    "Images/Pasted image 20240524142229.png",
+    "Images/Pasted image 20240516190922.png",
+    "Images/Sususterja_Flag.webp",
+    "Images/Pasted Image 20240512155531_630.png",
     "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md",
+    "B2/Assets/Scenes/Scene2/New folder (3)/model.jpg",
+    "B2/Assets/Scenes/Scene2/New folder/model.jpg",
+    "B2/Assets/Scenes/Scene2/New folder (2)/model.jpg",
+    "B2/Assets/Scenes/Scene2/model.jpg",
     "Skills Development.md",
     "Excalidraw/Drawing 2024-04-09 15.06.55.excalidraw.md",
     "Untitled Kanban.md",

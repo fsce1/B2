@@ -7,7 +7,7 @@ I am inspired by Eastern European shooters such as Tarkov and S.T.A.L.K.E.R. for
 ## Idea 2: Movement Shooter
 Another idea I had was a very fast, movement-based shooter with grappling hooks. I was inspired by the game Titanfall 2, as well as the Mirror's Edge games to create a shooter with a lot of map traversal and verticality, as well as being able to hit people without needing to aim down sights, or stay still to maintain accuracy. It could also score you based on time as well as bullets used, allowing sections to be replayed in hopes of "speedrunning" the areas. This would increase the replayability of the game and might attract speedrunners. Large maps with semi-non-linear pathways could make it more interesting to find new paths through the map for a faster time.
 The visual style for this game would likely be futuristic/sci-fi, as advanced movement mechanics in a realistic or historical setting may be jarring or out of place.
-The Narrative could be AI related, perhaps a powerful AI that sends robots out to kill you.
+<span style="color:#FF0000">The narrative is that you are part of a group of the last humans in the world, after the rest have been killed by a rogue AI. The story of the game is being hunted by a powerful AI that sends robots out to kill you.</span>
 ## Idea 3: Realistic Sniper Game
 
 Another game idea I had was a 
@@ -25,7 +25,8 @@ Maybe an XCOM or Red Alert-style military system, with turn based combat and man
 # Idea 5:
 ## Chosen Idea
 I decided that I would choose the first idea, a tactical shooter. I chose this because I have more experience in similar games and they are some of my favourites to play.
-
+<span style="color:#FF0000">Realistic games have also always been very interesting to me, as they have the ability to immerse you further in the world through mechanics such as permadeath, realistic health and bullet mechanics and punishing AI.
+</span>
 I created a moodboard to help pin down the visual style and setting of my game. I want to have a modern, Eastern-European setting, with a large military presence and realistic area maps.
 ![[SilentStrikeMoodboard.png]]
 <span style="color:#FF0000">
@@ -34,6 +35,6 @@ I want a realistic conflict that could happen in real life, as well as taking pl
 I named the country Sujusterea, and it is located along the Baltic sea, neighbouring Latvia and Lithuania. A civil war has been brewing for a long time, since the previous one in 1968 and the government's increasing allyship with Russia has angered the citizens.
 </span>
 
-As well as this, I debated on which game engine to use for this project. The main 2 I considered were Unreal Engine 5 and Unity.
+As well as this, I considered which game engine to use for this project. The main 2 I considered were Unreal Engine 5 and Unity.
 Each engine has its upsides and downsides, for example, Unreal Engine 5 has access to Quixel Megascans. This is one of the largest 3D asset databases in the world, including over 18,000 photorealistic and photo-scanned assets for completely free, as long as you use them inside Unreal Engine 5. In comparison, Unity has a few free assets on the Unity Asset Store, however they are made by the community and have varying levels of quality.
 Unity uses C# as a scripting language, compared to C++ in Unreal 5. Both have visual scripting solutions, however I prefer to use code to node-based scripting. I am much more familiar with Unity, and have been using it for around 3 years now, and have only slightly dabbled with using Unreal 5. For this reason, I will use Unity as it allows me to realise my ideas much more quickly as I have a better idea of how to use the program.

@@ -8,6 +8,7 @@ Additional movement options such as sprinting, crouching and going prone would b
 I think the game loop was well thought out and I didn't have to modify the game mode at all.
 In my GDD, I explained that there would be different objectives around the map, and I think if I had more time then I would definitely add some simple objectives such as needing to pick up a laptop of intelligence, rescue a prisoner or clear a specific area of enemies. 
 
+<span style="color:#FF0000">During the resubmission, I added sprinting, freelook and refined the AI with a Finite State Machine, as well as some post-processing effects on magnified optics. I think this was a good use of my time, as it deepened my understanding of Finite State Machines and other AI systems, including the upsides and downsides of different solutions.</span>
 # Resub
 
 All Merits
