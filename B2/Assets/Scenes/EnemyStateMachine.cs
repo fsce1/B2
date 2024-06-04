@@ -27,7 +27,6 @@ public class EnemyStateMachine : MonoBehaviour
     public Transform lookPos;
     public Transform eyePos;
     public Transform firearmPos;
-
     [Header("Enemy")]
     public EnemyState state = EnemyState.Idle;
     public int health = 100;
@@ -125,6 +124,7 @@ public class EnemyStateMachine : MonoBehaviour
     void EnterIdle()
     {
         state = EnemyState.Idle;
+        anim.Play("BaseLayer.demo_combat_idle");
     }
     void UpdateIdle()
     {
@@ -141,6 +141,15 @@ public class EnemyStateMachine : MonoBehaviour
     void EnterAttack()
     {
         state = EnemyState.Attack;
+
+        curReactionTime = Mathf.Lerp(reactionTime.x, reactionTime.y, distFromPlayer);
+        Debug.Log("curReactionTime " + curReactionTime);
+        //curReactionTime = Random.Range(reactionTime.x, reactionTime.y);
+        onCooldown = true;
+        CooldownShot();
+        //roundsLeftInBurst = 1;
+
+        ResetShot();
         foreach (EnemyStateMachine e in nearbyTeam)
         {
             e.lastPositionPlayerSpotted = lastPositionPlayerSpotted;
@@ -155,17 +164,18 @@ public class EnemyStateMachine : MonoBehaviour
             firearmPos.localEulerAngles += Random.Range(-0.25f, 0.25f) * transform.up;
             firearmPos.localEulerAngles += Random.Range(-0.25f, 0.25f) * transform.right;
 
-            if (timeSincePlayerSeen == 0)
-            {
-                curReactionTime = Mathf.Lerp(reactionTime.x, reactionTime.y, distFromPlayer);
-                //Debug.Log("curReactionTime " + curReactionTime);
-                //curReactionTime = Random.Range(reactionTime.x, reactionTime.y);
-                onCooldown = true;
-                CooldownShot();
-                //roundsLeftInBurst = 1;
-                ResetShot();
-            }
-            else if (!onCooldown && roundsLeftInBurst <= 0)
+            //if (timeSincePlayerSeen == 0)
+            //{
+            //    Debug.Log("Setting Reaction Time");
+            //    curReactionTime = Mathf.Lerp(reactionTime.x, reactionTime.y, distFromPlayer);
+            //    //Debug.Log("curReactionTime " + curReactionTime);
+            //    //curReactionTime = Random.Range(reactionTime.x, reactionTime.y);
+            //    onCooldown = true;
+            //    CooldownShot();
+            //    //roundsLeftInBurst = 1;
+            //    ResetShot();
+            //}
+            if (!onCooldown && roundsLeftInBurst <= 0)
             {
                 onCooldown = true;
                 Invoke(nameof(CooldownShot), Random.Range(cooldown.x, cooldown.y));
@@ -183,32 +193,31 @@ public class EnemyStateMachine : MonoBehaviour
                 roundsLeftInBurst -= 1;
                 roundsInMag -= 1;
 
-                Invoke(nameof(ResetShot), 0.1f);
-
-                anim.Play("Base Layer.demo_combat_shoot");
                 source.PlayOneShot(shotSounds[Random.Range(0, shotSounds.Count)]);
+                anim.Play("BaseLayer.demo_combat_shoot");
+                Invoke(nameof(ResetShot), 0.1f);
             }
         }
-        else ExitAttack(EnemyState.Idle);
+        else ExitAttack(EnemyState.Move);
     }
     void ResetShot() => canShoot = true;
     void CooldownShot()
     {
-        float healthChance = Mathf.InverseLerp(0, 100, health);
+        float healthChance = Mathf.InverseLerp(50, 100, health);
         float teamChance = Mathf.InverseLerp(0, 4, nearbyTeam.Count);
         float magChance = Mathf.InverseLerp(0, 10, roundsInMag);
-        float surpriseChance = Mathf.InverseLerp(180, 0, surprise);
-        Debug.Log("healthChance " + healthChance);
-        Debug.Log("teamChance " + teamChance);
-        Debug.Log("magChance " + magChance);
-        Debug.Log("surpriseChance " + surpriseChance);
+        float surpriseChance = Mathf.InverseLerp(100, 0, surprise);
+        //Debug.Log("healthChance " + healthChance);
+        //Debug.Log("teamChance " + teamChance);
+        //Debug.Log("magChance " + magChance);
+        //Debug.Log("surpriseChance " + surpriseChance);
 
         float chanceToMove = Mathf.InverseLerp(0, 3, healthChance + magChance + surpriseChance + teamChance);
 
         float decision = Random.Range(0f, 1f);
 
-        Debug.Log("chanceToMove " + chanceToMove);
-        Debug.Log("decision " + decision);
+        //Debug.Log("chanceToMove " + chanceToMove);
+        //Debug.Log("decision " + decision);
         if (decision > chanceToMove)
         {
             ExitAttack(EnemyState.Move);
@@ -241,7 +250,7 @@ public class EnemyStateMachine : MonoBehaviour
         pos.z -= Random.Range(0, 25);
         agent.SetDestination(pos);
 
-        anim.Play("Base Layer.demo_combat_move");
+        anim.Play("BaseLayer.demo_combat_run");
     }
     void UpdateMove()
     {
@@ -281,7 +290,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
         if (other.CompareTag("Round"))
         {
-            Debug.Log("Whizz");
+            //Debug.Log("Whizz");
             BulletWhizz(other.transform);
         }
     }

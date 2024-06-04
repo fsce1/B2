@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public Camera UICamera;
     public RectTransform crosshair;
+    public RectTransform greyCrosshair;
     //public RectTransform restCrosshair;
     public float crosshairSize;
     public Slider ammo;
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
         if (GameManager.GM.player.swayController.isAiming)
         {
             crosshair.gameObject.SetActive(false);
+            greyCrosshair.gameObject.SetActive(false);
         }
         else
         {
@@ -38,7 +40,13 @@ public class UIManager : MonoBehaviour
                     crosshair.localScale = crosshairSize * Vector3.one;
             }
             else crosshair.gameObject.SetActive(false);
-
+            if(Physics.Raycast(GameManager.GM.player.firearm.barrelPoint.position, GameManager.GM.player.swayController.transform.forward, out RaycastHit hit2, Mathf.Infinity))
+            {
+                greyCrosshair.gameObject.SetActive(true);
+                greyCrosshair.position = UICamera.WorldToScreenPoint(hit2.point);
+                greyCrosshair.localScale = crosshairSize * Vector3.one;
+            }
+            else greyCrosshair.gameObject.SetActive(false);
             //if (Physics.Raycast(GameManager.GM.player.firearm.barrelPoint.position, GameManager.GM.player.swayController.restRot, out RaycastHit hit2, Mathf.Infinity))
             //{
             //    restCrosshair.gameObject.SetActive(true);

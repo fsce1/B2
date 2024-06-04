@@ -19,19 +19,24 @@ public class FirearmInfo : ScriptableObject
 
     [Header("Recoil")]
     public float sustainedRecoilAdd;
-
     public bool sustainedAffectsVertical;
+    [Header("Rotation")]
     public Vector2 verticalPerShot;
     public bool sustainedAffectsHorizontal;
     public Vector2 horizontalPerShot;
     public float rotRecovery;
     public float rotSnappiness;
 
+    [Header("Impulse")]
+    public float impulsePerShot;
+    public float impulseRecovery;
+    public float impulseSnappiness;
+    [Header("Lateral")]
     public bool sustainedAffectsLateral;
     public Vector2 lateralPerShot;
     public float lateralRecovery;
     public float lateralSnappiness;
-
+    [Header("Camera")]
     public bool sustainedAffectsCam;
     public Vector2 camPerShot;
     public float camRecovery;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
 
@@ -23,6 +24,8 @@ public class Firearm : MonoBehaviour
 
     public Vector3 recoilRot;
     public Vector3 tgtRecoilRot;
+
+    public Vector3 tgtImpulseRot;
 
     public Vector3 recoilPos;
     public Vector3 tgtRecoilPos;
@@ -201,7 +204,7 @@ public class Firearm : MonoBehaviour
         tgtRecoilRot +=
             (-UnityEngine.Random.Range(info.verticalPerShot.x, info.verticalPerShot.y) * Vector3.right)
             + (UnityEngine.Random.Range(info.horizontalPerShot.x, info.horizontalPerShot.y) * Vector3.up);
-
+        tgtImpulseRot -= info.impulsePerShot * Vector3.right;
         if (info.sustainedAffectsVertical) tgtRecoilRot.x *= sustainedRecoilAdd;
         if (info.sustainedAffectsHorizontal) tgtRecoilRot.y *= sustainedRecoilAdd;
         tgtRecoilPos += -UnityEngine.Random.Range(info.lateralPerShot.x, info.lateralPerShot.y) * Vector3.forward;
@@ -209,10 +212,14 @@ public class Firearm : MonoBehaviour
         tgtRecoilCam += -UnityEngine.Random.Range(info.camPerShot.x, info.camPerShot.y) * Vector3.right;
         if (info.sustainedAffectsCam) tgtRecoilCam.x *= sustainedRecoilAdd;
     }
+    Vector3 recoilFinal;
     void CalculateRecoil()
     {
         tgtRecoilRot = Vector3.Lerp(tgtRecoilRot, Vector3.zero, Time.deltaTime * info.rotRecovery);
-        recoilRot = Vector3.Slerp(recoilRot, tgtRecoilRot, Time.deltaTime * info.rotSnappiness);
+        recoilFinal = Vector3.Slerp(recoilFinal, tgtRecoilRot, Time.deltaTime * info.rotSnappiness);
+
+        tgtImpulseRot = Vector3.Lerp(tgtImpulseRot, Vector3.zero, Time.deltaTime * info.impulseRecovery);
+        recoilRot = Vector3.Slerp(recoilRot, tgtImpulseRot, Time.deltaTime * info.impulseSnappiness) + recoilFinal;
 
         tgtRecoilPos = Vector3.Lerp(tgtRecoilPos, Vector3.zero, Time.deltaTime * info.lateralRecovery);
         recoilPos = Vector3.Slerp(recoilPos, tgtRecoilPos, Time.deltaTime * info.lateralSnappiness);

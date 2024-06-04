@@ -134,6 +134,7 @@ public class SwayController : MonoBehaviour
         breathingIn = !breathingIn;
         breathTgt = Vector3.zero;
         breathTgt.x = Random.Range(breathSidewaysAmount.x, breathSidewaysAmount.y);
+        breathTgt.z = Random.Range(breathSidewaysAmount.x, breathSidewaysAmount.y);
         breathTgt.y = Random.Range(breathAmount.x, breathAmount.y);
 
         if (!breathingIn)

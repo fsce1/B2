@@ -22,15 +22,18 @@ MonoBehaviour:
   sprintRot: {x: 5.600002, y: -13.34, z: 0.0030040925}
   sustainedRecoilAdd: 0.025
   sustainedAffectsVertical: 1
-  verticalPerShot: {x: 2, y: 5}
+  verticalPerShot: {x: 2, y: 3}
   sustainedAffectsHorizontal: 1
   horizontalPerShot: {x: -1, y: 1}
   rotRecovery: 10
   rotSnappiness: 5
+  impulsePerShot: 3
+  impulseRecovery: 25
+  impulseSnappiness: 25
   sustainedAffectsLateral: 0
-  lateralPerShot: {x: 0.05, y: 0.075}
+  lateralPerShot: {x: 0.015, y: 0.025}
   lateralRecovery: 15
-  lateralSnappiness: 15
+  lateralSnappiness: 25
   sustainedAffectsCam: 0
   camPerShot: {x: 3, y: 4}
   camRecovery: 15
