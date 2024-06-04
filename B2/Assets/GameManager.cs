@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("GM")]
     public static GameManager GM;
-
+    public Terrain terrain;
     [Header("Player")]
     public GameObject playerPrefab;
     public GameObject curFirearm;
@@ -94,9 +94,14 @@ public class GameManager : MonoBehaviour
         for (int i = enemiesToSpawn; i > 0; i--)
         {
             int spawnPos = Random.Range(0, enemySpawns.Count - 1);
-
             EnemyStateMachine e = Instantiate(enemyPrefab, enemySpawns[spawnPos]).GetComponent<EnemyStateMachine>();
-            enemySpawns.Remove(enemySpawns[spawnPos]);
+            //transform.position = new Vector3(Random.Range(-256f, 256f), 0, Random.Range(-256f, 256f));
+
+            //transform.position = new Vector3(transform.position.x, terrain.SampleHeight(transform.position), transform.position.z);
+            //EnemyStateMachine e = Instantiate(enemyPrefab, transform).GetComponent<EnemyStateMachine>();
+            //enemySpawns.Remove(enemySpawns[spawnPos]);
+            //e.transform.SetParent(null);
+            //transform.position = Vector3.zero;
             enemies.Add(e);
         }
 

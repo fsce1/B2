@@ -15205,7 +15205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &760349313
 AudioListener:
   m_ObjectHideFlags: 0
@@ -32350,6 +32350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51766762d5e44646af9fe3d54ddeac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  terrain: {fileID: 0}
   playerPrefab: {fileID: 8733313596522671393, guid: 293eba708539c7e4a8eeca3a4e34710d, type: 3}
   curFirearm: {fileID: 0}
   curFirearmText: {fileID: 1348930768}

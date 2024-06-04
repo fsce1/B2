@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
     public float bhopSpeedMult = 0.4f;
     public float airAccel;
 
+
     //public Vector3 airVelocity;
     //public float jumpHeight;
     //public bool isJumping;
@@ -301,6 +302,7 @@ public class Player : MonoBehaviour
     {
         velocity.y += jumpForce;
     }
+
     public void Hit(int damage)
     {
         health -= damage;

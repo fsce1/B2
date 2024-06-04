@@ -143,7 +143,7 @@ public class Round : MonoBehaviour
                     break;
             }
 
-            if (!hit.collider.CompareTag("Round")) Destroy(gameObject);
+            if (!hit.collider.CompareTag("Round") || !hit.collider.CompareTag("Whizz")) Destroy(gameObject);
         }
         //Vector3 tgt = new()
         //{

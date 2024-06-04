@@ -90,7 +90,7 @@ public class EnemyStateMachine : MonoBehaviour
         }
         Vector3 playerEyePos =  GameManager.GM.player.transform.position;
         playerEyePos.y += 1.75f;
-        if (Physics.Raycast(eyePos.position, playerEyePos - eyePos.position, out RaycastHit hit, Mathf.Infinity))
+        if (Physics.Raycast(eyePos.position, playerEyePos - eyePos.position, out RaycastHit hit, Mathf.Infinity, 9))
         {
             if (hit.transform.CompareTag("Player") && Vector3.Angle(lookPos.forward, GameManager.GM.player.transform.position - lookPos.position) < viewCone)
             {
@@ -268,7 +268,7 @@ public class EnemyStateMachine : MonoBehaviour
         }
     }
 
-    public void BulletWhizz(Transform round)
+    public void BulletWhizz()
     {
         lastPositionPlayerSpotted = GameManager.GM.player.transform.position;
         surprise = Vector3.Angle(eyePos.forward, GameManager.GM.player.transform.position - eyePos.position);
@@ -291,7 +291,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (other.CompareTag("Round"))
         {
             //Debug.Log("Whizz");
-            BulletWhizz(other.transform);
+            BulletWhizz();
         }
     }
 }

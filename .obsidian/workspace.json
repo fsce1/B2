@@ -18,8 +18,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "86cd92183011b007",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2024-05-25 22.28.02.excalidraw.md"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "B2.md",
+                "file": "Excalidraw/Drawing 2024-05-25 22.28.02.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +113,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "B2.md",
+                "file": "Excalidraw/Drawing 2024-05-25 22.28.02.excalidraw.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "B2.md"
+                "file": "Excalidraw/Drawing 2024-05-25 22.28.02.excalidraw.md"
               }
             }
           }
@@ -148,21 +159,32 @@
       "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "5ea20d9cbfa812fa",
+  "active": "86cd92183011b007",
   "lastOpenFiles": [
-    "B2/Temp/UnityTempFile-5149199535fe334469a1a184d1940cc3",
-    "B2/Assets/Scenes/mkgzr0tx.ahj~",
-    "B2/Temp/UnityTempFile-2faf1c1df7bd6954ebd1604c083746a5",
-    "B2/Library/TempArtifacts/Extra/951a649f21671f1499bc220c78616945.info",
-    "B2/Library/Artifacts/61/61c6bcc1d8975dd0adf16cc127779429",
-    "B2/Library/TempArtifacts/Primary/f858115c4a5e6bd4cbe4db47d0e9689b",
-    "B2/Temp/ADB-Refresh293cd2105fb014c4da1173e59a8fa51e",
-    "B2/Temp/UnityTempFile-1efb82446c7fe1e4ebb8bf7ef01a659d",
-    "B2/Assets/Scenes/bxh43ptc.pwr~",
-    "B2/Assets/Scenes/bxryjh0m.yzp~",
-    "B2/Library/Search/propertyAliases.db_2cd9d90a46dd471fb6b92de816f1a7d8_temp",
-    "Research.md",
+    "B2/Temp/ADB-Refresh6409c6d83702ab449b5c535f46223c2f",
+    "B2/Library/Search/propertyDatabase.db_b9c20353f9d3429481e59f30718500de_temp",
+    "B2/Library/TempArtifacts/Primary/3b81d5bb7e71c484d8428d8018456b07",
+    "B2/Library/TempArtifacts/Primary/5933ac81a3584cc4d8985c14bfd4e121",
+    "B2/Library/TempArtifacts/Primary/06490c2da1b703049ad29efd26b4b36a",
+    "B2/Library/TempArtifacts/Primary/546ee09b762d1ac43bab6f95a25b1eb0",
+    "B2/Library/TempArtifacts/Primary/047f678fe8ed89845a65234f4a93bdc0",
+    "B2/Library/TempArtifacts/Primary/03d3930d3243f2644a56a477d5e1dfa3",
+    "B2/Library/TempArtifacts/Primary/62ce9ef3e23d0e24ba26a98bc9df6cab",
+    "B2/Temp/ADB-Refresha14e545c4b89a544090e69f3d29ac9bd",
+    "B2/Temp/UnityTempFile-c9a5265f9887bd54f80a1155f5463a45",
+    "B2/Assets/Quixel/Scripts/Images/Text_Background.png",
+    "B2/Assets/Quixel/Scripts/Images/Popup_Background.png",
+    "B2/Assets/Quixel/Scripts/Images/Popup_Arrow.png",
+    "B2/Assets/Quixel/Scripts/Images/M.png",
+    "B2/Assets/Quixel/Scripts/Images/Help.png",
+    "B2/Assets/Quixel/Scripts/Images/Field_Background.png",
+    "B2/Assets/Quixel/Scripts/Images/CheckBoxOn.png",
+    "B2/Assets/Quixel/Scripts/Images/CheckBoxOff.png",
+    "B2/Assets/Quixel/Scripts/Images/CheckBoxHover.png",
+    "B2/Assets/Quixel/Scripts/Images/Background.png",
     "B2.md",
+    "Excalidraw/Drawing 2024-05-25 22.28.02.excalidraw.md",
+    "Research.md",
     "Ideation.md",
     "GDD.md",
     "Analysis of Brief.md",
@@ -170,19 +192,9 @@
     "Evaluation.md",
     "Project Management.md",
     "Testing and Feedback.md",
-    "Images/Pasted image 20240516190922.png",
-    "Images/Sususterja_Flag.webp",
-    "Images/Pasted Image 20240512155531_630.png",
     "Powerpoint Reflection.md",
     "Excalidraw/Drawing 2024-05-12 15.51.43.excalidraw.md",
-    "B2/Assets/Scenes/Scene2/New folder (3)/model.jpg",
-    "B2/Assets/Scenes/Scene2/New folder/model.jpg",
-    "B2/Assets/Scenes/Scene2/New folder (2)/model.jpg",
-    "B2/Assets/Scenes/Scene2/model.jpg",
-    "SilentStrikeMoodboard.png",
     "Skills Development.md",
-    "Images/Pasted Image 20240512171142_188.png",
-    "Images/Single-grenade-isolated-on-transparent-background-PNG.png",
     "Excalidraw/Drawing 2024-04-09 15.06.55.excalidraw.md",
     "Untitled Kanban.md",
     "Excalidraw/Drawing 2024-04-09 13.28.28.excalidraw.md",
@@ -194,7 +206,6 @@
     "B2/2024-03-12 Bullet Physics + New Weapons.md",
     "B2/2024-03-05 Weapon Recoil + Reload.md",
     "B2/2024-02-27 Weapon Sway + ADS.md",
-    "B2/2024-02-20 Character + Camera Movement .md",
-    "B2/2024-02-20 Character + Camera Movement.md"
+    "B2/2024-02-20 Character + Camera Movement .md"
   ]
 }
